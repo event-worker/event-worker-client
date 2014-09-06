@@ -23,6 +23,5 @@ Set the URL of the host from which to fetch the events in the `Event Worker Opti
 
 <hr>
 ##3 Optional settings
-TODO.
 ####3.1 Events as a front page
 Create an empty page with a slug `events` and set it as a `static front page`.
