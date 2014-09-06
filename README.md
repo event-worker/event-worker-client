@@ -25,5 +25,5 @@ Acticate the plugin from the plugin menu.
 Set the URL of the host from which to fetch the events from the `Event Worker Options`.
 
 <hr>
-##4 Usage
+##3 Usage
 TODO.
