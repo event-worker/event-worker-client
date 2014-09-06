@@ -22,7 +22,7 @@ Set the permalinks to `Post name`.
 Acticate the plugin from the plugin menu.
 
 ####2.4 Set the host URL
-Set the URL of the host from which to fetch the events from the `Event Worker Options`.
+Set the URL of the host from which to fetch the events in the `Event Worker Options`.
 
 <hr>
 ##3 Usage
