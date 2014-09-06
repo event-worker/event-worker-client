@@ -1,7 +1,7 @@
 Event Worker Client
 ===================
 
-A WordPress plugin to fetch and show the events from the Event Worker JSON-LD feed.
+A WordPress plugin to fetch and show the events from the [Event Worker Host](https://github.com/sugardrunk/event-worker-host) JSON-LD feed.
 
 <hr>
 ##1 Install
