@@ -17,7 +17,7 @@ Install the plugin to the `wp-content/plugins` folder.
 ####2.2 Set permalinks on
 Set the permalinks to `Post name`.
 ####2.3 Activate the plugin
-Acticate the plugin from the plugin menu.
+Activate the plugin from the plugin menu.
 ####2.4 Set the host URL
 Set the URL of the host from which to fetch the events in the `Event Worker Options`.
 
