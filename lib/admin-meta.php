@@ -252,24 +252,6 @@ class WorkerAdminMetaBoxes
                              'event_organizer_data',
                              $organizer_data);
 
-            $temp = array('name' => $worker_event_organizer) + $organizer_data;
-            $table = new Table('worker_event_organizers');
-            $names = $table->get_all();
-
-            $check = true;
-
-            foreach ($names as $name)
-            {
-                if ($name->name === $worker_event_organizer)
-                {
-                    $check = false;
-                }                
-            }
-            if ($check === true)
-            {
-                $table->insert($temp);
-            }
-
             if ($worker_event_start_date !== "")
             {
                 $start_order = new WorkerFormatDate($worker_event_start_date);
