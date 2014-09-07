@@ -19,7 +19,7 @@ class WorkerCore
     function __construct()
     {   
         require_once('common-options.php');
-        require_once('pdf-generation/plugin.php');
+        require_once('pdf-generation/pdf-helper.php');
         require_once('pre-order-events.php');
         require_once('admin-meta.php');
         require_once('format-date.php');

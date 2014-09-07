@@ -1,5 +1,6 @@
 <?php
-require(WP_PLUGIN_DIR . '/' . 'event-worker/lib/fpdf/fpdf.php');
+
+require(WP_PLUGIN_DIR . '/' . 'event-worker-client/lib/fpdf/fpdf.php');
 set_time_limit(0);
 define('EURO', chr(128));
 date_default_timezone_set('Europe/Helsinki');
@@ -7,7 +8,7 @@ date_default_timezone_set('Europe/Helsinki');
 /**
  * Class for generating the PDF with FPDF library.
  *
- * Class extending FPDF librayr for generating PDF from the events.
+ * Class extending FPDF library for generating PDF from the events.
  *
  * @package EventWorker
  * @author  Janne Kahkonen <jannekahkonen@gmail.com>
