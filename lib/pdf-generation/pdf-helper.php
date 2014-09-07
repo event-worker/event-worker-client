@@ -3,7 +3,7 @@
 class PDFHelper
 {
     /**
-     * The Constructor
+     * The Constructor.
      *
      */
     function __construct()
