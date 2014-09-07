@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: my-pluginname 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-07 16:10+0200\n"
-"PO-Revision-Date: 2014-09-07 16:13+0200\n"
+"POT-Creation-Date: 2014-09-07 17:47+0200\n"
+"PO-Revision-Date: 2014-09-07 17:47+0200\n"
 "Last-Translator: Janne Kähkönen <jannekahkonen@gmail.com>\n"
 "Language-Team: Janne Kähkönen <jannekahkonen@gmail.com>\n"
 "Language: fi\n"
@@ -38,9 +38,9 @@ msgstr "kotisivu"
 msgid "price"
 msgstr "hinta"
 
-#: ../admin-meta.php:34 ../templates/single-events.php:82
-msgid "date"
-msgstr "päivä"
+#: ../admin-meta.php:34
+msgid "event date"
+msgstr "tapahtuman päivämäärä"
 
 #: ../admin-meta.php:35 ../templates/archive-events.php:153
 #: ../templates/single-events.php:145
@@ -54,6 +54,14 @@ msgstr "nimi"
 #: ../admin-meta.php:62 ../admin-meta.php:185
 msgid "address"
 msgstr "osoite"
+
+#: ../admin-meta.php:112
+msgid "start date"
+msgstr "alkupäivä"
+
+#: ../admin-meta.php:115
+msgid "end date"
+msgstr "loppupäivä"
 
 #: ../admin-meta.php:186
 msgid "phone"
@@ -143,6 +151,95 @@ msgstr ""
 msgid "Uncategorized event"
 msgstr "Luokittelematon tapahtuma"
 
+#: ../loaders/scripts-and-styles-loader.php:20
+msgid "hour"
+msgstr "tunti"
+
+#: ../loaders/scripts-and-styles-loader.php:21
+#: ../templates/single-events.php:82
+msgid "time"
+msgstr "aika"
+
+#: ../loaders/scripts-and-styles-loader.php:22
+msgid "minute"
+msgstr "minuutti"
+
+#: ../loaders/scripts-and-styles-loader.php:24
+msgid "Su"
+msgstr "Su"
+
+#: ../loaders/scripts-and-styles-loader.php:25
+msgid "Mo"
+msgstr "Ma"
+
+#: ../loaders/scripts-and-styles-loader.php:26
+msgid "Tu"
+msgstr "Ti"
+
+#: ../loaders/scripts-and-styles-loader.php:27
+msgid "We"
+msgstr "Ke"
+
+#: ../loaders/scripts-and-styles-loader.php:28
+msgid "Th"
+msgstr "To"
+
+#: ../loaders/scripts-and-styles-loader.php:29
+msgid "Fr"
+msgstr "Pe"
+
+#: ../loaders/scripts-and-styles-loader.php:30
+msgid "Sa"
+msgstr "La"
+
+#: ../loaders/scripts-and-styles-loader.php:32
+msgid "January"
+msgstr "Tammikuu"
+
+#: ../loaders/scripts-and-styles-loader.php:33
+msgid "February"
+msgstr "Helmikuu"
+
+#: ../loaders/scripts-and-styles-loader.php:34
+msgid "March"
+msgstr "Maaliskuu"
+
+#: ../loaders/scripts-and-styles-loader.php:35
+msgid "April"
+msgstr "Huhtikuu"
+
+#: ../loaders/scripts-and-styles-loader.php:36
+msgid "May"
+msgstr "Toukokuu"
+
+#: ../loaders/scripts-and-styles-loader.php:37
+msgid "June"
+msgstr "Kesäkuu"
+
+#: ../loaders/scripts-and-styles-loader.php:38
+msgid "July"
+msgstr "Heinäkuu"
+
+#: ../loaders/scripts-and-styles-loader.php:39
+msgid "August"
+msgstr "Elokuu"
+
+#: ../loaders/scripts-and-styles-loader.php:40
+msgid "Septemper"
+msgstr "Syyskuu"
+
+#: ../loaders/scripts-and-styles-loader.php:41
+msgid "October"
+msgstr "Lokakuu"
+
+#: ../loaders/scripts-and-styles-loader.php:42
+msgid "November"
+msgstr "Marraskuu"
+
+#: ../loaders/scripts-and-styles-loader.php:43
+msgid "December"
+msgstr "Joulukuu"
+
 #: ../pdf-generator.php:37
 msgid "Document generated"
 msgstr "Dokumentti luotu"
@@ -200,5 +297,5 @@ msgid "Next"
 msgstr "Seuraava"
 
 #: ../templates/single-events.php:82
-msgid "time"
-msgstr "aika"
+msgid "date"
+msgstr "päivä"

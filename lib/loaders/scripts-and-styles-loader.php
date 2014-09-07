@@ -12,6 +12,39 @@
  */
 class WorkerScriptLoaderHelper
 {
+
+    function __construct()
+    {
+        ?>
+        <script>
+        var hour = "<?php echo ucfirst(__('hour', 'event-worker-translations')); ?>";
+        var time = "<?php echo ucfirst(__('time', 'event-worker-translations')); ?>";
+        var minute = "<?php echo ucfirst(__('minute', 'event-worker-translations')); ?>";
+
+        var days = ["<?php echo ucfirst(__('Su', 'event-worker-translations')); ?>",
+                          "<?php echo ucfirst(__('Mo', 'event-worker-translations')); ?>",
+                          "<?php echo ucfirst(__('Tu', 'event-worker-translations')); ?>",
+                          "<?php echo ucfirst(__('We', 'event-worker-translations')); ?>",
+                          "<?php echo ucfirst(__('Th', 'event-worker-translations')); ?>",
+                          "<?php echo ucfirst(__('Fr', 'event-worker-translations')); ?>",
+                          "<?php echo ucfirst(__('Sa', 'event-worker-translations')); ?>",];
+
+        var months = ["<?php echo ucfirst(__('January', 'event-worker-translations')); ?>",
+                      "<?php echo ucfirst(__('February', 'event-worker-translations')); ?>",
+                      "<?php echo ucfirst(__('March', 'event-worker-translations')); ?>",
+                      "<?php echo ucfirst(__('April', 'event-worker-translations')); ?>",
+                      "<?php echo ucfirst(__('May', 'event-worker-translations')); ?>",
+                      "<?php echo ucfirst(__('June', 'event-worker-translations')); ?>",
+                      "<?php echo ucfirst(__('July', 'event-worker-translations')); ?>",
+                      "<?php echo ucfirst(__('August', 'event-worker-translations')); ?>",
+                      "<?php echo ucfirst(__('Septemper', 'event-worker-translations')); ?>",
+                      "<?php echo ucfirst(__('October', 'event-worker-translations')); ?>",
+                      "<?php echo ucfirst(__('November', 'event-worker-translations')); ?>",
+                      "<?php echo ucfirst(__('December', 'event-worker-translations')); ?>",];
+        </script>
+        <?php
+    }
+
     /** 
      * Get the map.
      *
@@ -24,12 +57,17 @@ class WorkerScriptLoaderHelper
         <script>
 
             var l = "<?php echo $location; ?>";
-            
+
             runMap(l);
             jQuery(document).ready(function(jQuery)
             {
                 jQuery('.eventdate').datetimepicker(
                 {
+                    timeText: time,
+                    hourText: hour,
+                    minuteText: minute,
+                    monthNames: months,
+                    dayNamesMin: days,
                     dateFormat: 'dd.mm.yy',
                     showButtonPanel: false,
                     constrainInput: true,
@@ -56,6 +94,11 @@ class WorkerScriptLoaderHelper
             {
                 jQuery('.eventdate').datetimepicker(
                 {
+                    timeText: time,
+                    hourText: hour,
+                    minuteText: minute,
+                    monthNames: months,
+                    dayNamesMin: days,
                     dateFormat: 'dd.mm.yy',
                     showButtonPanel: false,
                     constrainInput: true,

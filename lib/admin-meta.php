@@ -31,7 +31,7 @@ class WorkerAdminMetaBoxes
         add_meta_box('organizer-meta-box', ucfirst(__( 'organizer', 'event-worker-translations' )), array($this, 'show_organizer_meta_box'), 'events', 'normal', 'high');
         add_meta_box('website-meta-box', ucfirst(__( 'website', 'event-worker-translations' )), array($this, 'show_website_meta_box'), 'events', 'normal', 'high');
         add_meta_box('price-meta-box', ucfirst(__( 'price', 'event-worker-translations' )), array($this, 'show_price_meta_box'), 'events', 'normal', 'high');
-        add_meta_box('date-meta-box', ucfirst(__( 'date', 'event-worker-translations' )), array($this, 'show_date_meta_box'), 'events', 'normal', 'high');
+        add_meta_box('date-meta-box', ucfirst(__( 'event date', 'event-worker-translations' )), array($this, 'show_date_meta_box'), 'events', 'normal', 'high');
         add_meta_box('map-meta-box', ucfirst(__( 'location', 'event-worker-translations' )), array($this, 'show_map_meta_box'), 'events', 'normal', 'high');
     }
 
@@ -109,10 +109,10 @@ class WorkerAdminMetaBoxes
             $end = null;
         }
 
-        echo '<label for="AdminEventStartDate">Start date</label><br/>';   
+        echo '<label for="AdminEventStartDate">' . ucfirst(__( 'start date', 'event-worker-translations' )) . '</label><br/>';   
         echo '<input class="eventdate" id="AdminEventStartDate" name="AdminEventStartDate" value="' . $start. '"/><br/>';
 
-        echo '<label for="AdminEventEndDate"> End date</label><br/>';
+        echo '<label for="AdminEventEndDate">' . ucfirst(__( 'end date', 'event-worker-translations' )) . '</label><br/>';
         echo '<input class="eventdate" id="AdminEventEndDate" name="AdminEventEndDate" value="' . $end . '"/><br/>';
     }
 
