@@ -12,7 +12,10 @@
  */
 class WorkerScriptLoaderHelper
 {
-
+    /** 
+     * The constructor.
+     *
+     */
     function __construct()
     {
         ?>

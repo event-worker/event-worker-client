@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: my-pluginname 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-07 17:47+0200\n"
-"PO-Revision-Date: 2014-09-07 17:47+0200\n"
+"POT-Creation-Date: 2014-09-07 18:36+0200\n"
+"PO-Revision-Date: 2014-09-07 18:36+0200\n"
 "Last-Translator: Janne Kähkönen <jannekahkonen@gmail.com>\n"
 "Language-Team: Janne Kähkönen <jannekahkonen@gmail.com>\n"
 "Language: fi\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-#: ../admin-meta.php:31 ../pdf-generator.php:329
+#: ../admin-meta.php:31 ../pdf-generator.php:326
 #: ../templates/single-events.php:131
 msgid "organizer"
 msgstr "järjestäjä"
@@ -33,7 +33,7 @@ msgstr "järjestäjä"
 msgid "website"
 msgstr "kotisivu"
 
-#: ../admin-meta.php:33 ../pdf-generator.php:221 ../pdf-generator.php:335
+#: ../admin-meta.php:33 ../pdf-generator.php:218 ../pdf-generator.php:332
 #: ../templates/single-events.php:86
 msgid "price"
 msgstr "hinta"
@@ -151,92 +151,92 @@ msgstr ""
 msgid "Uncategorized event"
 msgstr "Luokittelematon tapahtuma"
 
-#: ../loaders/scripts-and-styles-loader.php:20
+#: ../loaders/scripts-and-styles-loader.php:23
 msgid "hour"
 msgstr "tunti"
 
-#: ../loaders/scripts-and-styles-loader.php:21
+#: ../loaders/scripts-and-styles-loader.php:24
 #: ../templates/single-events.php:82
 msgid "time"
 msgstr "aika"
 
-#: ../loaders/scripts-and-styles-loader.php:22
+#: ../loaders/scripts-and-styles-loader.php:25
 msgid "minute"
 msgstr "minuutti"
 
-#: ../loaders/scripts-and-styles-loader.php:24
+#: ../loaders/scripts-and-styles-loader.php:27
 msgid "Su"
 msgstr "Su"
 
-#: ../loaders/scripts-and-styles-loader.php:25
+#: ../loaders/scripts-and-styles-loader.php:28
 msgid "Mo"
 msgstr "Ma"
 
-#: ../loaders/scripts-and-styles-loader.php:26
+#: ../loaders/scripts-and-styles-loader.php:29
 msgid "Tu"
 msgstr "Ti"
 
-#: ../loaders/scripts-and-styles-loader.php:27
+#: ../loaders/scripts-and-styles-loader.php:30
 msgid "We"
 msgstr "Ke"
 
-#: ../loaders/scripts-and-styles-loader.php:28
+#: ../loaders/scripts-and-styles-loader.php:31
 msgid "Th"
 msgstr "To"
 
-#: ../loaders/scripts-and-styles-loader.php:29
+#: ../loaders/scripts-and-styles-loader.php:32
 msgid "Fr"
 msgstr "Pe"
 
-#: ../loaders/scripts-and-styles-loader.php:30
+#: ../loaders/scripts-and-styles-loader.php:33
 msgid "Sa"
 msgstr "La"
 
-#: ../loaders/scripts-and-styles-loader.php:32
+#: ../loaders/scripts-and-styles-loader.php:35
 msgid "January"
 msgstr "Tammikuu"
 
-#: ../loaders/scripts-and-styles-loader.php:33
+#: ../loaders/scripts-and-styles-loader.php:36
 msgid "February"
 msgstr "Helmikuu"
 
-#: ../loaders/scripts-and-styles-loader.php:34
+#: ../loaders/scripts-and-styles-loader.php:37
 msgid "March"
 msgstr "Maaliskuu"
 
-#: ../loaders/scripts-and-styles-loader.php:35
+#: ../loaders/scripts-and-styles-loader.php:38
 msgid "April"
 msgstr "Huhtikuu"
 
-#: ../loaders/scripts-and-styles-loader.php:36
+#: ../loaders/scripts-and-styles-loader.php:39
 msgid "May"
 msgstr "Toukokuu"
 
-#: ../loaders/scripts-and-styles-loader.php:37
+#: ../loaders/scripts-and-styles-loader.php:40
 msgid "June"
 msgstr "Kesäkuu"
 
-#: ../loaders/scripts-and-styles-loader.php:38
+#: ../loaders/scripts-and-styles-loader.php:41
 msgid "July"
 msgstr "Heinäkuu"
 
-#: ../loaders/scripts-and-styles-loader.php:39
+#: ../loaders/scripts-and-styles-loader.php:42
 msgid "August"
 msgstr "Elokuu"
 
-#: ../loaders/scripts-and-styles-loader.php:40
+#: ../loaders/scripts-and-styles-loader.php:43
 msgid "Septemper"
 msgstr "Syyskuu"
 
-#: ../loaders/scripts-and-styles-loader.php:41
+#: ../loaders/scripts-and-styles-loader.php:44
 msgid "October"
 msgstr "Lokakuu"
 
-#: ../loaders/scripts-and-styles-loader.php:42
+#: ../loaders/scripts-and-styles-loader.php:45
 msgid "November"
 msgstr "Marraskuu"
 
-#: ../loaders/scripts-and-styles-loader.php:43
+#: ../loaders/scripts-and-styles-loader.php:46
 msgid "December"
 msgstr "Joulukuu"
 
@@ -244,27 +244,27 @@ msgstr "Joulukuu"
 msgid "Document generated"
 msgstr "Dokumentti luotu"
 
-#: ../pdf-generator.php:324
+#: ../pdf-generator.php:321
 msgid "LINK"
 msgstr "LINKKI"
 
-#: ../pdf-generator.php:330
+#: ../pdf-generator.php:327
 msgid "organizer address"
-msgstr "Järjestäjän osoite"
+msgstr "järjestäjän osoite"
 
-#: ../pdf-generator.php:331
+#: ../pdf-generator.php:328
 msgid "organizer phone"
-msgstr "Järjestäjän puhelin"
+msgstr "järjestäjän puhelin"
 
-#: ../pdf-generator.php:332
-msgid "Organizer e-mail"
-msgstr "Järjestäjän sähköposti"
+#: ../pdf-generator.php:329
+msgid "organizer e-mail"
+msgstr "järjestäjän sähköposti"
+
+#: ../pdf-generator.php:330
+msgid "organizer website"
+msgstr "järjestäjän kotisivu"
 
 #: ../pdf-generator.php:333
-msgid "Organizer website"
-msgstr "Järjestäjän kotisivu"
-
-#: ../pdf-generator.php:336
 msgid "Location"
 msgstr "Sijainti"
 

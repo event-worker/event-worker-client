@@ -37,7 +37,10 @@ class PDF extends FPDF
         $text = __("Document generated", 'event-worker-translations');
         $this->today = $text . ": " . date("d.m.Y, H:i:s");
 
-        $url = home_url() . '/' . get_option('slim_base_path', 'v01/api') . '/event';
+        $options = get_option('event_worker_api_endpoint');
+        $endpoint = $options['api-endpoint'];
+
+        $url = home_url() . '/' . $endpoint . '/event';
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -50,12 +53,6 @@ class PDF extends FPDF
         $this->SetMargins(20, 0, 20);
 
         $this->new_page();
-
-    }
-
-    public function load_my_transl()
-    {
-        //echo dirname(plugin_basename(__FILE__));
     }
 
     /** 
@@ -329,8 +326,8 @@ for ($i = 0; $i < count($pdf->json); $i++)
     $organizer = ucfirst(__("organizer", 'event-worker-translations'));
     $organizer_address = ucfirst(__("organizer address", 'event-worker-translations'));
     $organizer_phone = ucfirst(__("organizer phone", 'event-worker-translations'));
-    $organizer_email = ucfirst(__("Organizer e-mail", 'event-worker-translations'));
-    $organizer_website = ucfirst(__("Organizer website", 'event-worker-translations'));
+    $organizer_email = ucfirst(__("organizer e-mail", 'event-worker-translations'));
+    $organizer_website = ucfirst(__("organizer website", 'event-worker-translations'));
 
     fwrite($op, $pdf->get_title($i) . "\n" . $pdf->get_date($i) . "\n" . ucfirst(__("price", 'event-worker-translations')) . ": " . $pdf->get_price($i) . "\xE2\x82\xAc");
     fwrite($op, "\n" . __("Location", 'event-worker-translations') . ": " . $pdf->json[$i]['location']['name'] . " - " . $pdf->json[$i]['location']['address']);
