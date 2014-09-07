@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: my-pluginname 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-07 16:00+0200\n"
-"PO-Revision-Date: 2014-09-07 16:01+0200\n"
+"POT-Creation-Date: 2014-09-07 16:10+0200\n"
+"PO-Revision-Date: 2014-09-07 16:13+0200\n"
 "Last-Translator: Janne Kähkönen <jannekahkonen@gmail.com>\n"
 "Language-Team: Janne Kähkönen <jannekahkonen@gmail.com>\n"
 "Language: fi\n"
@@ -202,32 +202,3 @@ msgstr "Seuraava"
 #: ../templates/single-events.php:82
 msgid "time"
 msgstr "aika"
-
-#~ msgid "Name"
-#~ msgstr "Nimi"
-
-#~ msgid "Address"
-#~ msgstr "Osoite"
-
-#, fuzzy
-#~ msgid "Website"
-#~ msgstr "kotisivu"
-
-#~ msgid "Organizer"
-#~ msgstr "Järjestäjä"
-
-#, fuzzy
-#~ msgid "Event Categories"
-#~ msgstr "Kategoriat"
-
-#~ msgid "Price"
-#~ msgstr "Hinta"
-
-#~ msgid "CATEGORY"
-#~ msgstr "KATEGORIA"
-
-#~ msgid "mymessage1"
-#~ msgstr "UAUAUAUUA"
-
-#~ msgid "mymessage2"
-#~ msgstr "HEHEHEhehe"
