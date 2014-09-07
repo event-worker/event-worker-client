@@ -34,7 +34,7 @@ class PDF extends FPDF
     {
         parent::__construct();
 
-        $text = __("Document generated", 'my-pluginname');
+        $text = __("Document generated", 'event-worker-translations');
         $this->today = $text . ": " . date("d.m.Y, H:i:s");
 
         $url = home_url() . '/' . get_option('slim_base_path', 'v01/api') . '/event';
@@ -166,7 +166,7 @@ class PDF extends FPDF
      */
     function get_organizer($i)
     {
-        $organizer = $this->json[$i]['organizer']['name'] .
+        $organizer = $this->json[$i]['organizer']['name'] . 
                      " - " . $this->json[$i]['organizer']['address'] .
                      " - " . $this->json[$i]['organizer']['telephone'] .
                      " - " . $this->json[$i]['organizer']['email'] .
@@ -218,7 +218,7 @@ class PDF extends FPDF
         $category_array = $this->json[$i]['keywords'];
         $keywords = implode(', ', $category_array['keywords']);
 
-        $price = __("Price", 'my-pluginname') . ": " . $this->get_price($i);
+        $price = ucfirst(__("price", 'event-worker-translations')) . ": " . $this->get_price($i);
        
         $this->cell(80, 4, $price . EURO, 0);
 
@@ -321,19 +321,19 @@ for ($i = 0; $i < count($pdf->json); $i++)
     $pdf->MultiCell(160, 4,  $temp, '', 'L', false);
     $pdf->SetTextColor(50, 50, 50);
     $pdf->Ln(0.5);
-    $pdf->Cell(160, 4, __("LINK", 'my-pluginname') . ': ' . $pdf->json[$i]['url'], 'B', 1, 'L', false, $pdf->json[$i]['url']);
+    $pdf->Cell(160, 4, __("LINK", 'event-worker-translations') . ': ' . $pdf->json[$i]['url'], 'B', 1, 'L', false, $pdf->json[$i]['url']);
     $pdf->SetTextColor(0,0,0);
     $pdf->SetDrawColor(0, 0, 0);
     $pdf->Ln(3);
     
-    $organizer = __("Organizer", 'my-pluginname');
-    $organizer_address = __("Organizer address", 'my-pluginname');
-    $organizer_phone = __("Organizer phone", 'my-pluginname');
-    $organizer_email = __("Organizer e-mail", 'my-pluginname');
-    $organizer_website = __("Organizer website", 'my-pluginname');
+    $organizer = ucfirst(__("organizer", 'event-worker-translations'));
+    $organizer_address = ucfirst(__("organizer address", 'event-worker-translations'));
+    $organizer_phone = ucfirst(__("organizer phone", 'event-worker-translations'));
+    $organizer_email = ucfirst(__("Organizer e-mail", 'event-worker-translations'));
+    $organizer_website = ucfirst(__("Organizer website", 'event-worker-translations'));
 
-    fwrite($op, $pdf->get_title($i) . "\n" . $pdf->get_date($i) . "\n" . __("Price", 'my-pluginname') . ": " . $pdf->get_price($i) . "\xE2\x82\xAc");
-    fwrite($op, "\n" . __("Location", 'my-pluginname') . ": " . $pdf->json[$i]['location']['name'] . " - " . $pdf->json[$i]['location']['address']);
+    fwrite($op, $pdf->get_title($i) . "\n" . $pdf->get_date($i) . "\n" . ucfirst(__("price", 'event-worker-translations')) . ": " . $pdf->get_price($i) . "\xE2\x82\xAc");
+    fwrite($op, "\n" . __("Location", 'event-worker-translations') . ": " . $pdf->json[$i]['location']['name'] . " - " . $pdf->json[$i]['location']['address']);
     fwrite($op, "\n" . $organizer . ": " . $pdf->json[$i]['organizer']['name']);
     fwrite($op, "\n" . $organizer_address . ": " . $pdf->json[$i]['organizer']['address']);
     fwrite($op, "\n" . $organizer_phone . ": " . $pdf->json[$i]['organizer']['telephone']);

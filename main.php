@@ -55,7 +55,7 @@ class WorkerMainClass
      */
     function event_worker_init()
     {
-        load_plugin_textdomain('my-pluginname', FALSE, dirname(plugin_basename(__FILE__)).'/lib/languages/');
+        load_plugin_textdomain('event-worker-translations', FALSE, dirname(plugin_basename(__FILE__)).'/lib/languages/');
     }
 }
 new WorkerMainClass();

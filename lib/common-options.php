@@ -17,7 +17,7 @@ class CommonOptions
     {
         // add_options_page( $page_title, $menu_title, $capability, $menu_slug, $function )
         add_options_page('Event Worker',
-                         'Event Worker Options',
+                         __('Event Worker Options', 'event-worker-translations'),
                          'manage_options',
                          'event-worker',
                           array($this, 'create_plugin_settings_page'));

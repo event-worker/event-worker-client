@@ -28,11 +28,11 @@ class WorkerAdminMetaBoxes
      */
     function add_my_meta_boxes()
     {
-        add_meta_box('organizer-meta-box', 'Organizer', array($this, 'show_organizer_meta_box'), 'events', 'normal', 'high');
-        add_meta_box('website-meta-box', 'Website', array($this, 'show_website_meta_box'), 'events', 'normal', 'high');
-        add_meta_box('price-meta-box', 'Price', array($this, 'show_price_meta_box'), 'events', 'normal', 'high');
-        add_meta_box('date-meta-box', 'Date', array($this, 'show_date_meta_box'), 'events', 'normal', 'high');
-        add_meta_box('map-meta-box', 'Location', array($this, 'show_map_meta_box'), 'events', 'normal', 'high');
+        add_meta_box('organizer-meta-box', ucfirst(__( 'organizer', 'event-worker-translations' )), array($this, 'show_organizer_meta_box'), 'events', 'normal', 'high');
+        add_meta_box('website-meta-box', ucfirst(__( 'website', 'event-worker-translations' )), array($this, 'show_website_meta_box'), 'events', 'normal', 'high');
+        add_meta_box('price-meta-box', ucfirst(__( 'price', 'event-worker-translations' )), array($this, 'show_price_meta_box'), 'events', 'normal', 'high');
+        add_meta_box('date-meta-box', ucfirst(__( 'date', 'event-worker-translations' )), array($this, 'show_date_meta_box'), 'events', 'normal', 'high');
+        add_meta_box('map-meta-box', ucfirst(__( 'location', 'event-worker-translations' )), array($this, 'show_map_meta_box'), 'events', 'normal', 'high');
     }
 
     /** 
@@ -56,10 +56,10 @@ class WorkerAdminMetaBoxes
             $g = null;
         }
 
-        echo '<input style="width:100%;" placeholder="Name"' . 
+        echo '<input style="width:100%;" placeholder="' . ucfirst(__( 'name', 'event-worker-translations' )) . '"' . 
              'name="worker_event_location_name" value="' . $n . '"/><br/>';
 
-        echo '<input style="width:100%;" id="worker_event_location" placeholder="Address"' .
+        echo '<input style="width:100%;" id="worker_event_location" placeholder="' . ucfirst(__( 'address', 'event-worker-translations' )) . '"' .
              'name="worker_event_location" value="' . $l . '"/><br/>';
 
         echo '<input type="hidden" id="worker_event_geolocation" name="worker_event_geolocation" value=""/>';
@@ -132,8 +132,6 @@ class WorkerAdminMetaBoxes
         {
             $price = null;
         }
-
-        echo '<label for="AdminEventPrice">Price</label><br/>';   
         echo '<input type="number" class="eventprice" id="AdminEventPrice" name="AdminEventPrice" onkeypress="return isNumberKey(event)" value="' . $price . '"/><br/>';
     }
 
@@ -154,7 +152,7 @@ class WorkerAdminMetaBoxes
             $website = null;
         }
 
-        echo '<label for="AdminEventWebsite">Website</label><br/>';
+        echo '<label for="AdminEventWebsite">URL</label><br/>';
         echo '<input <input type="url" class="eventwebsite" id="AdminEventWebsite" name="AdminEventWebsite" value="' . $website . '"/><br/>';
     }
 
@@ -183,12 +181,11 @@ class WorkerAdminMetaBoxes
             $organizer_website = '';
         }
 
-        echo '<label for="AdminEventOrganizer">Organizer</label><br/>';
-        echo '<input type="text" class="auto" name="AdminEventOrganizer" value="' . $organizer . '" style="width: 100%;"/><br/>';
-        echo '<input type="text" id="organizer_address" name="organizer_address" placeholder="Address" value="' .  $organizer_address . '" style="width: 100%;"/>';
-        echo '<input type="text" id="organizer_phone" name="organizer_phone" placeholder="Phone" value="' .  $organizer_phone . '" style="width: 100%;"/><br/>';
-        echo '<input type="text" id="organizer_email" name="organizer_email" placeholder="E-mail" value="' .  $organizer_email . '" style="width: 100%;"/>';
-        echo '<input type="text" id="organizer_website" name="organizer_website" placeholder="Website" value="' .  $organizer_website . '" style="width: 100%;"/>';
+        echo '<input type="text" class="auto" name="AdminEventOrganizer" placeholder="' . ucfirst(__( 'name', 'event-worker-translations' )) . '"value="' . $organizer . '" style="width: 100%;"/><br/>';
+        echo '<input type="text" id="organizer_address" name="organizer_address" placeholder="' . ucfirst(__( 'address', 'event-worker-translations' )) . '" value="' .  $organizer_address . '" style="width: 100%;"/>';
+        echo '<input type="text" id="organizer_phone" name="organizer_phone" placeholder="' . ucfirst(__( 'phone', 'event-worker-translations' )) . '" value="' .  $organizer_phone . '" style="width: 100%;"/><br/>';
+        echo '<input type="text" id="organizer_email" name="organizer_email" placeholder="' . ucfirst(__( 'e-mail', 'event-worker-translations' )) . '" value="' .  $organizer_email . '" style="width: 100%;"/>';
+        echo '<input type="text" id="organizer_website" name="organizer_website" placeholder="' . ucfirst(__( 'website', 'event-worker-translations' )) . '" value="' .  $organizer_website . '" style="width: 100%;"/>';
     }
 
     /** 

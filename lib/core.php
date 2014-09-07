@@ -48,18 +48,18 @@ class WorkerCore
 
         $event_type_labels = array(
             'name' => 'events',
-            'singular_name' => __('Event', 'my-pluginname'),
-            'add_new' => __('Add new event', 'my-pluginname'),
-            'add_new_item' => __('Add new event', 'my-pluginname'),
-            'edit_item' => __('Edit event', 'my-pluginname'),
-            'new_item' => __('Add new event', 'my-pluginname'),
-            'all_items' => __('View events'),
-            'view_item' => __('View event'),
-            'search_items' => __('Search events'),
-            'not_found' =>  __('No events found'),
-            'not_found_in_trash' => __('No events found in Trash'), 
+            'singular_name' => __('Event', 'event-worker-translations'),
+            'add_new' => __('Add new event', 'event-worker-translations'),
+            'add_new_item' => __('Add new event', 'event-worker-translations'),
+            'edit_item' => __('Edit event', 'event-worker-translations'),
+            'new_item' => __('Add new event', 'event-worker-translations'),
+            'all_items' => __('View events', 'event-worker-translations'),
+            'view_item' => __('View event', 'event-worker-translations'),
+            'search_items' => __('Search events', 'event-worker-translations'),
+            'not_found' =>  __('No events found', 'event-worker-translations'),
+            'not_found_in_trash' => __('No events found in Trash', 'event-worker-translations'), 
             'parent_item_colon' => '',
-            'menu_name' => __('Events', 'my-pluginname'),
+            'menu_name' => __('Events', 'event-worker-translations'),
         );
 
         $event_type_args = array(
@@ -78,17 +78,17 @@ class WorkerCore
         register_post_type('events', $event_type_args);
 
         $event_category_labels = array(
-            'name' => _x( 'Event Categories', 'Taxonomy general name' ),
-            'singular_name' => _x( 'event', 'Taxonomy singular name' ),
-            'search_items' =>  __( 'Search event categories' ),
-            'all_items' => __( 'All event categories' ),
-            'parent_item' => __( 'Parent event category' ),
-            'parent_item_colon' => __( 'Parent event category:' ),
-            'edit_item' => __( 'Edit event category' ), 
-            'update_item' => __( 'Update event category' ),
-            'add_new_item' => __( 'Add new event category' ),
-            'new_item_name' => __( 'New event name' ),
-            'menu_name' => __( 'Event categories' ),
+            'name' => __( 'Event categories', 'event-worker-translations' ),
+            'singular_name' => _x( 'event', 'event-worker-translations' ),
+            'search_items' =>  __( 'Search event categories', 'event-worker-translations' ),
+            'all_items' => __( 'All event categories', 'event-worker-translations' ),
+            'parent_item' => __( 'Parent event category', 'event-worker-translations' ),
+            'parent_item_colon' => __( 'Parent event category:', 'event-worker-translations' ),
+            'edit_item' => __( 'Edit event category', 'event-worker-translations' ), 
+            'update_item' => __( 'Update event category', 'event-worker-translations' ),
+            'add_new_item' => __( 'Add new event category', 'event-worker-translations' ),
+            'new_item_name' => __( 'New event name', 'event-worker-translations' ),
+            'menu_name' => __('Event categories', 'event-worker-translations'),
         );
 
         $event_category_args = array(
@@ -100,7 +100,7 @@ class WorkerCore
         );
 
         register_taxonomy('event_category', array('events'), $event_category_args);
-        $default_cat = __('Uncategorized event', 'my-pluginname');
+        $default_cat = __('Uncategorized event', 'event-worker-translations');
 
         $default_event_cats = array($default_cat);
 

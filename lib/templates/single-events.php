@@ -79,12 +79,12 @@ class WorkerSingleEventTemplate
                            <a href="' . get_permalink(get_the_ID()) . '">' .
                            $title . '</a></h2></td></tr>';
 
-        echo '<tr><td class="eventtablecontainer">date/time</td><td class="eventtablecontainersecond">' . $start .
+        echo '<tr><td class="eventtablecontainer">' . __('date', 'event-worker-translations') . '/' . __('time', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">' . $start .
              '<strong> &rarr; </strong>' .
              $end . '</td></tr>';    
 
-        echo '<tr><td class="eventtablecontainer">price</td><td class="eventtablecontainersecond">' . get_post_meta(get_the_ID(), 'event_price')[0] . '&#8364;</td></tr>';
-        echo '<tr><td class="eventtablecontainer">category</td><td class="eventtablecontainersecond">';
+        echo '<tr><td class="eventtablecontainer">' . __('price', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">' . get_post_meta(get_the_ID(), 'event_price')[0] . '&#8364;</td></tr>';
+        echo '<tr><td class="eventtablecontainer">' . __('category', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">';
 
         $this->check();
 
@@ -127,8 +127,8 @@ class WorkerSingleEventTemplate
         $data = preg_replace( '/\s\s+/', ', ', $data, preg_match_all( '/\s\s+/', $data) - 1);
         $data2 = preg_replace( '/\s\s+/', ', ', $data2, preg_match_all( '/\s\s+/', $data2) - 1);
 
-        echo '<tr><td class="eventtablecontainer">website</td>' . '<td class="eventtablecontainersecond"><a href="' . get_post_meta(get_the_ID(), 'event_website')[0] . '">' . get_post_meta(get_the_ID(), 'event_website')[0] . '</td></tr>';
-        echo '<tr><td class="eventtablecontainer">organizer</td><td class="eventtablecontainersecond">' . get_post_meta(get_the_ID(), 'event_organizer')[0] . '</a><br>' . 
+        echo '<tr><td class="eventtablecontainer">'. __('website', 'event-worker-translations') . '</td>' . '<td class="eventtablecontainersecond"><a href="' . get_post_meta(get_the_ID(), 'event_website')[0] . '">' . get_post_meta(get_the_ID(), 'event_website')[0] . '</td></tr>';
+        echo '<tr><td class="eventtablecontainer">'. __('organizer', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">' . get_post_meta(get_the_ID(), 'event_organizer')[0] . '</a><br>' . 
         $data . $sep . $data2 . '</td></tr>';
 
         $lname =  get_post_meta(get_the_ID(), 'event_location_name')[0];
@@ -142,7 +142,7 @@ class WorkerSingleEventTemplate
             $lname .= ' - ';
         }
 
-        echo '<tr><td class="eventtablecontainer">location</td><td class="eventtablecontainersecond">' .
+        echo '<tr><td class="eventtablecontainer">' . __('location', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">' .
              $lname .
              get_post_meta(get_the_ID(), 'event_location')[0] . '</td></tr>';
             
@@ -184,7 +184,7 @@ class WorkerSingleEventTemplate
         if ($current !== 0 && !is_preview())
         {
             $prevID = $pages[$current-1];
-            $prev = __("Previous", 'my-pluginname');
+            $prev = __("Previous", 'event-worker-translations');
 
             echo '<a href="' . get_permalink($prevID) . '" ' .
                  'title="' . get_the_title($prevID) . '">&laquo; ' . $prev . '</a>';
@@ -196,7 +196,7 @@ class WorkerSingleEventTemplate
         if ($current !== count($pages)-1 && !is_preview())
         {        
             $nextID = $pages[$current+1];
-            $next = __("Next", 'my-pluginname');
+            $next = __("Next", 'event-worker-translations');
 
             echo '<a href="' . get_permalink($nextID) . '" ' .
                  'title="' . get_the_title($nextID) . '">' . $next . ' &raquo;</a>';

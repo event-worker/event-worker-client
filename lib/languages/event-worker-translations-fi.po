@@ -1,0 +1,233 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2012 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: my-pluginname 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-07 16:00+0200\n"
+"PO-Revision-Date: 2014-09-07 16:01+0200\n"
+"Last-Translator: Janne Kähkönen <jannekahkonen@gmail.com>\n"
+"Language-Team: Janne Kähkönen <jannekahkonen@gmail.com>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.6.9\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../admin-meta.php:31 ../pdf-generator.php:329
+#: ../templates/single-events.php:131
+msgid "organizer"
+msgstr "järjestäjä"
+
+#: ../admin-meta.php:32 ../admin-meta.php:188
+#: ../templates/single-events.php:130
+msgid "website"
+msgstr "kotisivu"
+
+#: ../admin-meta.php:33 ../pdf-generator.php:221 ../pdf-generator.php:335
+#: ../templates/single-events.php:86
+msgid "price"
+msgstr "hinta"
+
+#: ../admin-meta.php:34 ../templates/single-events.php:82
+msgid "date"
+msgstr "päivä"
+
+#: ../admin-meta.php:35 ../templates/archive-events.php:153
+#: ../templates/single-events.php:145
+msgid "location"
+msgstr "sijainti"
+
+#: ../admin-meta.php:59 ../admin-meta.php:184
+msgid "name"
+msgstr "nimi"
+
+#: ../admin-meta.php:62 ../admin-meta.php:185
+msgid "address"
+msgstr "osoite"
+
+#: ../admin-meta.php:186
+msgid "phone"
+msgstr "puhelin"
+
+#: ../admin-meta.php:187
+msgid "e-mail"
+msgstr "sähköposti"
+
+#: ../common-options.php:20
+msgid "Event Worker Options"
+msgstr "Event Worker Asetukset"
+
+#: ../core.php:51
+msgid "Event"
+msgstr "Tapahtuma"
+
+#: ../core.php:52 ../core.php:53 ../core.php:55
+msgid "Add new event"
+msgstr "Lisää uusi tapahtuma"
+
+#: ../core.php:54
+msgid "Edit event"
+msgstr "Muokkaa tapahtumaa"
+
+#: ../core.php:56
+msgid "View events"
+msgstr "Näytä tapahtumat"
+
+#: ../core.php:57
+msgid "View event"
+msgstr "Näytä tapahtuma"
+
+#: ../core.php:58
+msgid "Search events"
+msgstr "Etsi tapahtumia"
+
+#: ../core.php:59
+msgid "No events found"
+msgstr "Ei tapahtumia"
+
+#: ../core.php:60
+msgid "No events found in Trash"
+msgstr "Ei tapahtumia roskakorissa"
+
+#: ../core.php:62
+msgid "Events"
+msgstr "Tapahtumat"
+
+#: ../core.php:81 ../core.php:91
+msgid "Event categories"
+msgstr "Kategoriat"
+
+#: ../core.php:83
+msgid "Search event categories"
+msgstr "Etsi kategorioita"
+
+#: ../core.php:84
+msgid "All event categories"
+msgstr "Kaikki kategoriat"
+
+#: ../core.php:85
+msgid "Parent event category"
+msgstr ""
+
+#: ../core.php:86
+msgid "Parent event category:"
+msgstr ""
+
+#: ../core.php:87
+msgid "Edit event category"
+msgstr "Muokkaa kategoriaa"
+
+#: ../core.php:88
+msgid "Update event category"
+msgstr "Päivitä kategoria"
+
+#: ../core.php:89
+msgid "Add new event category"
+msgstr "Lisää uusi kategoria"
+
+#: ../core.php:90
+msgid "New event name"
+msgstr ""
+
+#: ../core.php:103
+msgid "Uncategorized event"
+msgstr "Luokittelematon tapahtuma"
+
+#: ../pdf-generator.php:37
+msgid "Document generated"
+msgstr "Dokumentti luotu"
+
+#: ../pdf-generator.php:324
+msgid "LINK"
+msgstr "LINKKI"
+
+#: ../pdf-generator.php:330
+msgid "organizer address"
+msgstr "Järjestäjän osoite"
+
+#: ../pdf-generator.php:331
+msgid "organizer phone"
+msgstr "Järjestäjän puhelin"
+
+#: ../pdf-generator.php:332
+msgid "Organizer e-mail"
+msgstr "Järjestäjän sähköposti"
+
+#: ../pdf-generator.php:333
+msgid "Organizer website"
+msgstr "Järjestäjän kotisivu"
+
+#: ../pdf-generator.php:336
+msgid "Location"
+msgstr "Sijainti"
+
+#: ../templates/archive-events.php:51
+msgid "TODAY"
+msgstr "TÄNÄÄN"
+
+#: ../templates/archive-events.php:71
+msgid "ALL EVENTS"
+msgstr "KAIKKI"
+
+#: ../templates/archive-events.php:72
+msgid "EVENTS TODAY"
+msgstr "TÄNÄÄN"
+
+#: ../templates/archive-events.php:115
+msgid "PLAIN TEXT"
+msgstr "TEKSTITIEDOSTO"
+
+#: ../templates/archive-events.php:162 ../templates/single-events.php:87
+msgid "category"
+msgstr "kategoria"
+
+#: ../templates/archive-events.php:169 ../templates/single-events.php:187
+msgid "Previous"
+msgstr "Edellinen"
+
+#: ../templates/archive-events.php:170 ../templates/single-events.php:199
+msgid "Next"
+msgstr "Seuraava"
+
+#: ../templates/single-events.php:82
+msgid "time"
+msgstr "aika"
+
+#~ msgid "Name"
+#~ msgstr "Nimi"
+
+#~ msgid "Address"
+#~ msgstr "Osoite"
+
+#, fuzzy
+#~ msgid "Website"
+#~ msgstr "kotisivu"
+
+#~ msgid "Organizer"
+#~ msgstr "Järjestäjä"
+
+#, fuzzy
+#~ msgid "Event Categories"
+#~ msgstr "Kategoriat"
+
+#~ msgid "Price"
+#~ msgstr "Hinta"
+
+#~ msgid "CATEGORY"
+#~ msgstr "KATEGORIA"
+
+#~ msgid "mymessage1"
+#~ msgstr "UAUAUAUUA"
+
+#~ msgid "mymessage2"
+#~ msgstr "HEHEHEhehe"
