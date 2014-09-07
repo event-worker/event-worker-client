@@ -1,0 +1,183 @@
+div#ics {
+     display: inline !important;
+     float: right;
+}
+
+div#test {
+    display: inline-block;
+    margin-right: 1%;
+    background-color: #F0F0F0;
+    min-width: 100px;
+}
+
+div#title_wrapper {
+    border: 1px solid black;
+    margin-left: 120px;
+    word-wrap:break-word;
+    background-color: #FFFFFF;
+}
+
+div#date_wrapper {
+    border: 1px solid black;
+    word-wrap:break-word;
+    float:left;
+    font-size: 80%;    
+    text-align: center;
+    width: 112px;
+    background-color: #FFFFFF;
+}
+
+div#common_wrapper {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    word-wrap:break-word;
+    margin-left: 120px;
+    background-color: #FFFFFF;
+}
+
+div.floating-menu {
+    float: left;
+    display: block;
+    width: 15%;
+    margin-left: 1%;
+    margin-right: 2%;
+    margin-bottom: 10%;
+    background-color: #E0E0E0;
+    word-wrap:break-word;
+}
+
+div.floating-menu a {
+    display:block;
+    margin:0 0.5em;
+    margin-bottom: 2px;
+    background-color: #FFFFFF;
+}
+
+div.printbuttoncontainer {
+    width: 100%;
+    float:right;
+}
+
+
+div.eventdivcontainer {
+    margin-right: 1%;
+    margin-bottom: 1%;
+}
+
+div.eventdivcontainer2 {
+    float: left;
+    width: 80%;    
+    margin-right: 1%;
+    margin-bottom: 1%;
+}
+
+.today {
+    font-size: 100%;
+    font-weight: bold !important;
+    display: inline !important;   
+}
+
+div.eventinlinedate {
+    display: inline;
+}
+
+.eventtitlecontainer {
+    font-weight: bold !important;
+    text-transform:uppercase !important;
+    border-bottom:0.2rem solid white !important;
+    padding-left: 0.3rem !important;
+    padding-top: 0.3rem !important;
+    padding-bottom: 0.3rem !important;
+    text-align: left !important;
+    vertical-align:middle  !important;
+    background-color: #E0E0E0   !important;
+}
+
+.eventdatecontainer {
+    border-bottom:0.2rem solid white !important;
+    border-right:0.2rem solid white !important;
+    text-decoration: underline;
+    line-height: 110%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+    /* vertical-align:middle  !important; */
+    background-color: #E0E0E0 !important;
+    white-space:nowrap !important;
+}
+
+input {
+     width: 100%; 
+     box-sizing: border-box;
+     -webkit-box-sizing:border-box;
+     -moz-box-sizing: border-box;
+}
+
+.ui-autocomplete 
+{
+   
+}
+
+textarea {
+     width: 100%; 
+     box-sizing: border-box;
+     -webkit-box-sizing:border-box;
+     -moz-box-sizing: border-box;
+}
+
+.eventtablecontainer {
+    border-bottom:0.1rem solid white !important;
+    border-right:0.2rem solid white !important;
+    padding-left: 0.3rem !important;
+    padding-right: 0.3rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    background-color: #EEEEEE !important;
+    white-space:nowrap !important;
+}
+
+.eventcontentcontainer {
+    border-top:0.2rem solid white !important;
+    padding-top:1% !important;
+    padding-bottom:1% !important;
+    padding-left: 0.3rem !important;
+    text-align: left !important;
+    background-color: #F1F1F1 !important;
+    word-wrap:break-word !important;
+    width: 1rem !important;
+}
+
+.eventtablecontainersecond {
+    border-bottom:0.1rem solid white !important;
+    width: 100% !important;
+    text-align: left !important;
+    word-wrap:break-word;
+    background-color: #F5F5F5 !important;
+}
+
+.eventtablecontainerthird {
+    padding-left: 5% !important;
+   
+    text-align: left !important;
+    background-color: #F5F5F5 !important;
+}
+
+.postform {
+    width :100% !important;
+}
+
+@media screen {
+    .noScreen {
+        display: none !important;
+    }
+}
+
+@media print {
+    #googleMap {
+        page-break-before: always !important;
+    }
+    .noPrint {
+         display: none !important;
+    }
+}
