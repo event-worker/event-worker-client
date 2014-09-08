@@ -16,11 +16,10 @@ in `Settings -> Event Worker Options`.
 ##### 1.2.1 `GET`
 | Call                                 | Description                            | Status                            |
 |:-------------------------------------|:---------------------------------------|:----------------------------------|
-| `<url><base route>`                  | Get API status                         | Not implemented                   |
+| `<url><base route>`                  | Get API status                         | Working                           |
 | `<url><base route>/event`            | Get all the events                     | Working                           |
-| `<url><base route>/event/<name>`     | Get single event data by title         | Working                           |
-| `<url><base route>/event/<id>`       | Get single event data by ID            | Not implemented                   |
-| `<url><base route>/categories`       | Get all the categories                 | Working                           |
+| `<url><base route>/event/<id>`       | Get single event data by ID            | Working                           |
+| `<url><base route>/categories`       | Get all the categories                 | Not implemented                   |
 | `<url><base route>/organizers`       | Get all the organizers                 | Not implemented                   |
 
 

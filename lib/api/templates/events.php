@@ -100,7 +100,7 @@ function get_single_event($data)
         }
 
         $object = array('@context' => 'http://schema.org',
-                        '@id'=>'NULL',
+                        '@id'=>$post->post_name,
                         '@type' => 'Event',
                         'name' => $post->post_title,
                         'startDate'=>$start_date->format('Y-m-d H:i:s'),
@@ -174,7 +174,7 @@ function get_events()
             $holder[] = $term->name; 
         }
 
-        $events[] = array('@id'=>'NULL',
+        $events[] = array('@id'=>$post->post_name,
                           '@type'=>'Event',
                           'name' => $post->post_title,
                           'description'=>$post->post_content,
