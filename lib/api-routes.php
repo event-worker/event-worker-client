@@ -62,26 +62,6 @@ class WorkerApiRoutes
         });
 
         /** 
-         * GET all the categories.
-         *
-         * @param object $slim framework object
-         *
-         */
-        add_action('slim_mapping', function($slim)
-        {
-            $options = get_option('event_worker_api_endpoint');
-            $endpoint = $options['api-endpoint'];
-
-            //$base_url = get_option('slim_base_path','v01/api/');
-            
-            $slim->get('/' . $endpoint . '/categories', function() use ($slim)
-            {
-                $slim->render('categories.php');
-            });
-        });
-
-
-        /** 
          * GET all the events.
          *
          * @param object $slim framework object
@@ -101,7 +81,7 @@ class WorkerApiRoutes
         });
 
         /** 
-         * GET event by name or ID.
+         * GET event by ID.
          *
          * @param object $slim framework object
          *
