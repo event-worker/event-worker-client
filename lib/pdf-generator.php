@@ -331,7 +331,7 @@ for ($i = 0; $i < count($pdf->json); $i++)
 
     fwrite($op, $pdf->get_title($i) . "\n" . $pdf->get_date($i) . "\n" . ucfirst(__("price", 'event-worker-translations')) . ": " . $pdf->get_price($i) . "\xE2\x82\xAc");
     fwrite($op, "\n" . ucfirst(__("website", 'event-worker-translations')) . ": " . $pdf->json[$i]['sameAs']);
-    fwrite($op, "\n" . __("Location", 'event-worker-translations') . ": " . $pdf->json[$i]['location']['name'] . " - " . $pdf->json[$i]['location']['address']);
+    fwrite($op, "\n" . ucfirst(__("location", 'event-worker-translations')) . ": " . $pdf->json[$i]['location']['name'] . " - " . $pdf->json[$i]['location']['address']);
     fwrite($op, "\n" . $organizer . ": " . $pdf->json[$i]['organizer']['name']);
     fwrite($op, "\n" . $organizer_address . ": " . $pdf->json[$i]['organizer']['address']);
     fwrite($op, "\n" . $organizer_phone . ": " . $pdf->json[$i]['organizer']['telephone']);

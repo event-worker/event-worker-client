@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: my-pluginname 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-07 19:18+0200\n"
-"PO-Revision-Date: 2014-09-07 19:19+0200\n"
+"POT-Creation-Date: 2014-09-08 12:49+0200\n"
+"PO-Revision-Date: 2014-09-08 12:49+0200\n"
 "Last-Translator: Janne Kähkönen <jannekahkonen@gmail.com>\n"
 "Language-Team: Janne Kähkönen <jannekahkonen@gmail.com>\n"
 "Language: fi\n"
@@ -28,7 +28,7 @@ msgstr ""
 msgid "organizer"
 msgstr "järjestäjä"
 
-#: ../admin-meta.php:32 ../admin-meta.php:188
+#: ../admin-meta.php:32 ../admin-meta.php:188 ../pdf-generator.php:333
 #: ../templates/single-events.php:130
 msgid "website"
 msgstr "kotisivu"
@@ -42,8 +42,8 @@ msgstr "hinta"
 msgid "event date"
 msgstr "tapahtuman päivämäärä"
 
-#: ../admin-meta.php:35 ../templates/archive-events.php:153
-#: ../templates/single-events.php:145
+#: ../admin-meta.php:35 ../pdf-generator.php:334
+#: ../templates/archive-events.php:156 ../templates/single-events.php:145
 msgid "location"
 msgstr "sijainti"
 
@@ -74,6 +74,10 @@ msgstr "sähköposti"
 #: ../common-options.php:20
 msgid "Event Worker Options"
 msgstr "Event Worker Asetukset"
+
+#: ../common-options.php:42
+msgid "Save Changes"
+msgstr "Tallenna"
 
 #: ../core.php:51
 msgid "Event"
@@ -125,7 +129,7 @@ msgstr "Kaikki kategoriat"
 
 #: ../core.php:85
 msgid "Parent event category"
-msgstr ""
+msgstr "Yläkategoria"
 
 #: ../core.php:86
 msgid "Parent event category:"
@@ -264,10 +268,6 @@ msgstr "järjestäjän sähköposti"
 msgid "organizer website"
 msgstr "järjestäjän kotisivu"
 
-#: ../pdf-generator.php:333
-msgid "Location"
-msgstr "Sijainti"
-
 #: ../templates/archive-events.php:51
 msgid "TODAY"
 msgstr "TÄNÄÄN"
@@ -280,7 +280,7 @@ msgstr "KAIKKI"
 msgid "EVENTS TODAY"
 msgstr "TÄNÄÄN"
 
-#: ../templates/archive-events.php:115
+#: ../templates/archive-events.php:116
 msgid "PLAIN TEXT"
 msgstr "TEKSTITIEDOSTO"
 
@@ -299,3 +299,6 @@ msgstr "Seuraava"
 #: ../templates/single-events.php:82
 msgid "date"
 msgstr "päivä"
+
+#~ msgid "Location"
+#~ msgstr "Sijainti"

@@ -110,9 +110,11 @@ class WorkerArchiveEventsTemplate
 
         echo '<div class="eventdivcontainer2">';
         echo '<div class="printbuttoncontainer" align="right">';
+
         echo '<a href="' . home_url() . '/events.pdf' .'">PDF</a>';
         echo ' | ';
         echo '<a href="' . home_url() . '/events.txt' .'">' . __("PLAIN TEXT", 'event-worker-translations') . '</a>';
+
         echo '</div>';
 
         while (have_posts())
@@ -150,10 +152,8 @@ class WorkerArchiveEventsTemplate
                 $lname .= ' - ';
             }
 
-            $location = strtoupper(__("location", 'event-worker-translations'));
-
             echo '<div id="common_wrapper">';
-            echo '<div id="test">' . $location;
+            echo '<div id="test">' . strtoupper(__("location", 'event-worker-translations'));
             echo '</div>';
             echo $lname . get_post_meta(get_the_ID(), 'event_location')[0];
             echo '</div>';

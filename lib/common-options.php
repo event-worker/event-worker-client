@@ -39,9 +39,9 @@ class CommonOptions
 
                 // do_settings_sections( $page )
                 do_settings_sections('event-worker');
+                submit_button(__('Save Changes', 'event-worker-translations'));
             ?>
 
-            <?php submit_button('Save Changes'); ?>
             </form>
 
         </div>
@@ -54,7 +54,7 @@ class CommonOptions
         // add_settings_section( $id, $title, $callback, $page )
         add_settings_section(
             'api-endpoint-settings-section',
-            'API Options',
+            __('API Options', 'event-worker-translations'),
             array($this, 'print_api_endpoint_settings_section_info'),
             'event-worker'
         );
@@ -62,7 +62,7 @@ class CommonOptions
         // add_settings_field( $id, $title, $callback, $page, $section, $args )
         add_settings_field(
             'api-endpoint', 
-            'Endpoint', 
+            __('Endpoint', 'event-worker-translations'),
             array($this, 'create_input_api_endpoint'), 
             'event-worker', 
             'api-endpoint-settings-section'
@@ -74,7 +74,7 @@ class CommonOptions
         // add_settings_section( $id, $title, $callback, $page )
         add_settings_section(
             'host-url-settings-section',
-            'Host URL',
+            __('Host URL Options', 'event-worker-translations'),
             array($this, 'print_host_info_settings_section_info'),
             'event-worker'
         );
@@ -82,7 +82,7 @@ class CommonOptions
         // add_settings_field( $id, $title, $callback, $page, $section, $args )
         add_settings_field(
             'host-url', 
-            'Host URL', 
+            'URL', 
             array($this, 'create_input_host_url'), 
             'event-worker', 
             'host-url-settings-section'
@@ -94,7 +94,7 @@ class CommonOptions
  
     function print_api_endpoint_settings_section_info()
     {
-        echo 'Set the API endpoint.';
+        _e('Set the API endpoint', 'event-worker-translations');
     }
  
     function create_input_api_endpoint()
@@ -113,7 +113,7 @@ class CommonOptions
  
     function print_host_info_settings_section_info()
     {
-        echo 'Set the URL to fetch events.';
+        _e('Set the URL to fetch events.', 'event-worker-translations');
     }
  
     function create_input_host_url()
