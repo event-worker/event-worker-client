@@ -17,7 +17,7 @@ else
  * @return TODO.
  *
  */
-function get_the_api_uri($title)
+/*function get_the_api_uri($title)
 {
     $uri = 'http' .
            (isset($_SERVER['HTTPS']) ? 's' : '') .
@@ -25,7 +25,7 @@ function get_the_api_uri($title)
            '/' . $title;
 
     return $uri;
-}
+}*/
 
 /** 
  * Get the geolocation from post metadata.
@@ -49,6 +49,21 @@ function get_geolocation($meta)
 }
 
 /** 
+ * Get TODO.
+ *
+ * @return TODO.
+ *
+ */
+function parse_the_time()
+{
+    date_default_timezone_set('Europe/Helsinki');
+    $today = new DateTime('NOW');
+    $today = $today->format('YmdHi');
+
+    return $today;
+}
+
+/** 
  * Get single event by search term.
  *
  * @param string $data the passed parameter
@@ -56,10 +71,10 @@ function get_geolocation($meta)
  */
 function get_single_event($data)
 {
-    $events = array();
     $object = array();
 
-    $post = get_page_by_title($data, OBJECT, 'events');
+    //$post = get_page_by_title($data, OBJECT, 'events');
+    $post = get_page_by_path($data , OBJECT, 'events');
 
     if ($post !== null && $post->post_status === 'publish')
     {
@@ -71,8 +86,10 @@ function get_single_event($data)
         $price = $meta["event_price"][0];
 
         $organizer_name = $meta["event_organizer"][0];
+        $data = unserialize($meta["event_organizer_data"][0]);
 
-        $uri = get_the_api_uri($post->post_title);
+        //$uri = get_the_api_uri($post->post_slug);
+        //$uri = substr($uri, 0, -1);
 
         $holder = null;
         $product_terms = wp_get_object_terms($post->ID, 'event_category');
@@ -82,19 +99,25 @@ function get_single_event($data)
             $holder[] = $term->name; 
         }
 
-        $object = array(
-            '@context' => 'http://schema.org',
-            '@type' => 'Event',
-            'name' => $post->post_title,
-            'startDate'=>$start_date->format('Y-m-d H:i:s'),
-            'url'=>$uri,
-            'description'=>$post->post_content,
-            'sameAs'=>$url,
-            'endDate'=>$end_date->format('Y-m-d H:i:s'),
-            'location'=>array('@type'=> 'Place', 'geo'=>get_geolocation($meta)),
-            'offers'=>array('@type'=> 'Offer', 'price'=>$price),
-            'organizer'=>array('@type'=> 'Organization', 'name'=>$organizer_name, 'url'=>"ORGANIZER URL" ),
-            'keywords'=>array('@type'=> 'CreativeWork', 'keywords'=>$holder)
+        $object = array('@context' => 'http://schema.org',
+                        '@id'=>'NULL',
+                        '@type' => 'Event',
+                        'name' => $post->post_title,
+                        'startDate'=>$start_date->format('Y-m-d H:i:s'),
+                        'endDate'=>$end_date->format('Y-m-d H:i:s'),
+                        'description'=>$post->post_content,
+                        'sameAs'=>$url,
+                        'url'=>get_permalink($post->ID),
+                        'keywords'=>array('@type'=> 'CreativeWork', 'keywords'=>$holder),
+                        'Date'=>array('@type'=> 'date', 'dateModified'=>$post->post_modified),
+                        'offers'=>array('@type'=> 'Offer', 'price'=>$price),
+                        'organizer'=>array('@type'=> 'Organization',
+                                                         'name'=>$organizer_name,
+                                                         'url'=>$data['website'],
+                                                         'address'=>$data['address'],
+                                                         'email'=>$data['email'],
+                                                         'telephone'=>$data['phone']),
+                        'location'=>array('@type'=> 'Place', 'geo'=>get_geolocation($meta))
             );
     }
     else
@@ -103,15 +126,6 @@ function get_single_event($data)
 
     //$events[] = $object;
     echo json_encode($object);
-}
-
-function parse_the_time()
-{
-    date_default_timezone_set('Europe/Helsinki');
-    $today = new DateTime('NOW');
-    $today = $today->format('YmdHi');
-
-    return $today;
 }
 
 /** 
@@ -129,25 +143,10 @@ function get_events()
     );
 
     $posts = get_posts($args);
-
-    foreach ($posts as $post)
-    {
-        $compare =  get_post_meta($post->ID, 'event_end_order')[0];
-
-        if ($compare < parse_the_time())
-        {
-            $post = array('ID' => $post->ID, 'post_status' => 'draft');
-            wp_update_post($post);
-        }
-    }
-
-    $posts = get_posts($args);
-
+    
     $count = count($posts);
 
     $events = array();
-
-  
 
     for ($i = 0; $i < $count; $i++)
     {
@@ -165,8 +164,7 @@ function get_events()
         $organizer_name = $meta["event_organizer"][0];
         $data = unserialize($meta["event_organizer_data"][0]);
 
-        //$permalink = get_permalink($posts[$i]->ID);
-        $uri = get_the_api_uri($post->post_title);
+        //$uri = get_the_api_uri($post->post_name);
 
         $holder = null;
         $product_terms = wp_get_object_terms($posts[$i]->ID, 'event_category');
@@ -176,14 +174,14 @@ function get_events()
             $holder[] = $term->name; 
         }
 
-        $events[] = array('@id'=>'index.html',
+        $events[] = array('@id'=>'NULL',
                           '@type'=>'Event',
                           'name' => $post->post_title,
                           'description'=>$post->post_content,
                           'startDate'=>$start_date->format('Y-m-d H:i:s'),
                           'endDate'=>$end_date->format('Y-m-d H:i:s'),
                           'sameAs'=>$url,
-                          'url'=>$uri,
+                          'url'=>get_permalink($post->ID),
                           'keywords'=>array('@type'=> 'CreativeWork', 'keywords'=>$holder),
                           'Date'=>array('@type'=> 'date', 'dateModified'=>$post->post_modified),
                           'offers'=>array('@type'=> 'Offer', 'price'=>$price),
