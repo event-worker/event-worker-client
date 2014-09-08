@@ -25,11 +25,21 @@ class WorkerPreOrderPosts
     /** 
      * TODO.
      *
+     * @param string $title_str TODO
+     *
+     * @return TODO
+     *
      */
     function wp_exist_post_by_title($title_str)
     {
         global $wpdb;
-        return $wpdb->get_row("SELECT * FROM wp_posts WHERE post_title = '" . $title_str . "'", 'ARRAY_A');
+
+        $table = $wpdb->prefix . 'posts';
+        $type = 'events';
+
+        $sql = $wpdb->prepare('SELECT * FROM ' . $table . ' WHERE post_title = %s && post_type = %s', $title_str, $type);
+
+        return $wpdb->get_row($sql , ARRAY_A);
     }
 
     /** 
@@ -125,13 +135,9 @@ class WorkerPreOrderPosts
                 $options = get_option('event_worker_host_url');
 
                 $url = $options['host-url'];
+                $output = wp_remote_get($url);
 
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                $output = curl_exec($ch);
-
-                $output = json_decode($output, true);
+                $output = json_decode($output['body'], true);
                 $output = $output["@graph"];
 
                 for ($i = 0; $i < count($output); $i++)

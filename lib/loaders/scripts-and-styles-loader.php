@@ -60,7 +60,7 @@ class WorkerScriptLoaderHelper
         <script>
 
             var l = "<?php echo $location; ?>";
-
+            
             runMap(l);
             jQuery(document).ready(function(jQuery)
             {
@@ -185,7 +185,7 @@ class WorkerMainScriptLoader
     function add_stylesheet()
     {
         wp_enqueue_style('prefix-style', plugins_url('../css/style.css', __FILE__));
-        wp_enqueue_style('prefix-style_reset', 'https://reset5.googlecode.com/hg/reset.min.css');
+        //wp_enqueue_style('prefix-style_reset', 'https://reset5.googlecode.com/hg/reset.min.css');
     }
 
     /** 
@@ -193,31 +193,36 @@ class WorkerMainScriptLoader
      *
      */
     function register_scripts()
-    {
-        wp_enqueue_script('google-maps',
-                      '//maps.googleapis.com/maps/api/js?&sensor=false',
-                      array(), '3', false);
+    { 
+        if (!is_archive())
+        {
+            wp_enqueue_script('google-maps',
+                          '//maps.googleapis.com/maps/api/js?&sensor=false',
+                          array(), '3', false);
 
-        wp_enqueue_script('maphandler',
-                          plugins_url('../js/maphandler.js', __FILE__),
-                          array(), '1', false);
+            wp_enqueue_script('maphandler',
+                              plugins_url('../js/maphandler.js', __FILE__),
+                              array(), '1', false);
+        }
+        if (!is_archive() && !is_single())
+        {
+            wp_enqueue_script('validator',
+                              plugins_url('../js/validator.js', __FILE__),
+                              array(), '1', false);
 
-        wp_enqueue_script('validator',
-                          plugins_url('../js/validator.js', __FILE__),
-                          array(), '1', false);
+            wp_enqueue_script('jquery-ui-datepicker');
+            wp_enqueue_script('jquery-ui-slider');
 
-        wp_enqueue_script('jquery-ui-datepicker');
-        wp_enqueue_script('jquery-ui-slider');
+            wp_enqueue_script('jquery-time-picker' ,
+                              plugins_url('../js/jquery-ui-timepicker-addon.js', __FILE__),
+                              array(), '1.4.5', true);
 
-        wp_enqueue_script('jquery-time-picker' ,
-                          plugins_url('../js/jquery-ui-timepicker-addon.js', __FILE__),
-                          array(), '1.4.5', true);
+            wp_register_style('jquery-ui-theme', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css');
+            wp_enqueue_style( 'jquery-ui-theme' );
 
-        wp_register_style('jquery-ui-theme', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css');
-        wp_enqueue_style( 'jquery-ui-theme' );
-
-        wp_register_style('timepicker-theme' , plugins_url('../css/jquery-ui-timepicker-addon.css', __FILE__));
-        wp_enqueue_style('timepicker-theme');
+            wp_register_style('timepicker-theme' , plugins_url('../css/jquery-ui-timepicker-addon.css', __FILE__));
+            wp_enqueue_style('timepicker-theme');
+        }
     }
 }
 new WorkerMainScriptLoader();
