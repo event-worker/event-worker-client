@@ -50,7 +50,7 @@ class WorkerMainClass
     }
 
     /**
-     * Add the plugin text domain (translations) when the plugin is loaded.
+     * Add the plugin textdomain (translations) when the plugin is loaded.
      *
      */
     function event_worker_init()
