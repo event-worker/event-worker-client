@@ -5,9 +5,7 @@ A WordPress plugin to fetch and show the events from the [Event Worker Host](htt
 
 <hr>
 ##1 Requirements
-####1.1 cURL
-The server requires cURL.
-####1.2 Permalinks
+####1.1 Permalinks
 The WordPress installation requires permalinks (Post name).
 
 <hr>
