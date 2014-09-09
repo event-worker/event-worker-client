@@ -137,8 +137,8 @@ class WorkerArchiveEventsTemplate
             echo '</div>';
 
             echo '<div id="title_wrapper">';
-            echo '<a href="' . get_permalink(get_the_ID()) . '">' . $title . '</a>';
-            echo '<div id="ics"><a href="ics.php">' . "ICS" . '</a></div>';
+            echo '<a href="' . get_permalink(get_the_ID()) . '">' . esc_html($title) . '</a>';
+            //echo '<div id="ics"><a href="ics.php">' . "ICS" . '</a></div>';
             echo '</div>';
 
             $lname =  get_post_meta(get_the_ID(), 'event_location_name')[0];
