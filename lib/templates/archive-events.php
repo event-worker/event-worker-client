@@ -46,7 +46,7 @@ class WorkerArchiveEventsTemplate
         $today = new DateTime('NOW');
         $date = new DateTime($date);
 
-        if ($today >= $date)
+        if ($today->format('d.m.Y') >= $date->format('d.m.Y'))
         {
             $date = '<div class="today">' . __("TODAY", 'event-worker-translations') . ' ' . $date->format('H:i') . '</div>';
         }
