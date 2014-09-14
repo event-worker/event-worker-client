@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class for adding the field to admin events.
+ * Class for adding the metaboxes to admin.
  *
- * Add custom metaboxes (fields) to admin events.
+ * Add custom metaboxes to admin.
  *
  * @package EventWorker
  * @author  Janne Kahkonen <jannekahkonen@gmail.com>
@@ -41,26 +41,30 @@ class WorkerAdminMetaBoxes
      */
     function show_map_meta_box()
     {
+        $name = 'event_worker_map_nonce'; // Make sure this is unique, prefix it with your plug-in/theme name
+        $action = 'event_worker_action_xyz_' . get_the_ID(); // This is the nonce action
+
+        wp_nonce_field($action, $name);
         $count = count(get_post_meta(get_the_ID(), 'event_location'));
 
         if ($count !== 0)
         {
             $l =  get_post_meta(get_the_ID(), 'event_location')[0];
             $n =  get_post_meta(get_the_ID(), 'event_location_name')[0];
-            $g =  get_post_meta(get_the_ID(), 'event_geolocation')[0];
+            //$g =  get_post_meta(get_the_ID(), 'event_geolocation')[0];
         }
         else
         {
             $l =  null;
             $n =  null;
-            $g = null;
+            //$g = null;
         }
 
         echo '<input style="width:100%;" placeholder="' . ucfirst(__( 'name', 'event-worker-translations' )) . '"' . 
-             'name="worker_event_location_name" value="' . $n . '"/><br/>';
+             'name="worker_event_location_name" value="' . esc_attr($n) . '"/><br/>';
 
         echo '<input style="width:100%;" id="worker_event_location" placeholder="' . ucfirst(__( 'address', 'event-worker-translations' )) . '"' .
-             'name="worker_event_location" value="' . $l . '"/><br/>';
+             'name="worker_event_location" value="' . esc_attr($l) . '"/><br/>';
 
         echo '<input type="hidden" id="worker_event_geolocation" name="worker_event_geolocation" value=""/>';
 
@@ -91,7 +95,12 @@ class WorkerAdminMetaBoxes
      *     
      */
     function show_date_meta_box()
-    {
+    {   
+        $name = 'event_worker_date_nonce'; // Make sure this is unique, prefix it with your plug-in/theme name
+        $action = 'event_worker_action_xyz_' . get_the_ID(); // This is the nonce action
+
+        wp_nonce_field($action, $name);
+
         $count = count(get_post_meta(get_the_ID(), 'event_start_date'));
         $count2 = count(get_post_meta(get_the_ID(), 'event_end_date'));
 
@@ -110,10 +119,10 @@ class WorkerAdminMetaBoxes
         }
 
         echo '<label for="AdminEventStartDate">' . ucfirst(__( 'start date', 'event-worker-translations' )) . '</label><br/>';   
-        echo '<input class="eventdate" id="AdminEventStartDate" name="AdminEventStartDate" value="' . $start. '"/><br/>';
+        echo '<input class="eventdate" id="AdminEventStartDate" name="AdminEventStartDate" value="' . esc_attr($start) . '"/><br/>';
 
         echo '<label for="AdminEventEndDate">' . ucfirst(__( 'end date', 'event-worker-translations' )) . '</label><br/>';
-        echo '<input class="eventdate" id="AdminEventEndDate" name="AdminEventEndDate" value="' . $end . '"/><br/>';
+        echo '<input class="eventdate" id="AdminEventEndDate" name="AdminEventEndDate" value="' . esc_attr($end) . '"/><br/>';
     }
 
     /** 
@@ -121,7 +130,12 @@ class WorkerAdminMetaBoxes
      *     
      */
     function show_price_meta_box()
-    {
+    {   
+        $name = 'event_worker_price_nonce'; // Make sure this is unique, prefix it with your plug-in/theme name
+        $action = 'event_worker_action_xyz_' . get_the_ID(); // This is the nonce action
+
+        wp_nonce_field($action, $name);
+
         $count = count(get_post_meta(get_the_ID(), 'event_price'));
 
         if ($count !== 0)
@@ -132,7 +146,7 @@ class WorkerAdminMetaBoxes
         {
             $price = null;
         }
-        echo '<input type="number" class="eventprice" id="AdminEventPrice" name="AdminEventPrice" onkeypress="return isNumberKey(event)" value="' . $price . '"/><br/>';
+        echo '<input type="text" class="eventprice" id="AdminEventPrice" name="AdminEventPrice" onkeypress="return isNumberKey(event)" value="' . esc_attr($price) . '"/><br/>';
     }
 
     /** 
@@ -141,6 +155,11 @@ class WorkerAdminMetaBoxes
      */
     function show_website_meta_box()
     {
+        $name = 'event_worker_website_nonce'; // Make sure this is unique, prefix it with your plug-in/theme name
+        $action = 'event_worker_action_xyz_' . get_the_ID(); // This is the nonce action
+
+        wp_nonce_field($action, $name);
+
         $count = count(get_post_meta(get_the_ID(), 'event_website'));
 
         if ($count !== 0)
@@ -153,7 +172,7 @@ class WorkerAdminMetaBoxes
         }
 
         echo '<label for="AdminEventWebsite">URL</label><br/>';
-        echo '<input <input type="url" class="eventwebsite" id="AdminEventWebsite" name="AdminEventWebsite" value="' . $website . '"/><br/>';
+        echo '<input <input type="url" class="eventwebsite" id="AdminEventWebsite" name="AdminEventWebsite" value="' . esc_attr($website) . '"/><br/>';
     }
 
     /** 
@@ -161,7 +180,11 @@ class WorkerAdminMetaBoxes
      *     
      */
     function show_organizer_meta_box()
-    {
+    {   
+        $name = 'event_worker_organizer_nonce'; // Make sure this is unique, prefix it with your plug-in/theme name
+        $action = 'event_worker_action_xyz_' . get_the_ID(); // This is the nonce action
+
+        wp_nonce_field($action, $name);
         $count = count(get_post_meta(get_the_ID(), 'event_organizer'));
 
         if ($count !== 0)
@@ -181,11 +204,11 @@ class WorkerAdminMetaBoxes
             $organizer_website = '';
         }
 
-        echo '<input type="text" class="auto" name="AdminEventOrganizer" placeholder="' . ucfirst(__( 'name', 'event-worker-translations' )) . '"value="' . $organizer . '" style="width: 100%;"/><br/>';
-        echo '<input type="text" id="organizer_address" name="organizer_address" placeholder="' . ucfirst(__( 'address', 'event-worker-translations' )) . '" value="' .  $organizer_address . '" style="width: 100%;"/>';
-        echo '<input type="text" id="organizer_phone" name="organizer_phone" placeholder="' . ucfirst(__( 'phone', 'event-worker-translations' )) . '" value="' .  $organizer_phone . '" style="width: 100%;"/><br/>';
-        echo '<input type="text" id="organizer_email" name="organizer_email" placeholder="' . ucfirst(__( 'e-mail', 'event-worker-translations' )) . '" value="' .  $organizer_email . '" style="width: 100%;"/>';
-        echo '<input type="text" id="organizer_website" name="organizer_website" placeholder="' . ucfirst(__( 'website', 'event-worker-translations' )) . '" value="' .  $organizer_website . '" style="width: 100%;"/>';
+        echo '<input type="text" class="auto" name="AdminEventOrganizer" placeholder="' . ucfirst(__( 'name', 'event-worker-translations' )) . '"value="' . esc_attr($organizer) . '" style="width: 100%;"/><br/>';
+        echo '<input type="text" id="organizer_address" name="organizer_address" placeholder="' . ucfirst(__( 'address', 'event-worker-translations' )) . '" value="' .  esc_attr($organizer_address) . '" style="width: 100%;"/>';
+        echo '<input type="text" id="organizer_phone" name="organizer_phone" placeholder="' . ucfirst(__( 'phone', 'event-worker-translations' )) . '" value="' .  esc_attr($organizer_phone) . '" style="width: 100%;"/><br/>';
+        echo '<input type="text" id="organizer_email" name="organizer_email" placeholder="' . ucfirst(__( 'e-mail', 'event-worker-translations' )) . '" value="' .  esc_attr($organizer_email) . '" style="width: 100%;"/>';
+        echo '<input type="text" id="organizer_website" name="organizer_website" placeholder="' . ucfirst(__( 'website', 'event-worker-translations' )) . '" value="' .  esc_attr($organizer_website) . '" style="width: 100%;"/>';
     }
 
     /** 
@@ -195,7 +218,27 @@ class WorkerAdminMetaBoxes
      *
      */
     function custom_save($post_id)
-    {
+    {   
+        // Check its not an auto save.
+        if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
+            return;
+     
+        // Check your data has been sent - this helps verify that we intend to process our metabox.
+        if ( !isset($_POST['event_worker_website_nonce']) &&
+             !isset($_POST['event_worker_organizer_nonce']) )
+            return;
+     
+        // Check permissions.
+        if ( !current_user_can('edit_post', $post_id) )
+            return;
+     
+        // Finally check the nonces.
+        check_ajax_referer('event_worker_action_xyz_' . $post_id, 'event_worker_map_nonce');
+        check_ajax_referer('event_worker_action_xyz_' . $post_id, 'event_worker_date_nonce');
+        check_ajax_referer('event_worker_action_xyz_' . $post_id, 'event_worker_price_nonce');
+        check_ajax_referer('event_worker_action_xyz_' . $post_id, 'event_worker_website_nonce');
+        check_ajax_referer('event_worker_action_xyz_' . $post_id, 'event_worker_organizer_nonce');
+
         if(isset($_POST['AdminEventStartDate']) && isset($_POST['AdminEventEndDate']))
         {
             $worker_event_start_date = $_POST['AdminEventStartDate'];
@@ -211,60 +254,67 @@ class WorkerAdminMetaBoxes
 
             $worker_event_organizer = trim($_POST['AdminEventOrganizer']);
 
-            update_post_meta($post_id, 'event_start_date', $worker_event_start_date);
-            update_post_meta($post_id, 'event_end_date', $worker_event_end_date);
+            update_post_meta($post_id,
+                             'event_start_date',
+                             sanitize_text_field($worker_event_start_date));
+            update_post_meta($post_id,
+                             'event_end_date',
+                             sanitize_text_field($worker_event_end_date));
 
             update_post_meta($post_id,
                              'event_location',
-                             $worker_event_location);
+                             sanitize_text_field($worker_event_location));
 
             update_post_meta($post_id,
                              'event_location_name',
-                             $worker_event_location_name);
+                             sanitize_text_field($worker_event_location_name));
 
             update_post_meta($post_id,
                              'event_geolocation',
-                             $worker_event_geolocation);
+                             sanitize_text_field($worker_event_geolocation));
 
             update_post_meta($post_id,
                              'event_price',
-                             $worker_event_price);
+                             sanitize_text_field(floatval($worker_event_price)));
 
             update_post_meta($post_id,
                              'event_website',
-                             $worker_event_website);
-
-            $organizer_data = Array(
-                'address' => trim($_POST['organizer_address']),
-                'phone' => trim($_POST['organizer_phone']),
-                'email' => trim($_POST['organizer_email']),
-                'website' => trim($_POST['organizer_website'])
-            );
+                             esc_url_raw($worker_event_website));
 
             update_post_meta($post_id,
                              'event_organizer',
-                             $worker_event_organizer);
+                             sanitize_text_field($worker_event_organizer));
+
+            $organizer_data = Array(
+                'address' => sanitize_text_field($_POST['organizer_address']),
+                'phone' => sanitize_text_field($_POST['organizer_phone']),
+                'email' => sanitize_email($_POST['organizer_email']),
+                'website' => esc_url_raw($_POST['organizer_website'])
+            );
 
             update_post_meta($post_id,
                              'event_organizer_data',
                              $organizer_data);
 
+            $ws = new DateTime('NOW');
+            $we = new DateTime('NOW');
+
             if ($worker_event_start_date !== "")
             {
-                $start_order = new WorkerFormatDate($worker_event_start_date);
-                $only_digits = $start_order->$worker_event_start_date;
-
-                $end_order = new WorkerFormatDate($worker_event_end_date);
-                $only_digits2 = $end_order->$worker_event_end_date;
+                $ws = new DateTime($worker_event_start_date);
+            }
+            if ($worker_event_end_date !== "")
+            {
+                 $we = new DateTime($worker_event_end_date);
             }
 
             update_post_meta($post_id,
                              'event_start_order',
-                             $only_digits);
+                             date_format($ws, 'YmdHi'));
 
             update_post_meta($post_id,
                              'event_end_order',
-                             $only_digits2);
+                             date_format($we, 'YmdHi'));
         }
     }
 }

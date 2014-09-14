@@ -138,8 +138,9 @@ function get_events()
         'post_type'   => 'events',
         'post_status' => 'publish',
         'numberposts' => -1,
-        'meta_key' => 'event_start_date',
-        'orderby' => 'meta_value_num'
+        'meta_key' => 'event_start_order',
+        'orderby' => 'meta_value_num',
+        'order'    => 'ASC'
     );
 
     $posts = get_posts($args);

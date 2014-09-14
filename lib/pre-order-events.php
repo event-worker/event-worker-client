@@ -130,7 +130,7 @@ class WorkerPreOrderPosts
                     }
                 }
 
-                $posts = get_posts($args);
+                //$posts = get_posts($args);
 
                 $options = get_option('event_worker_host_url');
 
@@ -221,7 +221,7 @@ class WorkerPreOrderPosts
 
                             update_post_meta($event_id,
                                              'event_price',
-                                             $worker_event_price);
+                                             floatval($worker_event_price));
 
                             update_post_meta($event_id,
                                              'event_website',
@@ -276,7 +276,6 @@ class WorkerPreOrderPosts
 
                             wp_set_object_terms($post['ID'], $names, 'event_category');
 
-
                             update_post_meta($post['ID'],
                                              'event_modified',
                                              $worker_event_modified);
@@ -315,7 +314,7 @@ class WorkerPreOrderPosts
 
                             update_post_meta($post['ID'],
                                              'event_price',
-                                             $worker_event_price);
+                                             floatval($worker_event_price));
 
                             update_post_meta($post['ID'],
                                              'event_website',
