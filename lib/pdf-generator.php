@@ -16,7 +16,7 @@ date_default_timezone_set('Europe/Helsinki');
  *
  */
 class PDF extends FPDF
-{   
+{
     private $B = null;
     private $I = null;
     private $U = null;
