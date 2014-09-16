@@ -39,8 +39,9 @@ class WorkerMainClass
     }
 
     /**
-     * TODO.
-     * filter is the name of variable you want to add.
+     * Add filter variable to filter the posts.
+     *
+     * @param string $vars the filter variable.
      *
      */
     function add_new_query_vars($vars)
@@ -50,7 +51,7 @@ class WorkerMainClass
     }
 
     /**
-     * Add the plugin textdomain (translations) when the plugin is loaded.
+     * Load the transaltions on plugin load.
      *
      */
     function event_worker_init()
