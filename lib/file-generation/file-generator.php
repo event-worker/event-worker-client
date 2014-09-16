@@ -1,6 +1,6 @@
 <?php
 
-require(WP_PLUGIN_DIR . '/' . 'event-worker-client/lib/fpdf/fpdf.php');
+require_once('fpdf/fpdf.php');
 set_time_limit(0);
 define('EURO', chr(128));
 date_default_timezone_set('Europe/Helsinki');
@@ -17,12 +17,6 @@ date_default_timezone_set('Europe/Helsinki');
  */
 class PDF extends FPDF
 {
-    private $B = null;
-    private $I = null;
-    private $U = null;
-    private $HREF = null;
-    private $ALIGN = null;
-
     public $today = null;
     public $json = null;
 
@@ -118,6 +112,7 @@ class PDF extends FPDF
             $count++;
         }
         $text = rtrim($text);
+        $text = utf8_decode($text);
         return $count;
     }
 
@@ -132,7 +127,7 @@ class PDF extends FPDF
     function get_title($i)
     {
         $title = strtoupper($this->json[$i]['name']);
-        return utf8_decode($title);
+        return $title;
     }
 
     /** 
@@ -205,7 +200,7 @@ class PDF extends FPDF
         $title = $this->get_title($i);
 
         $this->SetFont('Times','B', 10);
-        $this->MultiCell(80, 4, $title, 0);
+        $this->MultiCell(80, 4, utf8_decode($title), 0);
 
         $this->SetFont('Times','',10);
 
@@ -216,20 +211,23 @@ class PDF extends FPDF
        
         $this->cell(80, 4, $price . EURO, 0);
 
-        $post = get_page_by_title($title, OBJECT, 'events');
+        //$post = get_page_by_title($title, OBJECT, 'events');
 
         //$location = get_post_meta($post->ID, 'event_location', true);
 
-        $this->MultiCell(80, 4, $this->json[$i]['location']['name'] . " - " . $this->json[$i]['location']['address'], 0);
-
-        $this->Cell(80, 4, $this->get_organizer($i), 0);
-        $this->MultiCell(80, 4,  $keywords, 0);
+        $this->MultiCell(80, 4, utf8_decode($this->json[$i]['location']['name']) . " - " . utf8_decode($this->json[$i]['location']['address']), 0);
 
         $this->SetTextColor(50, 50, 50);
         $url = $this->json[$i]['sameAs'];
         $this->WordWrap($url, 80);
+        
+        $this->MultiCell(80, 4,  $keywords, 0);
 
-        $this->Write(4, $url, $url);
+        
+
+        $this->Cell(80, 4, $this->get_organizer($i), 0);
+
+        $this->Write(4, $url, $this->json[$i]['sameAs']);
         $this->SetTextColor(0, 0, 0);
         $this->Ln();
     }
