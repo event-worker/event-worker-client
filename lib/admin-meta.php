@@ -218,19 +218,25 @@ class WorkerAdminMetaBoxes
     function custom_save($post_id)
     {   
         // Check its not an auto save.
-        if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
+        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+        {
             return;
+        }
      
-        // Check your data has been sent - this helps verify that we intend to process our metabox.
-        if ( !isset($_POST['event_worker_website_nonce']) &&
-             !isset($_POST['event_worker_organizer_nonce']) )
+        // Check your data has been sent. This helps verify that we intend to process our metabox.
+        if (!isset($_POST['event_worker_website_nonce']) &&
+            !isset($_POST['event_worker_organizer_nonce']))
+        {
             return;
+        }
      
         // Check permissions.
-        if ( !current_user_can('edit_post', $post_id) )
+        if (!current_user_can('edit_post', $post_id))
+        {
             return;
+        }
      
-        // Finally check the nonces.
+        // Check the nonces.
         check_ajax_referer('event_worker_action_xyz_' . $post_id, 'event_worker_map_nonce');
         check_ajax_referer('event_worker_action_xyz_' . $post_id, 'event_worker_date_nonce');
         check_ajax_referer('event_worker_action_xyz_' . $post_id, 'event_worker_price_nonce');
