@@ -28,7 +28,7 @@ add_action('init', function ()
     {
         $slim = new \Slim\Slim();
 
-        // USE IF NEEDED
+        // Use if needed.
         //$slim->add(new \TemporaryMiddleware());
 
         $slim->response->headers->set('Content-Type', 'application/ld+json');
@@ -46,7 +46,10 @@ add_action('init', function ()
     }
 });
 
-// CHECK USER ACCESS!
+/**
+ * Check if request has access.
+ *
+ */
 function main_custom_hook($slim)
 {
     $slim->hook('slim.before.dispatch', function() use ($slim)
@@ -66,6 +69,7 @@ function main_custom_hook($slim)
     });
 }
 
+// TODO.
 class TemporaryMiddleware extends \Slim\Middleware
 {
     public function call()

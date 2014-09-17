@@ -10,29 +10,11 @@ else
 }
 
 /** 
- * Get TODO.
+ * Get and parse the geolocation from post metadata.
  *
- * @param TODO.
+ * @param array $meta the post metadata.
  *
- * @return TODO.
- *
- */
-/*function get_the_api_uri($title)
-{
-    $uri = 'http' .
-           (isset($_SERVER['HTTPS']) ? 's' : '') .
-           '://' . "{$_SERVER['HTTP_HOST']}/{$_SERVER['REQUEST_URI']}" .
-           '/' . $title;
-
-    return $uri;
-}*/
-
-/** 
- * Get the geolocation from post metadata.
- *
- * @param array $meta the post metadata
- *
- * @return array return the geolocation array
+ * @return array
  *
  */
 function get_geolocation($meta)
@@ -49,9 +31,9 @@ function get_geolocation($meta)
 }
 
 /** 
- * Get TODO.
+ * Parse the time.
  *
- * @return TODO.
+ * @return string
  *
  */
 function parse_the_time()
@@ -66,7 +48,7 @@ function parse_the_time()
 /** 
  * Get single event by search term.
  *
- * @param string $data the passed parameter
+ * @param string $data the passed slug.
  *
  */
 function get_single_event($data)

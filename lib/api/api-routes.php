@@ -57,7 +57,6 @@ class WorkerApiRoutes
             $slim->get('/' . $endpoint . '/', function() use ($slim)
             {
                 echo json_encode($slim->response->getStatus());
-                //var_dump($slim);
             });
         });
 
