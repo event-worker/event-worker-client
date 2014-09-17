@@ -23,11 +23,11 @@ class WorkerPreOrderPosts
     }
 
     /** 
-     * TODO.
+     * Check if the post already exists by name.
      *
-     * @param string $title_str TODO
+     * @param string $title_str the post title.
      *
-     * @return TODO
+     * @return array
      *
      */
     function wp_exist_post_by_title($title_str)
@@ -43,25 +43,9 @@ class WorkerPreOrderPosts
     }
 
     /** 
-     * Order the posts by the event start date.
+     * Return the parsed time.
      *
-     * @param object $query wordpress query object
-     *
-     * @return object
-     *
-     */
-    function search_filter($query)
-    {
-        if ($query->is_search)
-        {
-           // $query->set('post_type', 'events');
-            $query->set('post_type', array('post', 'pages', 'events'));
-        }
-        return $query;
-    }
-
-    /** 
-     * TODO.
+     * @return string
      *
      */
     function parse_the_time()
@@ -76,7 +60,24 @@ class WorkerPreOrderPosts
     /** 
      * Order the posts by the event start date.
      *
-     * @param object $query wordpress query object
+     * @param object $query query object.
+     *
+     * @return object
+     *
+     */
+    function search_filter($query)
+    {
+        if ($query->is_search)
+        {
+            $query->set('post_type', array('post', 'pages', 'events'));
+            return $query;
+        }
+    }
+
+    /** 
+     * Order the posts by the event start date.
+     *
+     * @param object $query query object.
      *
      * @return object
      *
@@ -130,8 +131,6 @@ class WorkerPreOrderPosts
                     }
                 }
 
-                //$posts = get_posts($args);
-
                 $options = get_option('event_worker_host_url');
 
                 $url = $options['host-url'];
@@ -170,7 +169,7 @@ class WorkerPreOrderPosts
                             'post_type' => 'events'
                         );
                       
-                        // ADD TO DATABASE
+                        // Add to database.
                         if ($event_id = wp_insert_post($event_data))
                         {
                             $names = $output[$i]['keywords']['keywords'];
@@ -188,12 +187,6 @@ class WorkerPreOrderPosts
                             update_post_meta($event_id,
                                              'event_end_date',
                                               $worker_event_end_date);
-
-                            //$order = new WorkerFormatDate($worker_event_start_date);
-                            // $only_digits = $order->$worker_event_start_date;
-
-                            //$end_order = new WorkerFormatDate($worker_event_end_date);
-                            //$only_digits2 = $end_order->$worker_event_end_date;
 
                             $ws = new DateTime($worker_event_start_date);
 

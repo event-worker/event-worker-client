@@ -51,13 +51,11 @@ class WorkerAdminMetaBoxes
         {
             $l =  get_post_meta(get_the_ID(), 'event_location')[0];
             $n =  get_post_meta(get_the_ID(), 'event_location_name')[0];
-            //$g =  get_post_meta(get_the_ID(), 'event_geolocation')[0];
         }
         else
         {
             $l =  null;
             $n =  null;
-            //$g = null;
         }
 
         echo '<input style="width:100%;" placeholder="' . ucfirst(__( 'name', 'event-worker-translations' )) . '"' . 
@@ -77,9 +75,9 @@ class WorkerAdminMetaBoxes
     /** 
      * Explode the date.
      *
-     * @param string $date the date as a string
+     * @param string $date the date.
      *
-     * @return string $date return the date and time
+     * @return string
      *
      */
     function explode_the_date($date)
@@ -214,7 +212,7 @@ class WorkerAdminMetaBoxes
     /** 
      * Save the data.
      *
-     * @param int $post_id the post id
+     * @param int $post_id the post id.
      *
      */
     function custom_save($post_id)
