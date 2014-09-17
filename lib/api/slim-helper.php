@@ -31,7 +31,7 @@ add_action('init', function ()
         // USE IF NEEDED
         //$slim->add(new \TemporaryMiddleware());
 
-        $slim->response->headers->set('Content-Type', 'application/json');
+        $slim->response->headers->set('Content-Type', 'application/ld+json');
 
         $slim->config(array(
             'debug' => false,
@@ -59,7 +59,7 @@ function main_custom_hook($slim)
 
        if ($req == "POST")
        {
-            //$slim->halt('403', json_encode('You shall not pass.')); // or redirect, or other something
+            //$slim->halt('403', json_encode('You shall not pass.')); // or redirect, or something
             $keyToCheck = $slim->request()->params();
             //print_r($keyToCheck);
        }

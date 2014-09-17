@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Event Worker Client
-Plugin URI: https://github.com/sugardrunk/event-worker-client
+Plugin URI: https://github.com/event-worker/event-worker-client
 Description: Fetch events
 Version: 1.0
 License: GPLv2
@@ -29,8 +29,8 @@ class WorkerMainClass
     {
         require_once('lib/redirect.php');
         require_once('lib/core.php');
-        require_once('lib/api/wp-slim-framework.php');
-        require_once('lib/api-routes.php');
+        require_once('lib/api/slim-helper.php');
+        require_once('lib//api/api-routes.php');
         require_once('lib/loaders/scripts-and-styles-loader.php');
         require_once('lib/loaders/page-template-loader.php');
 
