@@ -15,7 +15,7 @@ date_default_timezone_set('Europe/Helsinki');
  * @license http://opensource.org/licenses/gpl-license.php  GNU Public License
  *
  */
-class PDF extends FPDF
+class WorkerFileGenerator extends FPDF
 {
     public $today = null;
     public $json = null;
@@ -294,29 +294,29 @@ class PDF extends FPDF
     }
 }
 
-$pdf = new PDF('P', 'mm', 'A4');
+$generator = new WorkerFileGenerator('P', 'mm', 'A4');
 
 $op = fopen('../events.txt', 'w');
 fwrite($op, pack("CCC", 0xef, 0xbb, 0xbf));
 
-fwrite($op, $pdf->today);
-fwrite($op, "\n" . str_repeat("=", strlen($pdf->today)) . "\n\n\n");
+fwrite($op, $generator->today);
+fwrite($op, "\n" . str_repeat("=", strlen($generator->today)) . "\n\n\n");
 
-for ($i = 0; $i < count($pdf->json); $i++)
+for ($i = 0; $i < count($generator->json); $i++)
 {
-    $pdf->make_page($i);
-    $content = strip_tags(utf8_decode($pdf->json[$i]['description']));
-    $temp = $pdf->wordlimit($content, 25);
+    $generator->make_page($i);
+    $content = strip_tags(utf8_decode($generator->json[$i]['description']));
+    $temp = $generator->wordlimit($content, 25);
 
-    $pdf->Ln(2);
-    $pdf->SetDrawColor(200, 200, 150);
-    $pdf->MultiCell(160, 4,  $temp, '', 'L', false);
-    $pdf->SetTextColor(50, 50, 50);
-    $pdf->Ln(0.5);
-    $pdf->Cell(160, 4, __("LINK", 'event-worker-translations') . ': ' . $pdf->json[$i]['url'], 'B', 1, 'L', false, $pdf->json[$i]['url']);
-    $pdf->SetTextColor(0,0,0);
-    $pdf->SetDrawColor(0, 0, 0);
-    $pdf->Ln(3);
+    $generator->Ln(2);
+    $generator->SetDrawColor(200, 200, 150);
+    $generator->MultiCell(160, 4,  $temp, '', 'L', false);
+    $generator->SetTextColor(50, 50, 50);
+    $generator->Ln(0.5);
+    $generator->Cell(160, 4, __("LINK", 'event-worker-translations') . ': ' . $generator->json[$i]['url'], 'B', 1, 'L', false, $generator->json[$i]['url']);
+    $generator->SetTextColor(0,0,0);
+    $generator->SetDrawColor(0, 0, 0);
+    $generator->Ln(3);
     
     $organizer = ucfirst(__("organizer", 'event-worker-translations'));
     $organizer_address = ucfirst(__("organizer address", 'event-worker-translations'));
@@ -324,19 +324,19 @@ for ($i = 0; $i < count($pdf->json); $i++)
     $organizer_email = ucfirst(__("organizer e-mail", 'event-worker-translations'));
     $organizer_website = ucfirst(__("organizer website", 'event-worker-translations'));
 
-    fwrite($op, $pdf->get_title($i) . "\n" . $pdf->get_date($i) . "\n" . ucfirst(__("price", 'event-worker-translations')) . ": " . $pdf->get_price($i) . "\xE2\x82\xAc");
-    fwrite($op, "\n" . ucfirst(__("website", 'event-worker-translations')) . ": " . $pdf->json[$i]['sameAs']);
-    fwrite($op, "\n" . ucfirst(__("location", 'event-worker-translations')) . ": " . $pdf->json[$i]['location']['name'] . " - " . $pdf->json[$i]['location']['address']);
-    fwrite($op, "\n" . $organizer . ": " . $pdf->json[$i]['organizer']['name']);
-    fwrite($op, "\n" . $organizer_address . ": " . $pdf->json[$i]['organizer']['address']);
-    fwrite($op, "\n" . $organizer_phone . ": " . $pdf->json[$i]['organizer']['telephone']);
-    fwrite($op, "\n" . $organizer_email . ": " . $pdf->json[$i]['organizer']['email']);
-    fwrite($op, "\n" . $organizer_website . ": " . $pdf->json[$i]['organizer']['url']);
-    fwrite($op, "\n\n" . $pdf->json[$i]['description']);
-    fwrite($op, "\n" . str_repeat("-", strlen($pdf->get_date($i))) . "\n\n");
+    fwrite($op, $generator->get_title($i) . "\n" . $generator->get_date($i) . "\n" . ucfirst(__("price", 'event-worker-translations')) . ": " . $generator->get_price($i) . "\xE2\x82\xAc");
+    fwrite($op, "\n" . ucfirst(__("website", 'event-worker-translations')) . ": " . $generator->json[$i]['sameAs']);
+    fwrite($op, "\n" . ucfirst(__("location", 'event-worker-translations')) . ": " . $generator->json[$i]['location']['name'] . " - " . $generator->json[$i]['location']['address']);
+    fwrite($op, "\n" . $organizer . ": " . $generator->json[$i]['organizer']['name']);
+    fwrite($op, "\n" . $organizer_address . ": " . $generator->json[$i]['organizer']['address']);
+    fwrite($op, "\n" . $organizer_phone . ": " . $generator->json[$i]['organizer']['telephone']);
+    fwrite($op, "\n" . $organizer_email . ": " . $generator->json[$i]['organizer']['email']);
+    fwrite($op, "\n" . $organizer_website . ": " . $generator->json[$i]['organizer']['url']);
+    fwrite($op, "\n\n" . $generator->json[$i]['description']);
+    fwrite($op, "\n" . str_repeat("-", strlen($generator->get_date($i))) . "\n\n");
 }
 
 fclose($op);
-$pdf->Output("../events.pdf", "F");
+$generator->Output("../events.pdf", "F");
 
 ?>

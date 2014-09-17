@@ -30,7 +30,7 @@ class WorkerMain
         require_once('lib/redirect.php');
         require_once('lib/core.php');
         require_once('lib/api/slim-helper.php');
-        require_once('lib//api/api-routes.php');
+        require_once('lib/api/api-routes.php');
         require_once('lib/loaders/scripts-and-styles-loader.php');
         require_once('lib/loaders/page-template-loader.php');
 

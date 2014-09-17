@@ -102,7 +102,7 @@ class WorkerCommonOptions
         add_settings_section(
             'host-url-settings-section',
             __('Host URL Options', 'event-worker-translations'),
-            array($this, 'print_host_info_settings_section_info'),
+            array($this, 'print_host_url_settings_section_info'),
             'event-worker'
         ); 
 
@@ -136,7 +136,7 @@ class WorkerCommonOptions
     {   
         $options = get_option('event_worker_api_endpoint');
         //$options['api-endpoint'] = empty($options['api-endpoint']) ? 'v01/api' : $options['api-endpoint'];
-        ?><input size="40" type="text" name="event_worker_api_endpoint[api-endpoint]" value="<?php echo $options['api-endpoint']; ?>" /><?php
+        ?><input size="40" type="text" name="event_worker_api_endpoint[api-endpoint]" value="<?php echo esc_attr($options['api-endpoint']); ?>" /><?php
     }
 
     /** 
@@ -146,7 +146,8 @@ class WorkerCommonOptions
     function plugin_api_endpoint_settings_validate($arr_input)
     {
         $options = get_option('event_worker_api_endpoint');
-        $options['api-endpoint'] = trim( $arr_input['api-endpoint'] );
+        $options['api-endpoint'] = sanitize_text_field($arr_input['api-endpoint']);
+
         return $options;
     }
 
@@ -166,17 +167,22 @@ class WorkerCommonOptions
     function create_input_host_url()
     {
         $options = get_option('event_worker_host_url');
-        ?><input size="40" type="text" name="event_worker_host_url[host-url]" value="<?php echo $options['host-url']; ?>" /><?php
+        ?><input size="40" type="text" name="event_worker_host_url[host-url]" value="<?php echo esc_url($options['host-url']); ?>" /><?php
     }
 
     /** 
      * Validate the input.
      *
+     * @param array $arr_input the input.
+     *
+     * @return array
+     *
      */
     function plugin_host_url_settings_validate($arr_input)
     {
         $options = get_option('event_worker_host_url');
-        $options['host-url'] = trim( $arr_input['host-url'] );
+        $options['host-url'] = esc_url_raw($arr_input['host-url']);
+
         return $options;
     }
 }

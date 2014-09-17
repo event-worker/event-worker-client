@@ -10,7 +10,7 @@
  * @license http://opensource.org/licenses/gpl-license.php  GNU Public License
  *
  */
-class PDFHelper
+class WorkerAjaxHelper
 {
 
     /**
@@ -67,6 +67,6 @@ class PDFHelper
         die();
     }
 }
-new PDFHelper();
+new WorkerAjaxHelper();
 
 ?>
