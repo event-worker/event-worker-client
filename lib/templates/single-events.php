@@ -32,7 +32,7 @@ class WorkerSingleEventTemplate
             //$terms = get_terms('event_category'));
             echo get_the_term_list(get_the_ID(), 'event_category', ' ', ' &bull; ', ' ');
         }
-        else // not available
+        else
         {
         }
     }
@@ -40,9 +40,9 @@ class WorkerSingleEventTemplate
     /** 
      * Explode the date.
      *
-     * @param string $date the date as a string
+     * @param string $date the date.
      *
-     * @return string $date return the date and time
+     * @return string
      *
      */
     function explode_the_date($date)
@@ -76,14 +76,14 @@ class WorkerSingleEventTemplate
         echo '<table style="width:100%">';
 
         echo '<tr><td colspan="2" class="eventtitlecontainer"><h2>
-                           <a href="' . get_permalink(get_the_ID()) . '">' .
-                           $title . '</a></h2></td></tr>';
+                           <a href="' . esc_url(get_permalink(get_the_ID())) . '">' .
+                           esc_attr($title) . '</a></h2></td></tr>';
 
-        echo '<tr><td class="eventtablecontainer">' . __('date', 'event-worker-translations') . '/' . __('time', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">' . $start .
+        echo '<tr><td class="eventtablecontainer">' . __('date', 'event-worker-translations') . '/' . __('time', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">' . esc_attr($start) .
              '<strong> &rarr; </strong>' .
-             $end . '</td></tr>';    
+             esc_attr($end) . '</td></tr>';
 
-        echo '<tr><td class="eventtablecontainer">' . __('price', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">' . get_post_meta(get_the_ID(), 'event_price')[0] . '&#8364;</td></tr>';
+        echo '<tr><td class="eventtablecontainer">' . __('price', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">' . esc_attr(get_post_meta(get_the_ID(), 'event_price')[0]) . '&#8364;</td></tr>';
         echo '<tr><td class="eventtablecontainer">' . __('category', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">';
 
         $this->check();
@@ -95,24 +95,19 @@ class WorkerSingleEventTemplate
 
         if (get_post_meta(get_the_ID(), 'event_organizer_data')[0]['address'] !== '')
         {
-            $data = get_post_meta(get_the_ID(), 'event_organizer_data')[0]['address'] . '  ';
+            $data = esc_attr(get_post_meta(get_the_ID(), 'event_organizer_data')[0]['address']) . '  ';
         }
-        if (get_post_meta(get_the_ID(), 'event_organizer_data')[0]['phone'] !== '')
+        if (get_post_meta(get_the_ID(), 'event_organizer_data')[0]['website'] !== '')
         {
-            $data .= get_post_meta(get_the_ID(), 'event_organizer_data')[0]['phone'] . '  ';
+            $data .= '<a href="' . esc_url(get_post_meta(get_the_ID(), 'event_organizer_data')[0]['website']) . '">' . esc_url(get_post_meta(get_the_ID(), 'event_organizer_data')[0]['website']) . '</a>  ';
         }
         if (get_post_meta(get_the_ID(), 'event_organizer_data')[0]['email'] !== '')
         {
             $data2 .= get_post_meta(get_the_ID(), 'event_organizer_data')[0]['email'] . '  ';
         }
-        if (get_post_meta(get_the_ID(), 'event_organizer_data')[0]['website'] !== '')
+        if (get_post_meta(get_the_ID(), 'event_organizer_data')[0]['phone'] !== '')
         {
-            $data2 .= get_post_meta(get_the_ID(), 'event_organizer_data')[0]['website'] . '  ';
-        }
-        else
-        {
-            $data = '';
-            $data2 = '';
+            $data2 .= get_post_meta(get_the_ID(), 'event_organizer_data')[0]['phone'] . '  ';
         }
 
         if ($data !== '' && $data2 !== '')
@@ -127,9 +122,9 @@ class WorkerSingleEventTemplate
         $data = preg_replace( '/\s\s+/', ', ', $data, preg_match_all( '/\s\s+/', $data) - 1);
         $data2 = preg_replace( '/\s\s+/', ', ', $data2, preg_match_all( '/\s\s+/', $data2) - 1);
 
-        echo '<tr><td class="eventtablecontainer">'. __('website', 'event-worker-translations') . '</td>' . '<td class="eventtablecontainersecond"><a href="' . get_post_meta(get_the_ID(), 'event_website')[0] . '">' . get_post_meta(get_the_ID(), 'event_website')[0] . '</td></tr>';
-        echo '<tr><td class="eventtablecontainer">'. __('organizer', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">' . get_post_meta(get_the_ID(), 'event_organizer')[0] . '</a><br>' . 
-        $data . $sep . $data2 . '</td></tr>';
+        echo '<tr><td class="eventtablecontainer">'. __('website', 'event-worker-translations') . '</td>' . '<td class="eventtablecontainersecond"><a href="' . esc_url(get_post_meta(get_the_ID(), 'event_website')[0]) . '">' . esc_url(get_post_meta(get_the_ID(), 'event_website')[0]) . '</a></td></tr>';
+        echo '<tr><td class="eventtablecontainer">'. __('organizer', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">' . esc_attr(get_post_meta(get_the_ID(), 'event_organizer')[0]) . '<br>' . 
+        $data . $sep . esc_attr($data2) . '</td></tr>';
 
         $lname =  get_post_meta(get_the_ID(), 'event_location_name')[0];
 
@@ -143,8 +138,8 @@ class WorkerSingleEventTemplate
         }
 
         echo '<tr><td class="eventtablecontainer">' . __('location', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">' .
-             $lname .
-             get_post_meta(get_the_ID(), 'event_location')[0] . '</td></tr>';
+             esc_attr($lname) .
+             esc_attr(get_post_meta(get_the_ID(), 'event_location')[0]) . '</td></tr>';
             
         $wslh = new WorkerScriptLoaderHelper();
 
@@ -186,8 +181,8 @@ class WorkerSingleEventTemplate
             $prevID = $pages[$current-1];
             $prev = __("Previous", 'event-worker-translations');
 
-            echo '<a href="' . get_permalink($prevID) . '" ' .
-                 'title="' . get_the_title($prevID) . '">&laquo; ' . $prev . '</a>';
+            echo '<a href="' . esc_url(get_permalink($prevID)) . '" ' .
+                 'title="' . esc_attr(get_the_title($prevID)) . '">&laquo; ' . esc_attr($prev) . '</a>';
         }
         if (count($pagelist) > 1 && !is_preview())
         {
@@ -198,8 +193,8 @@ class WorkerSingleEventTemplate
             $nextID = $pages[$current+1];
             $next = __("Next", 'event-worker-translations');
 
-            echo '<a href="' . get_permalink($nextID) . '" ' .
-                 'title="' . get_the_title($nextID) . '">' . $next . ' &raquo;</a>';
+            echo '<a href="' . esc_url(get_permalink($nextID)) . '" ' .
+                 'title="' . esc_attr(get_the_title($nextID)) . '">' . esc_attr($next) . ' &raquo;</a>';
         }
 
         echo '</div><br><br>';
