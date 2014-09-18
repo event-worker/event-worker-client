@@ -18,7 +18,7 @@ class WorkerAjaxHelper
      *
      */
     function __construct()
-    {
+    {   
         // Register scripts.
         add_action('wp_enqueue_scripts', array( &$this, 'register_plugin_scripts'));
         
@@ -37,14 +37,14 @@ class WorkerAjaxHelper
      */
     public function add_ajax_library()
     {   
-        if (is_post_type_archive('events'))
-        {
+        //if (is_post_type_archive('events'))
+        //{
             $html = '<script type="text/javascript">';
             $html .= 'var ajaxurl = "' . admin_url('admin-ajax.php') . '"';
             $html .= '</script>';
 
             echo $html;
-        }
+        //}
     }
     
     /**
@@ -53,11 +53,8 @@ class WorkerAjaxHelper
      */
     public function register_plugin_scripts()
     {
-        if (is_post_type_archive('events'))
-        {
-            wp_register_script('pdf-generation', plugin_dir_url(__FILE__) . 'js/ajax.js', array('jquery'));
-            wp_enqueue_script('pdf-generation');
-        }
+        wp_register_script('pdf-generation', plugin_dir_url(__FILE__) . 'js/ajax.js', array('jquery'));
+        wp_enqueue_script('pdf-generation');
     }
     
     /**
@@ -66,11 +63,8 @@ class WorkerAjaxHelper
      */
     public function generate()
     {
-        if (is_post_type_archive('events'))
-        {
-            require_once('file-generator.php');
-            die();
-        }
+        require_once('file-generator.php');
+        die();
     }
 }
 new WorkerAjaxHelper();
