@@ -184,12 +184,13 @@ class WorkerSingleEventTemplate
             echo '<a href="' . esc_url(get_permalink($prevID)) . '" ' .
                  'title="' . esc_attr(get_the_title($prevID)) . '">&laquo; ' . esc_attr($prev) . '</a>';
         }
-        if (count($pagelist) > 1 && !is_preview())
-        {
-            echo ' | ';
-        }
         if ($current !== count($pages)-1 && !is_preview())
-        {        
+        {
+            if (isset($prev))
+            {
+                echo ' | ';
+            }
+
             $nextID = $pages[$current+1];
             $next = __("Next", 'event-worker-translations');
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Event Worker Client 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 11:59+0200\n"
-"PO-Revision-Date: 2014-09-18 12:01+0200\n"
+"POT-Creation-Date: 2014-09-18 15:08+0200\n"
+"PO-Revision-Date: 2014-09-18 15:08+0200\n"
 "Last-Translator: Janne Kähkönen <jannekahkonen@gmail.com>\n"
 "Language-Team: Janne Kähkönen <jannekahkonen@gmail.com>\n"
 "Language: fi\n"
@@ -23,19 +23,20 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-#: ../admin-meta.php:31 ../file-generation/file-generator.php:321
-#: ../templates/single-events.php:131
+#: ../admin-meta.php:31 ../file-generation/file-generator.php:257
+#: ../file-generation/file-generator.php:358
+#: ../templates/single-events.php:126
 msgid "organizer"
 msgstr "järjestäjä"
 
 #: ../admin-meta.php:32 ../admin-meta.php:209
-#: ../file-generation/file-generator.php:328
-#: ../templates/single-events.php:130
+#: ../file-generation/file-generator.php:365
+#: ../templates/single-events.php:125
 msgid "website"
 msgstr "kotisivu"
 
-#: ../admin-meta.php:33 ../file-generation/file-generator.php:210
-#: ../file-generation/file-generator.php:327 ../templates/single-events.php:86
+#: ../admin-meta.php:33 ../file-generation/file-generator.php:237
+#: ../file-generation/file-generator.php:364 ../templates/single-events.php:86
 msgid "price"
 msgstr "hinta"
 
@@ -43,8 +44,8 @@ msgstr "hinta"
 msgid "event date"
 msgstr "tapahtuman päivämäärä"
 
-#: ../admin-meta.php:35 ../file-generation/file-generator.php:329
-#: ../templates/archive-events.php:156 ../templates/single-events.php:145
+#: ../admin-meta.php:35 ../file-generation/file-generator.php:366
+#: ../templates/archive-events.php:156 ../templates/single-events.php:140
 msgid "location"
 msgstr "sijainti"
 
@@ -184,23 +185,23 @@ msgstr "Luokittelematon tapahtuma"
 msgid "Document generated"
 msgstr "Dokumentti luotu"
 
-#: ../file-generation/file-generator.php:316
+#: ../file-generation/file-generator.php:353
 msgid "LINK"
 msgstr "LINKKI"
 
-#: ../file-generation/file-generator.php:322
+#: ../file-generation/file-generator.php:359
 msgid "organizer address"
 msgstr "järjestäjän osoite"
 
-#: ../file-generation/file-generator.php:323
+#: ../file-generation/file-generator.php:360
 msgid "organizer phone"
 msgstr "järjestäjän puhelin"
 
-#: ../file-generation/file-generator.php:324
+#: ../file-generation/file-generator.php:361
 msgid "organizer e-mail"
 msgstr "järjestäjän sähköposti"
 
-#: ../file-generation/file-generator.php:325
+#: ../file-generation/file-generator.php:362
 msgid "organizer website"
 msgstr "järjestäjän kotisivu"
 
@@ -313,11 +314,11 @@ msgstr "TEKSTITIEDOSTO"
 msgid "category"
 msgstr "kategoria"
 
-#: ../templates/archive-events.php:169 ../templates/single-events.php:187
+#: ../templates/archive-events.php:169 ../templates/single-events.php:182
 msgid "Previous"
 msgstr "Edellinen"
 
-#: ../templates/archive-events.php:170 ../templates/single-events.php:199
+#: ../templates/archive-events.php:170 ../templates/single-events.php:194
 msgid "Next"
 msgstr "Seuraava"
 
