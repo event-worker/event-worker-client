@@ -155,11 +155,38 @@ class WorkerFileGenerator extends FPDF
      */
     function get_organizer($i)
     {
-        $organizer = $this->json[$i]['organizer']['name'] . 
-                     " - " . $this->json[$i]['organizer']['address'] .
-                     " - " . $this->json[$i]['organizer']['telephone'] .
-                     " - " . $this->json[$i]['organizer']['email'] .
+        $organizer = $this->json[$i]['organizer']['name'];
+        return utf8_decode($organizer);
+    }
+
+    /** 
+     * Get the organizer address and url.
+     *
+     * @param int $i the index
+     *
+     * @return string
+     *
+     */
+    function get_organizer_data_first($i)
+    {
+        $organizer = $this->json[$i]['organizer']['address'] .
                      " - " . $this->json[$i]['organizer']['url'];
+
+        return utf8_decode($organizer);
+    }
+
+        /** 
+     * Get the organizer address and url.
+     *
+     * @param int $i the index
+     *
+     * @return string
+     *
+     */
+    function get_organizer_data_second($i)
+    {
+        $organizer = $this->json[$i]['organizer']['telephone'] .
+                     " - " . $this->json[$i]['organizer']['email'];
 
         return utf8_decode($organizer);
     }
@@ -210,26 +237,36 @@ class WorkerFileGenerator extends FPDF
         $price = ucfirst(__("price", 'event-worker-translations')) . ": " . $this->get_price($i);
        
         $this->cell(80, 4, $price . EURO, 0);
+        $this->MultiCell(80, 4,  $keywords, 0);
 
         //$post = get_page_by_title($title, OBJECT, 'events');
 
         //$location = get_post_meta($post->ID, 'event_location', true);
 
-        $this->MultiCell(80, 4, utf8_decode($this->json[$i]['location']['name']) . " - " . utf8_decode($this->json[$i]['location']['address']), 0);
+        $this->MultiCell(80, 4, utf8_decode($this->json[$i]['location']['name']) . " - " . utf8_decode($this->json[$i]['location']['address']), 0);        
+
 
         $this->SetTextColor(50, 50, 50);
         $url = $this->json[$i]['sameAs'];
-        $this->WordWrap($url, 80);
-        
-        $this->MultiCell(80, 4,  $keywords, 0);
-
-        
-
-        $this->Cell(80, 4, $this->get_organizer($i), 0);
+        $this->WordWrap($url, 160);
 
         $this->Write(4, $url, $this->json[$i]['sameAs']);
+
+        $this->Ln(5);
+
+        $this->Cell(80, 4, utf8_decode(ucfirst(__("organizer", 'event-worker-translations'))) . ": " . $this->get_organizer($i), 0);
+        
         $this->SetTextColor(0, 0, 0);
         $this->Ln();
+
+        $data_temp = $this->get_organizer_data_first($i);
+        $this->WordWrap($data_temp, 160);
+        $this->Write(4, $data_stemp);
+
+        $this->Cell(80, 4, $this->get_organizer_data_first($i), 0);
+        $this->Ln();
+        $this->Cell(80, 4, $this->get_organizer_data_second($i), 0);
+        $this->Ln(3);
     }
 
     /** 
