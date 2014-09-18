@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: my-pluginname 1.0\n"
+"Project-Id-Version: Event Worker Client 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-08 12:52+0200\n"
-"PO-Revision-Date: 2014-09-08 16:28+0200\n"
+"POT-Creation-Date: 2014-09-18 11:59+0200\n"
+"PO-Revision-Date: 2014-09-18 12:01+0200\n"
 "Last-Translator: Janne Kähkönen <jannekahkonen@gmail.com>\n"
 "Language-Team: Janne Kähkönen <jannekahkonen@gmail.com>\n"
 "Language: fi\n"
@@ -23,18 +23,19 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-#: ../admin-meta.php:31 ../pdf-generator.php:326
+#: ../admin-meta.php:31 ../file-generation/file-generator.php:321
 #: ../templates/single-events.php:131
 msgid "organizer"
 msgstr "järjestäjä"
 
-#: ../admin-meta.php:32 ../admin-meta.php:188 ../pdf-generator.php:333
+#: ../admin-meta.php:32 ../admin-meta.php:209
+#: ../file-generation/file-generator.php:328
 #: ../templates/single-events.php:130
 msgid "website"
 msgstr "kotisivu"
 
-#: ../admin-meta.php:33 ../pdf-generator.php:218 ../pdf-generator.php:332
-#: ../templates/single-events.php:86
+#: ../admin-meta.php:33 ../file-generation/file-generator.php:210
+#: ../file-generation/file-generator.php:327 ../templates/single-events.php:86
 msgid "price"
 msgstr "hinta"
 
@@ -42,138 +43,166 @@ msgstr "hinta"
 msgid "event date"
 msgstr "tapahtuman päivämäärä"
 
-#: ../admin-meta.php:35 ../pdf-generator.php:334
+#: ../admin-meta.php:35 ../file-generation/file-generator.php:329
 #: ../templates/archive-events.php:156 ../templates/single-events.php:145
 msgid "location"
 msgstr "sijainti"
 
-#: ../admin-meta.php:59 ../admin-meta.php:184
+#: ../admin-meta.php:61 ../admin-meta.php:205
 msgid "name"
 msgstr "nimi"
 
-#: ../admin-meta.php:62 ../admin-meta.php:185
+#: ../admin-meta.php:64 ../admin-meta.php:206
 msgid "address"
 msgstr "osoite"
 
-#: ../admin-meta.php:112
+#: ../admin-meta.php:119
 msgid "start date"
 msgstr "alkupäivä"
 
-#: ../admin-meta.php:115
+#: ../admin-meta.php:122
 msgid "end date"
 msgstr "loppupäivä"
 
-#: ../admin-meta.php:186
+#: ../admin-meta.php:207
 msgid "phone"
 msgstr "puhelin"
 
-#: ../admin-meta.php:187
+#: ../admin-meta.php:208
 msgid "e-mail"
 msgstr "sähköposti"
 
-#: ../common-options.php:20
+#: ../common-options.php:39
 msgid "Event Worker Options"
 msgstr "Event Worker Asetukset"
 
-#: ../common-options.php:42
+#: ../common-options.php:57
+msgid "Settings"
+msgstr "Asetukset"
+
+#: ../common-options.php:64
 msgid "Save Changes"
 msgstr "Tallenna"
 
-#: ../common-options.php:57
+#: ../common-options.php:85
 msgid "API Options"
-msgstr ""
+msgstr "API Asetukset"
 
-#: ../common-options.php:65
+#: ../common-options.php:92
 msgid "Endpoint"
-msgstr ""
+msgstr "Polku"
 
-#: ../common-options.php:77
+#: ../common-options.php:104
 msgid "Host URL Options"
-msgstr ""
+msgstr "Isäntälisäosan URL"
 
-#: ../common-options.php:97
+#: ../common-options.php:128
 msgid "Set the API endpoint"
-msgstr ""
+msgstr "Aseta rajapinnan (API) polku"
 
-#: ../common-options.php:116
-msgid "Set the URL to fetch events."
-msgstr ""
+#: ../common-options.php:160
+msgid "Set the URL to fetch events"
+msgstr "Aseta URL josta tapahtumat haetaan"
 
-#: ../core.php:51
+#: ../core.php:50
 msgid "Event"
 msgstr "Tapahtuma"
 
-#: ../core.php:52 ../core.php:53 ../core.php:55
+#: ../core.php:51 ../core.php:52 ../core.php:54
 msgid "Add new event"
 msgstr "Lisää uusi tapahtuma"
 
-#: ../core.php:54
+#: ../core.php:53
 msgid "Edit event"
 msgstr "Muokkaa tapahtumaa"
 
-#: ../core.php:56
+#: ../core.php:55
 msgid "View events"
 msgstr "Näytä tapahtumat"
 
-#: ../core.php:57
+#: ../core.php:56
 msgid "View event"
 msgstr "Näytä tapahtuma"
 
-#: ../core.php:58
+#: ../core.php:57
 msgid "Search events"
 msgstr "Etsi tapahtumia"
 
-#: ../core.php:59
+#: ../core.php:58
 msgid "No events found"
 msgstr "Ei tapahtumia"
 
-#: ../core.php:60
+#: ../core.php:59
 msgid "No events found in Trash"
 msgstr "Ei tapahtumia roskakorissa"
 
-#: ../core.php:62
+#: ../core.php:61
 msgid "Events"
 msgstr "Tapahtumat"
 
-#: ../core.php:81 ../core.php:91
+#: ../core.php:80 ../core.php:90
 msgid "Event categories"
 msgstr "Kategoriat"
 
-#: ../core.php:83
+#: ../core.php:82
 msgid "Search event categories"
 msgstr "Etsi kategorioita"
 
-#: ../core.php:84
+#: ../core.php:83
 msgid "All event categories"
 msgstr "Kaikki kategoriat"
 
-#: ../core.php:85
+#: ../core.php:84
 msgid "Parent event category"
 msgstr "Yläkategoria"
 
-#: ../core.php:86
+#: ../core.php:85
 msgid "Parent event category:"
 msgstr ""
 
-#: ../core.php:87
+#: ../core.php:86
 msgid "Edit event category"
 msgstr "Muokkaa kategoriaa"
 
-#: ../core.php:88
+#: ../core.php:87
 msgid "Update event category"
 msgstr "Päivitä kategoria"
 
-#: ../core.php:89
+#: ../core.php:88
 msgid "Add new event category"
 msgstr "Lisää uusi kategoria"
 
-#: ../core.php:90
+#: ../core.php:89
 msgid "New event name"
 msgstr ""
 
-#: ../core.php:103
+#: ../core.php:102
 msgid "Uncategorized event"
 msgstr "Luokittelematon tapahtuma"
+
+#: ../file-generation/file-generator.php:31
+msgid "Document generated"
+msgstr "Dokumentti luotu"
+
+#: ../file-generation/file-generator.php:316
+msgid "LINK"
+msgstr "LINKKI"
+
+#: ../file-generation/file-generator.php:322
+msgid "organizer address"
+msgstr "järjestäjän osoite"
+
+#: ../file-generation/file-generator.php:323
+msgid "organizer phone"
+msgstr "järjestäjän puhelin"
+
+#: ../file-generation/file-generator.php:324
+msgid "organizer e-mail"
+msgstr "järjestäjän sähköposti"
+
+#: ../file-generation/file-generator.php:325
+msgid "organizer website"
+msgstr "järjestäjän kotisivu"
 
 #: ../loaders/scripts-and-styles-loader.php:23
 msgid "hour"
@@ -264,30 +293,6 @@ msgstr "Marraskuu"
 msgid "December"
 msgstr "Joulukuu"
 
-#: ../pdf-generator.php:37
-msgid "Document generated"
-msgstr "Dokumentti luotu"
-
-#: ../pdf-generator.php:321
-msgid "LINK"
-msgstr "LINKKI"
-
-#: ../pdf-generator.php:327
-msgid "organizer address"
-msgstr "järjestäjän osoite"
-
-#: ../pdf-generator.php:328
-msgid "organizer phone"
-msgstr "järjestäjän puhelin"
-
-#: ../pdf-generator.php:329
-msgid "organizer e-mail"
-msgstr "järjestäjän sähköposti"
-
-#: ../pdf-generator.php:330
-msgid "organizer website"
-msgstr "järjestäjän kotisivu"
-
 #: ../templates/archive-events.php:51
 msgid "TODAY"
 msgstr "TÄNÄÄN"
@@ -319,6 +324,3 @@ msgstr "Seuraava"
 #: ../templates/single-events.php:82
 msgid "date"
 msgstr "päivä"
-
-#~ msgid "Location"
-#~ msgstr "Sijainti"

@@ -148,7 +148,7 @@ class WorkerSingleEventTemplate
             
         $wslh = new WorkerScriptLoaderHelper();
 
-        $wslh->getMap(get_post_meta(get_the_ID(), 'event_location')[0]);
+        $wslh->getMapOnly(get_post_meta(get_the_ID(), 'event_location')[0]);
 
         ob_start();
         the_content();

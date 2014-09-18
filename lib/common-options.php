@@ -136,7 +136,7 @@ class WorkerCommonOptions
     {   
         $options = get_option('event_worker_api_endpoint');
         //$options['api-endpoint'] = empty($options['api-endpoint']) ? 'v01/api' : $options['api-endpoint'];
-        ?><input size="40" type="text" name="event_worker_api_endpoint[api-endpoint]" value="<?php echo esc_attr($options['api-endpoint']); ?>" /><?php
+        ?><input style="width:70%" type="text" name="event_worker_api_endpoint[api-endpoint]" value="<?php echo esc_attr($options['api-endpoint']); ?>" /><?php
     }
 
     /** 
@@ -157,7 +157,7 @@ class WorkerCommonOptions
      */
     function print_host_url_settings_section_info()
     {
-        _e('Set the URL to fetch events.', 'event-worker-translations');
+        _e('Set the URL to fetch events', 'event-worker-translations');
     }
 
     /** 
@@ -167,7 +167,7 @@ class WorkerCommonOptions
     function create_input_host_url()
     {
         $options = get_option('event_worker_host_url');
-        ?><input size="40" type="text" name="event_worker_host_url[host-url]" value="<?php echo esc_url($options['host-url']); ?>" /><?php
+        ?><input style="width:70%" type="text" name="event_worker_host_url[host-url]" value="<?php echo esc_url($options['host-url']); ?>" /><?php
     }
 
     /** 

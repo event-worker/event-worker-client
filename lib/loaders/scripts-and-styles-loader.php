@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class for loading the map script.
+ * Class for loading the map scripts and the datetime picker.
  *
- * load the map.
+ * load the maps and the datetime picker.
  *
  * @package EventWorker
  * @author  Janne Kahkonen <jannekahkonen@gmail.com>
@@ -49,7 +49,7 @@ class WorkerScriptLoaderHelper
     }
 
     /** 
-     * Get the map.
+     * Get the map and datetime picker.
      *
      * @param string $location the location of the event
      *     
@@ -59,7 +59,7 @@ class WorkerScriptLoaderHelper
         ?>
         <script>
 
-            var l = "<?php echo $location; ?>";
+            var l = "<?php echo esc_attr($location); ?>";
             
             runMap(l);
             jQuery(document).ready(function(jQuery)
@@ -84,31 +84,18 @@ class WorkerScriptLoaderHelper
     }
 
     /** 
-     * Get the map with user location.
+     * Get the map only.
      *
+     * @param string $location the location of the event
+     *     
      */
-    function getLocation()
+    function getMapOnly($location)
     {
         ?>
         <script>
 
-            runMap();
-            jQuery(document).ready(function(jQuery)
-            {
-                jQuery('.eventdate').datetimepicker(
-                {
-                    timeText: time,
-                    hourText: hour,
-                    minuteText: minute,
-                    monthNames: months,
-                    dayNamesMin: days,
-                    dateFormat: 'dd.mm.yy',
-                    showButtonPanel: false,
-                    constrainInput: true,
-                    minDate: new Date(),
-                    firstDay: 1
-                });
-            });
+            var l = "<?php echo esc_attr($location); ?>";
+            runMap(l);
 
         </script>
         <?php
@@ -126,7 +113,7 @@ class WorkerScriptLoaderHelper
 
         function rgb2hex(rgb)
         {
-            if ( rgb.search("rgb") == -1 )
+            if(rgb.search("rgb") == -1)
             {
                 return rgb;
             }
@@ -146,7 +133,6 @@ class WorkerScriptLoaderHelper
         jQuery(function()
         {
             var styles = jQuery("#common_wrapper a").css( "color" );
-            //alert(styles);
             jQuery(".today").css("color", rgb2hex(styles));
         });
         
@@ -156,7 +142,7 @@ class WorkerScriptLoaderHelper
 }
 
 /**
- * Class for loading the scripts.
+ * Class for loading the needed scripts.
  *
  * load the needed scripts.
  *
@@ -185,7 +171,6 @@ class WorkerMainScriptLoader
     function add_stylesheet()
     {
         wp_enqueue_style('prefix-style', plugins_url('../css/style.css', __FILE__));
-        //wp_enqueue_style('prefix-style_reset', 'https://reset5.googlecode.com/hg/reset.min.css');
     }
 
     /** 

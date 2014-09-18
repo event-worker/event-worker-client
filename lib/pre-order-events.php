@@ -178,15 +178,15 @@ class WorkerPreOrderPosts
 
                             update_post_meta($event_id,
                                              'event_modified',
-                                              $worker_event_modified);
+                                              sanitize_text_field($worker_event_modified));
 
                             update_post_meta($event_id,
                                              'event_start_date',
-                                              $worker_event_start_date);
+                                              sanitize_text_field($worker_event_start_date));
                            
                             update_post_meta($event_id,
                                              'event_end_date',
-                                              $worker_event_end_date);
+                                              sanitize_text_field($worker_event_end_date));
 
                             $ws = new DateTime($worker_event_start_date);
 
@@ -202,34 +202,34 @@ class WorkerPreOrderPosts
 
                             update_post_meta($event_id,
                                              'event_location',
-                                             $worker_event_location);
+                                             sanitize_text_field($worker_event_location));
 
                             update_post_meta($event_id,
                                              'event_location_name',
-                                             $worker_event_location_name);
+                                             sanitize_text_field($worker_event_location_name));
 
                             update_post_meta($event_id,
                                              'event_geolocation',
-                                             $worker_event_geolocation);
+                                             sanitize_text_field($worker_event_geolocation));
 
                             update_post_meta($event_id,
                                              'event_price',
-                                             floatval($worker_event_price));
+                                             sanitize_text_field(floatval($worker_event_price)));
 
                             update_post_meta($event_id,
                                              'event_website',
-                                             $worker_event_website);
+                                             esc_url_raw($worker_event_website));
 
                             $organizer_data = Array(
-                                'address' => $output[$i]['organizer']['address'],
-                                'phone' => $output[$i]['organizer']['telephone'],
-                                'email' => $output[$i]['organizer']['email'],
-                                'website' => $output[$i]['organizer']['url']
+                                'address' => sanitize_text_field($output[$i]['organizer']['address']),
+                                'phone' => sanitize_text_field($output[$i]['organizer']['telephone']),
+                                'email' => sanitize_text_field($output[$i]['organizer']['email']),
+                                'website' => esc_url_raw($output[$i]['organizer']['url'])
                             );
 
                             update_post_meta($event_id,
                                              'event_organizer',
-                                             $worker_event_organizer);
+                                             sanitize_text_field($worker_event_organizer));
 
                             update_post_meta($event_id,
                                              'event_organizer_data',
@@ -271,15 +271,15 @@ class WorkerPreOrderPosts
 
                             update_post_meta($post['ID'],
                                              'event_modified',
-                                             $worker_event_modified);
+                                             sanitize_text_field($worker_event_modified));
 
                             update_post_meta($post['ID'],
                                              'event_start_date',
-                                             $worker_event_start_date);
+                                             sanitize_text_field($worker_event_start_date));
                            
                             update_post_meta($post['ID'],
                                              'event_end_date',
-                                             $worker_event_end_date);
+                                             sanitize_text_field($worker_event_end_date));
 
                             $ws = new DateTime($worker_event_start_date);
 
@@ -295,34 +295,34 @@ class WorkerPreOrderPosts
 
                             update_post_meta($post['ID'],
                                              'event_location',
-                                             $worker_event_location);
+                                             sanitize_text_field($worker_event_location));
 
                             update_post_meta($post['ID'],
                                              'event_location_name',
-                                             $worker_event_location_name);
+                                             sanitize_text_field($worker_event_location_name));
 
                             update_post_meta($post['ID'],
                                              'event_geolocation',
-                                             $worker_event_geolocation);
+                                             sanitize_text_field($worker_event_geolocation));
 
                             update_post_meta($post['ID'],
                                              'event_price',
-                                             floatval($worker_event_price));
+                                             sanitize_text_field(floatval($worker_event_price)));
 
                             update_post_meta($post['ID'],
                                              'event_website',
-                                             $worker_event_website);
+                                             esc_url_raw($worker_event_website));
 
                             $organizer_data = Array(
-                                'address' => $output[$i]['organizer']['address'],
-                                'phone' => $output[$i]['organizer']['telephone'],
-                                'email' => $output[$i]['organizer']['email'],
-                                'website' => $output[$i]['organizer']['url']
+                                'address' => sanitize_text_field($output[$i]['organizer']['address']),
+                                'phone' => sanitize_text_field($output[$i]['organizer']['telephone']),
+                                'email' => sanitize_text_field($output[$i]['organizer']['email']),
+                                'website' => esc_url_raw($output[$i]['organizer']['url'])
                             );
 
                             update_post_meta($post['ID'],
                                              'event_organizer',
-                                             $worker_event_organizer);
+                                             sanitize_text_field($worker_event_organizer));
 
                             update_post_meta($post['ID'],
                                              'event_organizer_data',
