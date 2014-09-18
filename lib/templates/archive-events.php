@@ -69,7 +69,7 @@ class WorkerArchiveEventsTemplate
 
         echo '<div class="floating-menu">';
         echo '<a href="' . home_url() . '/events' .'">' . __('ALL EVENTS', 'event-worker-translations') . '</a>';
-        echo '<a href="' .  $current_url . '?filter=today' .'">' . __('EVENTS TODAY', 'event-worker-translations') . '</a>';
+        echo '<a href="' .  str_replace("?filter=today", "", $current_url) . '?filter=today' .'">' . __('EVENTS TODAY', 'event-worker-translations') . '</a>';
         echo '<br>';
 
         $core = new WorkerCore();

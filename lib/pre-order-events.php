@@ -109,7 +109,7 @@ class WorkerPreOrderPosts
                             'compare' => '<='
                         )
                     );
-                    $query->set( 'meta_query', $meta_query );
+                    $query->set('meta_query', $meta_query);
                 }
 
                 $args = array(
