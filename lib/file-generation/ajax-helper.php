@@ -10,7 +10,7 @@
  * @license http://opensource.org/licenses/gpl-license.php  GNU Public License
  *
  */
-class WorkerAjaxHelper
+class WorkerClientAjaxHelper
 {
 
     /**
@@ -67,6 +67,6 @@ class WorkerAjaxHelper
         die();
     }
 }
-new WorkerAjaxHelper();
+new WorkerClientAjaxHelper();
 
 ?>

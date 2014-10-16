@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Event Worker Client 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 15:08+0200\n"
-"PO-Revision-Date: 2014-09-18 15:08+0200\n"
+"POT-Creation-Date: 2014-10-16 11:40+0200\n"
+"PO-Revision-Date: 2014-10-16 11:40+0200\n"
 "Last-Translator: Janne Kähkönen <jannekahkonen@gmail.com>\n"
 "Language-Team: Janne Kähkönen <jannekahkonen@gmail.com>\n"
 "Language: fi\n"
@@ -74,8 +74,8 @@ msgid "e-mail"
 msgstr "sähköposti"
 
 #: ../common-options.php:39
-msgid "Event Worker Options"
-msgstr "Event Worker Asetukset"
+msgid "Worker Client Options"
+msgstr "Worker Client Asetukset"
 
 #: ../common-options.php:57
 msgid "Settings"
@@ -314,11 +314,11 @@ msgstr "TEKSTITIEDOSTO"
 msgid "category"
 msgstr "kategoria"
 
-#: ../templates/archive-events.php:169 ../templates/single-events.php:182
+#: ../templates/archive-events.php:172 ../templates/single-events.php:182
 msgid "Previous"
 msgstr "Edellinen"
 
-#: ../templates/archive-events.php:170 ../templates/single-events.php:194
+#: ../templates/archive-events.php:179 ../templates/single-events.php:195
 msgid "Next"
 msgstr "Seuraava"
 

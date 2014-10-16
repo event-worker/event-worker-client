@@ -261,7 +261,7 @@ class WorkerFileGenerator extends FPDF
 
         $data_temp = $this->get_organizer_data_first($i);
         $this->WordWrap($data_temp, 160);
-        $this->Write(4, $data_stemp);
+        $this->Write(4, $data_temp);
 
         $this->Cell(80, 4, $this->get_organizer_data_first($i), 0);
         $this->Ln();

@@ -38,7 +38,7 @@ add_action('init', function ()
             'templates.path' => plugin_dir_path( __FILE__ ) . 'templates'
         ));
 
-        main_custom_hook($slim);
+        client_main_custom_hook($slim);
 
         do_action('slim_mapping', $slim);
         $slim->run();
@@ -50,7 +50,7 @@ add_action('init', function ()
  * Check if request has access.
  *
  */
-function main_custom_hook($slim)
+function client_main_custom_hook($slim)
 {
     $slim->hook('slim.before.dispatch', function() use ($slim)
     {   
@@ -70,7 +70,7 @@ function main_custom_hook($slim)
 }
 
 // TODO.
-class TemporaryMiddleware extends \Slim\Middleware
+class ClientTemporaryMiddleware extends \Slim\Middleware
 {
     public function call()
     {

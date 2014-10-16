@@ -28,7 +28,7 @@ class WorkerArchiveEventsTemplate
      */
     function append_styles()
     {
-        $wslh = new WorkerScriptLoaderHelper();
+        $wslh = new WorkerClientScriptLoaderHelper();
         $wslh->append_styles();
     }
 
@@ -46,13 +46,13 @@ class WorkerArchiveEventsTemplate
         $today = new DateTime('NOW');
         $date = new DateTime($date);
 
-        if ($today->format('d.m.Y') >= $date->format('d.m.Y'))
+        if ($today->format('Ymd') >= $date->format('Ymd'))
         {
             $date = '<div class="today">' . __("TODAY", 'event-worker-translations') . ' ' . $date->format('H:i') . '</div>';
         }
         else
         {
-             $date = $date->format('d.m.Y H:i');
+            $date = $date->format('d.m.Y H:i');
         }
         return $date;
     }
@@ -72,7 +72,7 @@ class WorkerArchiveEventsTemplate
         echo '<a href="' .  str_replace("?filter=today", "", $current_url) . '?filter=today' .'">' . __('EVENTS TODAY', 'event-worker-translations') . '</a>';
         echo '<br>';
 
-        $core = new WorkerCore();
+        $core = new WorkerClientCore();
 
         $customPostTaxonomies = get_object_taxonomies('events');
 

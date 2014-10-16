@@ -10,7 +10,7 @@
  * @license http://opensource.org/licenses/gpl-license.php  GNU Public License
  *
  */
-class WorkerRedirect
+class WorkerClientRedirect
 {
     /** 
      * The constructor.
@@ -36,6 +36,6 @@ class WorkerRedirect
         }
     }
 }
-new WorkerRedirect();
+new WorkerClientRedirect();
 
 ?>

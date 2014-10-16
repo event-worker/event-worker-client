@@ -19,7 +19,7 @@ Author URI: http://koti.tamk.fi/~c1jkahko/
  * @license http://opensource.org/licenses/gpl-license.php  GNU Public License
  *
  */
-class WorkerMain
+class WorkerClientMain
 {
     /** 
      * The constructor.
@@ -27,10 +27,15 @@ class WorkerMain
      */
     function __construct()
     {
-        require_once('lib/redirect.php');
         require_once('lib/core.php');
-        require_once('lib/api/slim-helper.php');
-        require_once('lib/api/api-routes.php');
+
+        if (!class_exists('\\Slim\\Slim'))
+        {
+            require_once('lib/api/slim-helper.php');
+            require_once('lib/api/api-routes.php');
+        }
+
+        require_once('lib/redirect.php');
         require_once('lib/loaders/scripts-and-styles-loader.php');
         require_once('lib/loaders/page-template-loader.php');
 
@@ -59,6 +64,6 @@ class WorkerMain
         load_plugin_textdomain('event-worker-translations', FALSE, dirname(plugin_basename(__FILE__)).'/lib/languages/');
     }
 }
-new WorkerMain();
+new WorkerClientMain();
 
 ?>

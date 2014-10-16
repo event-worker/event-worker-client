@@ -10,7 +10,7 @@
  * @license http://opensource.org/licenses/gpl-license.php  GNU Public License
  *
  */
-class WorkerCommonOptions
+class WorkerClientCommonOptions
 {
     /** 
      * The constructor.
@@ -36,9 +36,9 @@ class WorkerCommonOptions
     function add_plugin_settings_menu()
     {
         add_options_page('Event Worker',
-                         __('Event Worker Options', 'event-worker-translations'),
+                         __('Worker Client Options', 'event-worker-translations'),
                          'manage_options',
-                         'event-worker',
+                         'event-worker-client',
                          array($this, 'create_plugin_settings_page'));
     }
  
@@ -58,9 +58,9 @@ class WorkerCommonOptions
             <form method="post" action="options.php">
 
             <?php
-                settings_fields('settings-group');  // This prints out all hidden setting fields
+                settings_fields('client-settings-group');  // This prints out all hidden setting fields
 
-                do_settings_sections('event-worker');
+                do_settings_sections('event-worker-client');
                 submit_button(__('Save Changes', 'event-worker-translations'));
             ?>
             </form>
@@ -84,18 +84,18 @@ class WorkerCommonOptions
             'api-endpoint-settings-section',
             __('API Options', 'event-worker-translations'),
             array($this, 'print_api_endpoint_settings_section_info'),
-            'event-worker'
+            'event-worker-client'
         ); 
        
         add_settings_field(
             'api-endpoint', 
             __('Endpoint', 'event-worker-translations'),
             array($this, 'create_input_api_endpoint'), 
-            'event-worker', 
+            'event-worker-client', 
             'api-endpoint-settings-section'
         );
 
-        register_setting('settings-group',
+        register_setting('client-settings-group',
                          'event_worker_api_endpoint',
                          array($this, 'plugin_api_endpoint_settings_validate'));
 
@@ -103,18 +103,18 @@ class WorkerCommonOptions
             'host-url-settings-section',
             __('Host URL Options', 'event-worker-translations'),
             array($this, 'print_host_url_settings_section_info'),
-            'event-worker'
+            'event-worker-client'
         ); 
 
         add_settings_field(
             'host-url', 
             'URL', 
             array($this, 'create_input_host_url'), 
-            'event-worker', 
+            'event-worker-client', 
             'host-url-settings-section'
         );
 
-        register_setting('settings-group',
+        register_setting('client-settings-group',
                          'event_worker_host_url',
                          array($this, 'plugin_host_url_settings_validate'));
     }

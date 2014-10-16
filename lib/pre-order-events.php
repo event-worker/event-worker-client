@@ -10,7 +10,7 @@
  * @license http://opensource.org/licenses/gpl-license.php  GNU Public License
  *
  */
-class WorkerPreOrderPosts
+class WorkerClientPreOrderPosts
 {
     /** 
      * The constructor.
@@ -387,6 +387,6 @@ class WorkerPreOrderPosts
         remove_action('pre_get_posts', 'custom_pre_get_posts'); // run once
     }
 }
-new WorkerPreOrderPosts();
+new WorkerClientPreOrderPosts();
 
 ?>

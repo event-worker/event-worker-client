@@ -10,7 +10,7 @@
  * @license http://opensource.org/licenses/gpl-license.php  GNU Public License
  *
  */
-class WorkerApiRoutes
+class ClientWorkerApiRoutes
 {
     /** 
      * The constructor.
@@ -129,6 +129,6 @@ class WorkerApiRoutes
         });
     }
 }
-new WorkerApiRoutes();
+new ClientWorkerApiRoutes();
 
 ?>

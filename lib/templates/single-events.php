@@ -141,7 +141,7 @@ class WorkerSingleEventTemplate
              esc_attr($lname) .
              esc_attr(get_post_meta(get_the_ID(), 'event_location')[0]) . '</td></tr>';
             
-        $wslh = new WorkerScriptLoaderHelper();
+        $wslh = new WorkerClientScriptLoaderHelper();
 
         $wslh->getMapOnly(get_post_meta(get_the_ID(), 'event_location')[0]);
 
