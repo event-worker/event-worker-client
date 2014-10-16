@@ -243,7 +243,7 @@ class WorkerFileGenerator extends FPDF
 
         //$location = get_post_meta($post->ID, 'event_location', true);
 
-        $this->MultiCell(80, 4, utf8_decode($this->json[$i]['location']['name']) . " - " . utf8_decode($this->json[$i]['location']['address']), 0);        
+        $this->MultiCell(80, 4, utf8_decode($this->json[$i]['location']['name']) . " - " . utf8_decode($this->json[$i]['location']['address']), 0);
 
 
         $this->SetTextColor(50, 50, 50);
@@ -259,9 +259,9 @@ class WorkerFileGenerator extends FPDF
         $this->SetTextColor(0, 0, 0);
         $this->Ln();
 
-        $data_temp = $this->get_organizer_data_first($i);
-        $this->WordWrap($data_temp, 160);
-        $this->Write(4, $data_temp);
+        //$data_temp = $this->get_organizer_data_first($i);
+        //$this->WordWrap($data_temp, 160);
+        //$this->Write(4, $data_temp);
 
         $this->Cell(80, 4, $this->get_organizer_data_first($i), 0);
         $this->Ln();
