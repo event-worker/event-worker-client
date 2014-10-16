@@ -15,7 +15,7 @@ date_default_timezone_set('Europe/Helsinki');
  * @license http://opensource.org/licenses/gpl-license.php  GNU Public License
  *
  */
-class WorkerFileGenerator extends FPDF
+class WorkerClientFileGenerator extends FPDF
 {
     public $today = null;
     public $json = null;
@@ -331,7 +331,7 @@ class WorkerFileGenerator extends FPDF
     }
 }
 
-$generator = new WorkerFileGenerator('P', 'mm', 'A4');
+$generator = new WorkerClientFileGenerator('P', 'mm', 'A4');
 
 $op = fopen('../events.txt', 'w');
 fwrite($op, pack("CCC", 0xef, 0xbb, 0xbf));
