@@ -59,9 +59,8 @@ div.printbuttoncontainer {
     float:right;
 }
 
-
 div.eventdivcontainer {
-    margin-right: 1%;
+    /* margin-right: 1%; */
     margin-bottom: 1%;
 }
 
@@ -75,12 +74,14 @@ div.eventdivcontainer2 {
 .today {
     font-size: 100%;
     font-weight: bold !important;
-    display: inline !important;   
+    display: inline !important;
 }
 
+/* check if needed!
 div.eventinlinedate {
     display: inline;
 }
+*/
 
 .eventtitlecontainer {
     font-weight: bold !important;
@@ -116,7 +117,7 @@ input {
 
 .ui-autocomplete 
 {
-   
+
 }
 
 textarea {
@@ -156,12 +157,13 @@ textarea {
     background-color: #F5F5F5 !important;
 }
 
+/* is needed?
 .eventtablecontainerthird {
     padding-left: 5% !important;
    
     text-align: left !important;
     background-color: #F5F5F5 !important;
-}
+}*/
 
 .postform {
     width :100% !important;
