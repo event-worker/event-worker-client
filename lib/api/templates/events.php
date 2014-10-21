@@ -19,13 +19,20 @@ else
  */
 function get_geolocation($meta)
 {
-    $geolocation = $meta["event_geolocation"];
+    if (!is_null($meta))
+    {
+        $geolocation = $meta["event_geolocation"];
 
-    $latitude = explode(", ", $geolocation[0]);
-    $lat = str_replace("(", "", $latitude[0]);
-    $lon = str_replace(")", "", $latitude[1]);
+        $latitude = explode(", ", $geolocation[0]);
+        $lat = str_replace("(", "", $latitude[0]);
+        $lon = str_replace(")", "", $latitude[1]);
 
-    $arr = array('@type'=>'GeoCoordinates', 'latitude'=>$lat, 'longitude'=>$lon);
+        $arr = array('@type'=>'GeoCoordinates', 'latitude'=>$lat, 'longitude'=>$lon);
+    }
+    else
+    {
+        $arr = "";
+    }
 
     return $arr;
 }
@@ -90,8 +97,8 @@ function get_single_event($data)
                         'description'=>$post->post_content,
                         'sameAs'=>$url,
                         'url'=>get_permalink($post->ID),
-                        'keywords'=>array('@type'=> 'CreativeWork', 'keywords'=>$holder),
-                        'Date'=>array('@type'=> 'date', 'dateModified'=>$post->post_modified),
+                        'keywords'=>array('@type'=> 'CreativeWork', 'keywords'=>$holder),  // fix
+                        'Date'=>array('@type'=> 'date', 'dateModified'=>$post->post_modified),  // fix
                         'offers'=>array('@type'=> 'Offer', 'price'=>$price),
                         'organizer'=>array('@type'=> 'Organization',
                                                          'name'=>$organizer_name,
@@ -159,14 +166,15 @@ function get_events()
 
         $events[] = array('@id'=>$post->post_name,
                           '@type'=>'Event',
+                          'version'=>$meta["event_version"][0], // fix
                           'name' => $post->post_title,
                           'description'=>$post->post_content,
                           'startDate'=>$start_date->format('Y-m-d H:i:s'),
                           'endDate'=>$end_date->format('Y-m-d H:i:s'),
                           'sameAs'=>$url,
                           'url'=>get_permalink($post->ID),
-                          'keywords'=>array('@type'=> 'CreativeWork', 'keywords'=>$holder),
-                          'Date'=>array('@type'=> 'date', 'dateModified'=>$post->post_modified),
+                          'keywords'=>array('@type'=> 'CreativeWork', 'keywords'=>$holder), // fix
+                          'Date'=>array('@type'=> 'date', 'dateModified'=>$post->post_modified), // fix
                           'offers'=>array('@type'=> 'Offer', 'price'=>$price),
                           'organizer'=>array('@type'=> 'Organization',
                                              'name'=>$organizer_name,
