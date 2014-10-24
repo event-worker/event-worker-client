@@ -10,7 +10,7 @@
  * @license http://opensource.org/licenses/gpl-license.php  GNU Public License
  *
  */
-class WorkerClientPreOrderPosts
+class WorkerPreOrderPosts
 {
     /** 
      * The constructor.
@@ -23,21 +23,20 @@ class WorkerClientPreOrderPosts
     }
 
     /** 
-     * Check if the post already exists by name.
+     * Check if the post already exists by the meta value.
      *
-     * @param string $title_str the post title.
+     * @param string $val the post meta value.
      *
      * @return array
      *
      */
-    function wp_exist_post_by_title($title_str)
+    function wp_exist_post_by_title($val)
     {
         global $wpdb;
 
-        $table = $wpdb->prefix . 'posts';
-        $type = 'events';
+        $table = $wpdb->prefix . 'postmeta';
 
-        $sql = $wpdb->prepare('SELECT * FROM ' . $table . ' WHERE post_title = %s && post_type = %s', $title_str, $type);
+        $sql = $wpdb->prepare('SELECT * FROM ' . $table . ' WHERE meta_value = %s', $val);
 
         return $wpdb->get_row($sql , ARRAY_A);
     }
@@ -112,25 +111,6 @@ class WorkerClientPreOrderPosts
                     $query->set('meta_query', $meta_query);
                 }
 
-                $args = array(
-                    'post_type'   => 'events',
-                    'post_status' => 'publish',
-                    'numberposts' => -1
-                );
-
-                $posts = get_posts($args);
-
-                foreach ($posts as $post)
-                {
-                    $compare = get_post_meta($post->ID, 'event_end_order');
-
-                    if ($compare[0] < $this->parse_the_time())
-                    {
-                        $post = array('ID' => $post->ID, 'post_status' => 'draft');
-                        wp_update_post($post);
-                    }
-                }
-
                 $options = get_option('event_worker_host_url');
 
                 $url = $options['host-url'];
@@ -141,7 +121,7 @@ class WorkerClientPreOrderPosts
 
                 for ($i = 0; $i < count($output); $i++)
                 {
-                    $post = $this->wp_exist_post_by_title($output[$i]['name']);
+                    $post = $this->wp_exist_post_by_title($output[$i]['version']);
 
                     if (is_null($post))
                     {   
@@ -234,11 +214,23 @@ class WorkerClientPreOrderPosts
                             update_post_meta($event_id,
                                              'event_organizer_data',
                                              $organizer_data);
+
+                            update_post_meta($event_id,
+                                             'event_version',
+                                             $output[$i]['version']);
                         }
                     }
                     else
                     {
-                        $datetime1 = date_create(get_post_meta($post['ID'], 'event_modified' )[0]);
+                        $args = array(
+                            'post_type'   => 'events',
+                            'post_status' => 'publish',
+                            'numberposts' => -1
+                        );
+
+                        $posts = get_posts($args);
+
+                        $datetime1 = date_create(get_post_meta($posts[$i]->ID, 'event_modified' )[0]);
                         $datetime2 = date_create($output[$i]['Date']['dateModified']);
 
                         if($datetime1 != $datetime2)
@@ -258,7 +250,7 @@ class WorkerClientPreOrderPosts
                             $worker_event_organizer = $output[$i]['organizer']['name'];
 
                             $event_data = array(
-                                'ID' => $post['ID'],
+                                'ID' => $posts[$i]->ID,
                                 'post_title' => $output[$i]['name'],
                                 'post_content' => $output[$i]['description'],
                                 'post_status' => 'publish',
@@ -267,49 +259,49 @@ class WorkerClientPreOrderPosts
 
                             $names = $output[$i]['keywords']['keywords'];
 
-                            wp_set_object_terms($post['ID'], $names, 'event_category');
+                            wp_set_object_terms($posts[$i]->ID, $names, 'event_category');
 
-                            update_post_meta($post['ID'],
+                            update_post_meta($posts[$i]->ID,
                                              'event_modified',
                                              sanitize_text_field($worker_event_modified));
 
-                            update_post_meta($post['ID'],
+                            update_post_meta($posts[$i]->ID,
                                              'event_start_date',
                                              sanitize_text_field($worker_event_start_date));
                            
-                            update_post_meta($post['ID'],
+                            update_post_meta($posts[$i]->ID,
                                              'event_end_date',
                                              sanitize_text_field($worker_event_end_date));
 
                             $ws = new DateTime($worker_event_start_date);
 
-                            update_post_meta($post['ID'],
+                            update_post_meta($posts[$i]->ID,
                                              'event_start_order',
                                              date_format($ws, 'YmdHi'));
 
                             $we = new DateTime($worker_event_end_date);
 
-                            update_post_meta($post['ID'],
+                            update_post_meta($posts[$i]->ID,
                                              'event_end_order',
                                              date_format($we, 'YmdHi'));
 
-                            update_post_meta($post['ID'],
+                            update_post_meta($posts[$i]->ID,
                                              'event_location',
                                              sanitize_text_field($worker_event_location));
 
-                            update_post_meta($post['ID'],
+                            update_post_meta($posts[$i]->ID,
                                              'event_location_name',
                                              sanitize_text_field($worker_event_location_name));
 
-                            update_post_meta($post['ID'],
+                            update_post_meta($posts[$i]->ID,
                                              'event_geolocation',
                                              sanitize_text_field($worker_event_geolocation));
 
-                            update_post_meta($post['ID'],
+                            update_post_meta($posts[$i]->ID,
                                              'event_price',
                                              sanitize_text_field(floatval($worker_event_price)));
 
-                            update_post_meta($post['ID'],
+                            update_post_meta($posts[$i]->ID,
                                              'event_website',
                                              esc_url_raw($worker_event_website));
 
@@ -320,11 +312,11 @@ class WorkerClientPreOrderPosts
                                 'website' => esc_url_raw($output[$i]['organizer']['url'])
                             );
 
-                            update_post_meta($post['ID'],
+                            update_post_meta($posts[$i]->ID,
                                              'event_organizer',
                                              sanitize_text_field($worker_event_organizer));
 
-                            update_post_meta($post['ID'],
+                            update_post_meta($posts[$i]->ID,
                                              'event_organizer_data',
                                              $organizer_data);
                          
@@ -332,6 +324,33 @@ class WorkerClientPreOrderPosts
                         }
                     }
                 }
+                $args = array(
+                    'post_type'   => 'events',
+                    'post_status' => 'publish',
+                    'numberposts' => -1
+                );
+
+                $posts = get_posts($args);
+
+                foreach ($posts as $post)
+                {
+                    $compare = get_post_meta($post->ID, 'event_end_order');
+
+                    if ($compare[0] < $this->parse_the_time())
+                    {
+                        $post = array('ID' => $post->ID, 'post_status' => 'draft');
+                        wp_update_post($post);
+                    }
+                }
+
+                // Why?
+                $args = array(
+                    'post_type'   => 'events',
+                    'post_status' => 'publish',
+                    'numberposts' => -1
+                );
+
+                $posts = get_posts($args);
             }
         }
 
@@ -387,6 +406,6 @@ class WorkerClientPreOrderPosts
         remove_action('pre_get_posts', 'custom_pre_get_posts'); // run once
     }
 }
-new WorkerClientPreOrderPosts();
+new WorkerPreOrderPosts();
 
 ?>
