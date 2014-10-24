@@ -220,8 +220,11 @@ class WorkerPreOrderPosts
                                              $output[$i]['version']);
                         }
                     }
-                    else
+                    else if (get_post_status($post['post_id']) == 'publish')
                     {
+                        //var_dump($post);
+                        //die();
+
                         $args = array(
                             'post_type'   => 'events',
                             'post_status' => 'publish',
