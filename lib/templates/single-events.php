@@ -160,7 +160,9 @@ class WorkerSingleEventTemplate
         echo '<div style="text-align:center">';
 
         $args = array(
-            'orderby' => 'event-start-date',
+            'orderby' => 'meta_value',
+            'meta_key'=>'event_start_date',
+            'order' => 'ASC',
             'post_type' => 'events',
             'post_status' => 'publish',
             'numberposts' => -1
