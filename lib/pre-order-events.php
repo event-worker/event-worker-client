@@ -30,7 +30,7 @@ class WorkerPreOrderPosts
      * @return array
      *
      */
-    function wp_exist_post_by_title($val)
+    function wp_exist_post_by_id($val)
     {
         global $wpdb;
 
@@ -119,9 +119,133 @@ class WorkerPreOrderPosts
                 $output = json_decode($output['body'], true);
                 $output = $output["@graph"];
 
+                $args = array(
+                    'post_type'   => 'events',
+                    'post_status' => 'publish',
+                    'numberposts' => -1
+                );
+
+                $posts = get_posts($args);
+
+                foreach ($posts as $post)
+                {
+                    $compare = get_post_meta($post->ID, 'event_end_order');
+
+                    if ($compare[0] < $this->parse_the_time())
+                    {
+                        $post = array('ID' => $post->ID, 'post_status' => 'draft');
+                        wp_update_post($post);
+                    }
+                }
+
                 for ($i = 0; $i < count($output); $i++)
                 {
-                    $post = $this->wp_exist_post_by_title($output[$i]['version']);
+                    $post = $this->wp_exist_post_by_id($output[$i]['version']);
+
+                    if (get_post_status($post['post_id']) === 'publish')
+                    {                    
+                        $args = array(
+                            'post_type'   => 'events',
+                            'post_status' => 'publish',
+                            'numberposts' => -1,
+                            'meta_value' => $output[$i]['version']
+                        );
+
+                        $posts = get_posts($args);
+
+                        $datetime1 = date_create(get_post_meta($posts[0]->ID, 'event_modified' )[0]);
+                        $datetime2 = date_create($output[$i]['Date']['dateModified']);
+
+                        if ($datetime1 != $datetime2)
+                        {
+                            $worker_event_modified = $output[$i]['Date']['dateModified'];
+                            $worker_event_start_date = $output[$i]['startDate'];
+                            $worker_event_end_date = $output[$i]['endDate'];
+
+                            $worker_event_price = $output[$i]['offers']['price'];
+                            $worker_event_website = $output[$i]['sameAs'];
+
+                            $worker_event_location = $output[$i]['location']['address'];
+                            $worker_event_location_name = $output[$i]['location']['name'];
+
+                            $worker_event_geolocation = "(".$output[$i]['location']['geo']['latitude']. ", ".$output[$i]['location']['geo']['longitude'].")";
+
+                            $worker_event_organizer = $output[$i]['organizer']['name'];
+
+                            $event_data = array(
+                                'ID' => $posts[0]->ID,
+                                'post_title' => $output[$i]['name'],
+                                'post_content' => $output[$i]['description'],
+                                'post_status' => 'publish',
+                                'post_type' => 'events'
+                            );
+
+                            $names = $output[$i]['keywords']['keywords'];
+
+                            wp_set_object_terms($posts[0]->ID, $names, 'event_category');
+
+                            update_post_meta($posts[0]->ID,
+                                             'event_modified',
+                                             sanitize_text_field($worker_event_modified));
+
+                            update_post_meta($posts[0]->ID,
+                                             'event_start_date',
+                                             sanitize_text_field($worker_event_start_date));
+                           
+                            update_post_meta($posts[0]->ID,
+                                             'event_end_date',
+                                             sanitize_text_field($worker_event_end_date));
+
+                            $ws = new DateTime($worker_event_start_date);
+
+                            update_post_meta($posts[0]->ID,
+                                             'event_start_order',
+                                             date_format($ws, 'YmdHi'));
+
+                            $we = new DateTime($worker_event_end_date);
+
+                            update_post_meta($posts[0]->ID,
+                                             'event_end_order',
+                                             date_format($we, 'YmdHi'));
+
+                            update_post_meta($posts[0]->ID,
+                                             'event_location',
+                                             sanitize_text_field($worker_event_location));
+
+                            update_post_meta($posts[0]->ID,
+                                             'event_location_name',
+                                             sanitize_text_field($worker_event_location_name));
+
+                            update_post_meta($posts[0]->ID,
+                                             'event_geolocation',
+                                             sanitize_text_field($worker_event_geolocation));
+
+                            update_post_meta($posts[0]->ID,
+                                             'event_price',
+                                             sanitize_text_field(floatval($worker_event_price)));
+
+                            update_post_meta($posts[0]->ID,
+                                             'event_website',
+                                             esc_url_raw($worker_event_website));
+
+                            $organizer_data = Array(
+                                'address' => sanitize_text_field($output[$i]['organizer']['address']),
+                                'phone' => sanitize_text_field($output[$i]['organizer']['telephone']),
+                                'email' => sanitize_text_field($output[$i]['organizer']['email']),
+                                'website' => esc_url_raw($output[$i]['organizer']['url'])
+                            );
+
+                            update_post_meta($posts[0]->ID,
+                                             'event_organizer',
+                                             sanitize_text_field($worker_event_organizer));
+
+                            update_post_meta($posts[0]->ID,
+                                             'event_organizer_data',
+                                             $organizer_data);
+                         
+                            wp_update_post($event_data);
+                        }
+                    }
 
                     if (is_null($post))
                     {   
@@ -220,137 +344,9 @@ class WorkerPreOrderPosts
                                              $output[$i]['version']);
                         }
                     }
-                    else if (get_post_status($post['post_id']) === 'publish')
-                    {
-                        $args = array(
-                            'post_type'   => 'events',
-                            'post_status' => 'publish',
-                            'numberposts' => -1
-                        );
-
-                        $posts = get_posts($args);
-
-                        $datetime1 = date_create(get_post_meta($posts[$i]->ID, 'event_modified' )[0]);
-                        $datetime2 = date_create($output[$i]['Date']['dateModified']);
-
-                        if($datetime1 != $datetime2)
-                        {
-                            $worker_event_modified = $output[$i]['Date']['dateModified'];
-                            $worker_event_start_date = $output[$i]['startDate'];
-                            $worker_event_end_date = $output[$i]['endDate'];
-
-                            $worker_event_price = $output[$i]['offers']['price'];
-                            $worker_event_website = $output[$i]['sameAs'];
-
-                            $worker_event_location = $output[$i]['location']['address'];
-                            $worker_event_location_name = $output[$i]['location']['name'];
-
-                            $worker_event_geolocation = "(".$output[$i]['location']['geo']['latitude']. ", ".$output[$i]['location']['geo']['longitude'].")";
-
-                            $worker_event_organizer = $output[$i]['organizer']['name'];
-
-                            $event_data = array(
-                                'ID' => $posts[$i]->ID,
-                                'post_title' => $output[$i]['name'],
-                                'post_content' => $output[$i]['description'],
-                                'post_status' => 'publish',
-                                'post_type' => 'events'
-                            );
-
-                            $names = $output[$i]['keywords']['keywords'];
-
-                            wp_set_object_terms($posts[$i]->ID, $names, 'event_category');
-
-                            update_post_meta($posts[$i]->ID,
-                                             'event_modified',
-                                             sanitize_text_field($worker_event_modified));
-
-                            update_post_meta($posts[$i]->ID,
-                                             'event_start_date',
-                                             sanitize_text_field($worker_event_start_date));
-                           
-                            update_post_meta($posts[$i]->ID,
-                                             'event_end_date',
-                                             sanitize_text_field($worker_event_end_date));
-
-                            $ws = new DateTime($worker_event_start_date);
-
-                            update_post_meta($posts[$i]->ID,
-                                             'event_start_order',
-                                             date_format($ws, 'YmdHi'));
-
-                            $we = new DateTime($worker_event_end_date);
-
-                            update_post_meta($posts[$i]->ID,
-                                             'event_end_order',
-                                             date_format($we, 'YmdHi'));
-
-                            update_post_meta($posts[$i]->ID,
-                                             'event_location',
-                                             sanitize_text_field($worker_event_location));
-
-                            update_post_meta($posts[$i]->ID,
-                                             'event_location_name',
-                                             sanitize_text_field($worker_event_location_name));
-
-                            update_post_meta($posts[$i]->ID,
-                                             'event_geolocation',
-                                             sanitize_text_field($worker_event_geolocation));
-
-                            update_post_meta($posts[$i]->ID,
-                                             'event_price',
-                                             sanitize_text_field(floatval($worker_event_price)));
-
-                            update_post_meta($posts[$i]->ID,
-                                             'event_website',
-                                             esc_url_raw($worker_event_website));
-
-                            $organizer_data = Array(
-                                'address' => sanitize_text_field($output[$i]['organizer']['address']),
-                                'phone' => sanitize_text_field($output[$i]['organizer']['telephone']),
-                                'email' => sanitize_text_field($output[$i]['organizer']['email']),
-                                'website' => esc_url_raw($output[$i]['organizer']['url'])
-                            );
-
-                            update_post_meta($posts[$i]->ID,
-                                             'event_organizer',
-                                             sanitize_text_field($worker_event_organizer));
-
-                            update_post_meta($posts[$i]->ID,
-                                             'event_organizer_data',
-                                             $organizer_data);
-                         
-                            wp_update_post($event_data);
-                        }
-                    }
+                    
                 }
-                $args = array(
-                    'post_type'   => 'events',
-                    'post_status' => 'publish',
-                    'numberposts' => -1
-                );
-
-                $posts = get_posts($args);
-
-                foreach ($posts as $post)
-                {
-                    $compare = get_post_meta($post->ID, 'event_end_order');
-
-                    if ($compare[0] < $this->parse_the_time())
-                    {
-                        $post = array('ID' => $post->ID, 'post_status' => 'draft');
-                        wp_update_post($post);
-                    }
-                }
-
-                // Why?
-                $args = array(
-                    'post_type'   => 'events',
-                    'post_status' => 'publish',
-                    'numberposts' => -1
-                );
-
-                $posts = get_posts($args);
+                
             }
         }
 

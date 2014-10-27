@@ -27,7 +27,7 @@ class WorkerClientAjaxHelper
 
         // Add file generation action.
         add_action('wp_ajax_generate_files', array(&$this, 'generate'));
-
+        add_action('wp_ajax_nopriv_generate_files', array(&$this, 'generate'));
     }
   
     /**

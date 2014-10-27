@@ -126,7 +126,7 @@ class WorkerClientFileGenerator extends FPDF
      */
     function get_title($i)
     {
-        $title = strtoupper($this->json[$i]['name']);
+        $title = mb_strtoupper($this->json[$i]['name']);
         return $title;
     }
 
@@ -231,14 +231,18 @@ class WorkerClientFileGenerator extends FPDF
 
         $this->SetFont('Times','',10);
 
-        $category_array = $this->json[$i]['keywords'];
-        $keywords = implode(', ', $category_array['keywords']);
-
         $price = ucfirst(__("price", 'event-worker-translations')) . ": " . $this->get_price($i);
        
         $this->cell(80, 4, $price . EURO, 0);
-        $this->MultiCell(80, 4,  $keywords, 0);
 
+        if (!is_null($this->json[$i]['keywords']))
+        {
+            $category_array = $this->json[$i]['keywords'];
+        
+            $keywords = implode(', ', $category_array['keywords']);
+            $this->MultiCell(80, 4,  $keywords, 0);
+        }
+       
         //$post = get_page_by_title($title, OBJECT, 'events');
 
         //$location = get_post_meta($post->ID, 'event_location', true);
@@ -333,7 +337,7 @@ class WorkerClientFileGenerator extends FPDF
 
 $generator = new WorkerClientFileGenerator('P', 'mm', 'A4');
 
-$op = fopen('../events.txt', 'w');
+$op = fopen('../wp-content/plugins/event-worker-client/events.txt', 'w');
 fwrite($op, pack("CCC", 0xef, 0xbb, 0xbf));
 
 fwrite($op, $generator->today);
@@ -374,6 +378,6 @@ for ($i = 0; $i < count($generator->json); $i++)
 }
 
 fclose($op);
-$generator->Output("../events.pdf", "F");
+$generator->Output("../wp-content/plugins/event-worker-client/events.pdf", "F");
 
 ?>

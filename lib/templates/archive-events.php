@@ -111,9 +111,9 @@ class WorkerArchiveEventsTemplate
         echo '<div class="eventdivcontainer2">';
         echo '<div class="printbuttoncontainer" align="right">';
 
-        echo '<a href="' . home_url() . '/events.pdf' .'">PDF</a>';
+        echo '<a href="' . home_url() . '/wp-content/plugins/event-worker-client/events.pdf' .'">PDF</a>';
         echo ' | ';
-        echo '<a href="' . home_url() . '/events.txt' .'">' . __("PLAIN TEXT", 'event-worker-translations') . '</a>';
+        echo '<a href="' . home_url() . '/wp-content/plugins/event-worker-client/events.txt' .'">' . __("PLAIN TEXT", 'event-worker-translations') . '</a>';
 
         echo '</div>';
 
