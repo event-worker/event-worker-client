@@ -234,15 +234,19 @@ class WorkerClientFileGenerator extends FPDF
         $price = ucfirst(__("price", 'event-worker-translations')) . ": " . $this->get_price($i);
        
         $this->cell(80, 4, $price . EURO, 0);
-
-        if (!is_null($this->json[$i]['keywords']))
-        {
-            $category_array = $this->json[$i]['keywords'];
         
+        $category_array = $this->json[$i]['keywords'];
+        
+        if (count($category_array['keywords']) > 1)
+        {
             $keywords = implode(', ', $category_array['keywords']);
             $this->MultiCell(80, 4,  $keywords, 0);
         }
-       
+        else
+        {
+             $this->MultiCell(80, 4,   $category_array['keywords'][0], 0);
+        }
+
         //$post = get_page_by_title($title, OBJECT, 'events');
 
         //$location = get_post_meta($post->ID, 'event_location', true);
