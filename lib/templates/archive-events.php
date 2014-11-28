@@ -128,7 +128,7 @@ class WorkerArchiveEventsTemplate
 
             $temp_two = get_post_meta(get_the_ID(), 'event_end_date')[0];
             $end = $this->explode_the_date($temp_two);
-
+			//get_sidebar();
             $title = get_the_title(get_the_ID());
             $title = strtoupper($title);
             echo '<br>';
@@ -153,13 +153,13 @@ class WorkerArchiveEventsTemplate
             }
 
             echo '<div id="common_wrapper">';
-            echo '<div id="test">' . strtoupper(__("location", 'event-worker-translations'));
+            echo '<div id="loc_and_cat">' . strtoupper(__("location", 'event-worker-translations'));
             echo '</div>';
             echo $lname . get_post_meta(get_the_ID(), 'event_location')[0];
             echo '</div>';
 
             echo '<div id="common_wrapper">';
-            echo '<div id="test">' . strtoupper(__('category', 'event-worker-translations'));
+            echo '<div id="loc_and_cat">' . strtoupper(__('category', 'event-worker-translations'));
             echo '</div>';
             echo get_the_term_list(get_the_ID(), 'event_category', '', ' &bull; ', '');
             echo '</div><br>';
@@ -179,6 +179,7 @@ class WorkerArchiveEventsTemplate
         next_posts_link(__('Next', 'event-worker-translations') .' &raquo;') . '</div><br><br>';
 
         echo '</div>';
+        
         get_footer();
     }
 }

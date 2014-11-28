@@ -21,7 +21,6 @@ class WorkerClientCore
         require_once('common-options.php');
         require_once('file-generation/ajax-helper.php');
         require_once('pre-order-events.php');
-        require_once('admin-meta.php');
 
         add_action('init', array($this, 'worker_plugin_init'));
     }
@@ -64,14 +63,18 @@ class WorkerClientCore
         $event_type_args = array(
             'labels' => $event_type_labels,
             'public' => true,
+			'show_ui' => true,
             'query_var' => true,
             'rewrite' => true,
             'capability_type' => 'post',
             'has_archive' => true, 
             'hierarchical' => false,
             'menu_position' => null,
-            'supports' => array('title', 'editor', 'author')
-            //'taxonomies' => array('category')
+            'supports' => array('title', 'editor', 'author'),
+			'capabilities' => array(
+				'create_posts' => false,							
+			),
+			'map_meta_cap' => false // Set to true, if users are allowed to edit/delete existing posts            
         ); 
 
         register_post_type('events', $event_type_args);
@@ -93,7 +96,7 @@ class WorkerClientCore
         $event_category_args = array(
             'hierarchical' => true,
             'labels' => $event_category_labels,
-            'show_ui' => true,
+            'show_ui' => false,
             'query_var' => true,
             'rewrite' => array('slug' => $this->category_slug()),
         );
