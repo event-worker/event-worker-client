@@ -6,9 +6,10 @@ define('EURO', chr(128));
 date_default_timezone_set('Europe/Helsinki');
 
 /**
- * Class for generating the PDF with FPDF library.
+ * Class for generating the Plain Text file and the PDF with FPDF library.
  *
- * Class extending FPDF library for generating PDF from the events.
+ * The class is extending FPDF library for generating PDF from the events.
+ * The Plain Text is generated using fwrite()-function.
  *
  * @package EventWorker
  * @author  Janne Kahkonen <jannekahkonen@gmail.com>
@@ -337,7 +338,11 @@ class WorkerClientFileGenerator extends FPDF
     }
     
     /** 
-     * TODO.
+     * Get the post permalink by the slug.
+     *
+     * @param TODO.
+     *
+     * @return TODO.
      *
      */
     function get_post_by_slug($slug)
