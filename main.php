@@ -29,11 +29,11 @@ class WorkerClientMain
     {
         require_once('lib/core.php');
 
-        if (!class_exists('\\Slim\\Slim'))
-        {
-            require_once('lib/api/slim-helper.php');
-            require_once('lib/api/api-routes.php');
-        }
+        //if (!class_exists('\\Slim\\Slim'))
+        //{
+            //require_once('lib/api/slim-helper.php');
+            //require_once('lib/api/api-routes.php');
+        //}
 
         require_once('lib/redirect.php');
         require_once('lib/loaders/scripts-and-styles-loader.php');

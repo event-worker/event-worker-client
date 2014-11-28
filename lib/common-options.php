@@ -17,14 +17,13 @@ class WorkerClientCommonOptions
      *
      */
     function __construct()
-    {   
-        $arr = array('api-endpoint' => 'v01/api');
-        $arr2 = array('host-url' => '');
+    {
+        $arr = array('host-url' => '');
 
         add_action('admin_menu', array( $this, 'add_plugin_settings_menu'));
         add_action('admin_init', array( $this, 'register_settings'));
-        add_option('event_worker_api_endpoint', $arr, '', 'yes');
-        add_option('event_worker_host_url', $arr2, '', 'yes');
+
+        add_option('event_worker_host_url', $arr, '', 'yes');
     }
  
     /** 
@@ -81,25 +80,6 @@ class WorkerClientCommonOptions
     function register_settings()
     {
         add_settings_section(
-            'api-endpoint-settings-section',
-            __('API Options', 'event-worker-translations'),
-            array($this, 'print_api_endpoint_settings_section_info'),
-            'event-worker-client'
-        ); 
-       
-        add_settings_field(
-            'api-endpoint', 
-            __('Endpoint', 'event-worker-translations'),
-            array($this, 'create_input_api_endpoint'), 
-            'event-worker-client', 
-            'api-endpoint-settings-section'
-        );
-
-        register_setting('client-settings-group',
-                         'event_worker_api_endpoint',
-                         array($this, 'plugin_api_endpoint_settings_validate'));
-
-        add_settings_section(
             'host-url-settings-section',
             __('Host URL Options', 'event-worker-translations'),
             array($this, 'print_host_url_settings_section_info'),
@@ -117,42 +97,10 @@ class WorkerClientCommonOptions
         register_setting('client-settings-group',
                          'event_worker_host_url',
                          array($this, 'plugin_host_url_settings_validate'));
-    }
+    } 
 
     /** 
-     * Print the settings info for the API endpoint.
-     *
-     */
-    function print_api_endpoint_settings_section_info()
-    {
-        _e('Set the API endpoint', 'event-worker-translations');
-    }
-
-    /** 
-     * Input for the API endpoint.
-     *
-     */
-    function create_input_api_endpoint()
-    {   
-        $options = get_option('event_worker_api_endpoint');
-        //$options['api-endpoint'] = empty($options['api-endpoint']) ? 'v01/api' : $options['api-endpoint'];
-        ?><input style="width:70%" type="text" name="event_worker_api_endpoint[api-endpoint]" value="<?php echo esc_attr($options['api-endpoint']); ?>" /><?php
-    }
-
-    /** 
-     * Validate the input.
-     *
-     */
-    function plugin_api_endpoint_settings_validate($arr_input)
-    {
-        $options = get_option('event_worker_api_endpoint');
-        $options['api-endpoint'] = sanitize_text_field($arr_input['api-endpoint']);
-
-        return $options;
-    }
-
-    /** 
-     * Print the settings info for the host url.
+     * Print the settings info for the host URL.
      *
      */
     function print_host_url_settings_section_info()
@@ -161,7 +109,7 @@ class WorkerClientCommonOptions
     }
 
     /** 
-     * Input for the host url.
+     * Input for the host URL.
      *
      */
     function create_input_host_url()

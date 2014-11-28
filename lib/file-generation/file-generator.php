@@ -31,12 +31,10 @@ class WorkerClientFileGenerator extends FPDF
         $text = __("Document generated", 'event-worker-translations');
         $this->today = $text . ": " . date("d.m.Y, H:i:s");
 
-        $options = get_option('event_worker_api_endpoint');
-        $endpoint = $options['api-endpoint'];
+        $options = get_option('event_worker_host_url');
+        $endpoint = $options['host-url'];       
 
-        $url = home_url() . '/' . $endpoint . '/event';
-       
-        $output = wp_remote_get($url);
+        $output = wp_remote_get($endpoint);
         
         $this->json = json_decode($output['body'], true);
         $this->json = $this->json["@graph"];
