@@ -32,7 +32,7 @@ class WorkerClientFileGenerator extends FPDF
         $this->today = $text . ": " . date("d.m.Y, H:i:s");
 
         $options = get_option('event_worker_host_url');
-        $endpoint = $options['host-url'];       
+        $endpoint = $options['host-url'];
 
         $output = wp_remote_get($endpoint);
         
@@ -335,6 +335,23 @@ class WorkerClientFileGenerator extends FPDF
         }
         return trim($output) . ($overflow ? '...' : '');
     }
+    
+    /** 
+     * TODO.
+     *
+     */
+    function get_post_by_slug($slug)
+    {
+        $posts = get_posts(array(
+                'name' => $slug,
+                'posts_per_page' => 1,
+                'post_type' => 'events',
+                'post_status' => 'publish'
+        ));
+
+        return get_permalink($posts[0]->ID);
+    }
+
 }
 
 $generator = new WorkerClientFileGenerator('P', 'mm', 'A4');
@@ -344,6 +361,7 @@ fwrite($op, pack("CCC", 0xef, 0xbb, 0xbf));
 
 fwrite($op, $generator->today);
 fwrite($op, "\n" . str_repeat("=", strlen($generator->today)) . "\n\n\n");
+
 
 for ($i = 0; $i < count($generator->json); $i++)
 {
@@ -356,7 +374,11 @@ for ($i = 0; $i < count($generator->json); $i++)
     $generator->MultiCell(160, 4,  $temp, '', 'L', false);
     $generator->SetTextColor(50, 50, 50);
     $generator->Ln(0.5);
-    $generator->Cell(160, 4, __("LINK", 'event-worker-translations') . ': ' . $generator->json[$i]['url'], 'B', 1, 'L', false, $generator->json[$i]['url']);
+
+    $generator->Cell(160, 4, __("LINK", 'event-worker-translations') . ': ' . $generator->get_post_by_slug($generator->get_title($i)),
+                                                                              'B', 1, 'L', false,
+                                                                              $generator->get_post_by_slug($generator->get_title($i)));
+
     $generator->SetTextColor(0,0,0);
     $generator->SetDrawColor(0, 0, 0);
     $generator->Ln(3);
