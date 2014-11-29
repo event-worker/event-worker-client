@@ -169,11 +169,11 @@ class WorkerPreOrderPosts
                         $posts = get_posts($args);
 
                         $datetime1 = date_create(get_post_meta($posts[0]->ID, 'event_modified' )[0]);
-                        $datetime2 = date_create($output[$i]['Date']['dateModified']);
+                        $datetime2 = date_create($output[$i]['workPerformed']['dateModified']);
 
                         if ($datetime1 != $datetime2)
                         {
-                            $worker_event_modified = $output[$i]['Date']['dateModified'];
+                            $worker_event_modified = $output[$i]['workPerformed']['dateModified'];
                             $worker_event_start_date = $output[$i]['startDate'];
                             $worker_event_end_date = $output[$i]['endDate'];
 
@@ -195,7 +195,7 @@ class WorkerPreOrderPosts
                                 'post_type' => 'events'
                             );
 
-                            $names = $output[$i]['keywords']['keywords'];
+                            $names = $output[$i]['workPerformed']['keywords'];
 
                             wp_set_object_terms($posts[0]->ID, $names, 'event_category');
 
@@ -262,7 +262,12 @@ class WorkerPreOrderPosts
                                              'event_organizer_data',
                                              $organizer_data);
 
+							update_post_meta($posts[0]->ID,
+										     'event_status',
+											 $output[$i]['eventStatus']);
+
                             wp_update_post($event_data);
+
                         }
                     }
 
@@ -270,7 +275,7 @@ class WorkerPreOrderPosts
                     {   
                         $worker_event_category = '';
                         
-                        $worker_event_modified = $output[$i]['Date']['dateModified'];
+                        $worker_event_modified = $output[$i]['workPerformed']['dateModified'];
 
                         $worker_event_start_date = $output[$i]['startDate'];
                         $worker_event_end_date = $output[$i]['endDate'];
@@ -295,7 +300,7 @@ class WorkerPreOrderPosts
                         // Add to database.
                         if ($event_id = wp_insert_post($event_data))
                         {
-                            $names = $output[$i]['keywords']['keywords'];
+                            $names = $output[$i]['workPerformed']['keywords'];
 
                             wp_set_object_terms($event_id, $names, 'event_category');
 
@@ -365,6 +370,10 @@ class WorkerPreOrderPosts
                             update_post_meta($event_id,
                                              'event_version',
                                              $output[$i]['version']);
+											 
+														update_post_meta($event_id,
+										     'event_status',
+											 $output[$i]['eventStatus']);
                         }
                     }
                 }

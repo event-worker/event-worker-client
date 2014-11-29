@@ -160,13 +160,14 @@ class WorkerSingleEventTemplate
         echo '<div style="text-align:center">';
 
         $args = array(
-            'orderby' => 'meta_value',
-            'meta_key'=>'event_start_date',
-            'order' => 'ASC',
-            'post_type' => 'events',
+            'orderby'     => 'meta_value',
+            'meta_key'    =>'event_start_date',
+            'order'       => 'ASC',
+            'post_type'   => 'events',
             'post_status' => 'publish',
-            'numberposts' => -1
-        );
+            'numberposts' => -1,
+            'meta_query'  => array(array('value' => 'http://schema.org/EventScheduled'))
+        ); 
 
         $pagelist = get_posts($args);
         $pages = array();

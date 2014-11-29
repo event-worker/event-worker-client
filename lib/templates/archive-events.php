@@ -122,47 +122,54 @@ class WorkerArchiveEventsTemplate
             date_default_timezone_set('Europe/Helsinki');
 
             the_post();
-
-            $temp_one = get_post_meta(get_the_ID(), 'event_start_date')[0];
-            $start = $this->explode_the_date($temp_one);
-
-            $temp_two = get_post_meta(get_the_ID(), 'event_end_date')[0];
-            $end = $this->explode_the_date($temp_two);
-			//get_sidebar();
-            $title = get_the_title(get_the_ID());
-            $title = strtoupper($title);
-            echo '<br>';
-            echo '<div id="date_wrapper">';
-            echo $start . ' <div>&darr;</div> ' . $end;
-            echo '</div>';
-
-            echo '<div id="title_wrapper">';
-            echo '<a href="' . get_permalink(get_the_ID()) . '">' . mb_strtoupper(esc_html($title)) . '</a>';
-            //echo '<div id="ics"><a href="ics.php">' . "ICS" . '</a></div>';
-            echo '</div>';
-
-            $lname =  get_post_meta(get_the_ID(), 'event_location_name')[0];
-
-            if ($lname == '')
+            
+            if (get_post_meta(get_the_ID(), 'event_status')[0] != "http://schema.org/EventCancelled")
             {
-                $lname = '';
-            }
-            else if ($lname != '')
-            {
-                $lname .= ' - ';
-            }
+                $temp_one = get_post_meta(get_the_ID(), 'event_start_date')[0];
+                $start = $this->explode_the_date($temp_one);
 
-            echo '<div id="common_wrapper">';
-            echo '<div id="loc_and_cat">' . strtoupper(__("location", 'event-worker-translations'));
-            echo '</div>';
-            echo $lname . get_post_meta(get_the_ID(), 'event_location')[0];
-            echo '</div>';
+                $temp_two = get_post_meta(get_the_ID(), 'event_end_date')[0];
+                $end = $this->explode_the_date($temp_two);
 
-            echo '<div id="common_wrapper">';
-            echo '<div id="loc_and_cat">' . strtoupper(__('category', 'event-worker-translations'));
-            echo '</div>';
-            echo get_the_term_list(get_the_ID(), 'event_category', '', ' &bull; ', '');
-            echo '</div><br>';
+                //get_sidebar();
+
+                $title = get_the_title(get_the_ID());
+                $title = strtoupper($title);
+                echo '<br>';
+                echo '<div id="date_wrapper">';
+                echo $start . ' <div>&darr;</div> ' . $end;
+                echo '</div>';
+
+                echo '<div id="title_wrapper">';
+                echo '<a href="' . get_permalink(get_the_ID()) . '">' . mb_strtoupper(esc_html($title)) . '</a>';
+
+                //echo '<div id="ics"><a href="ics.php">' . "ICS" . '</a></div>';
+
+                echo '</div>';
+
+                $lname =  get_post_meta(get_the_ID(), 'event_location_name')[0];
+
+                if ($lname == '')
+                {
+                    $lname = '';
+                }
+                else if ($lname != '')
+                {
+                    $lname .= ' - ';
+                }
+
+                echo '<div id="common_wrapper">';
+                echo '<div id="loc_and_cat">' . strtoupper(__("location", 'event-worker-translations'));
+                echo '</div>';
+                echo $lname . get_post_meta(get_the_ID(), 'event_location')[0];
+                echo '</div>';
+
+                echo '<div id="common_wrapper">';
+                echo '<div id="loc_and_cat">' . strtoupper(__('category', 'event-worker-translations'));
+                echo '</div>';
+                echo get_the_term_list(get_the_ID(), 'event_category', '', ' &bull; ', '');
+                echo '</div><br>';
+            }
         }
 
         $prev_link = "";

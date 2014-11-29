@@ -234,7 +234,7 @@ class WorkerClientFileGenerator extends FPDF
        
         $this->cell(80, 4, $price . EURO, 0);
         
-        $category_array = $this->json[$i]['keywords'];
+        $category_array = $this->json[$i]['workPerformed'];
         
         if (count($category_array['keywords']) > 1)
         {
@@ -345,16 +345,19 @@ class WorkerClientFileGenerator extends FPDF
      * @return TODO.
      *
      */
-    function get_post_by_slug($slug)
+    function get_post_by_slug($count, $slug)
     {
         $posts = get_posts(array(
-                'name' => $slug,
-                'posts_per_page' => 1,
+                'title' => $slug,
+                'posts_per_page' => -1,
                 'post_type' => 'events',
+                'meta_key' => 'event_start_order',
+                'orderby' => 'meta_value_num',
+                'order'    => 'ASC',
                 'post_status' => 'publish'
         ));
 
-        return get_permalink($posts[0]->ID);
+        return get_permalink($posts[$count]->ID);
     }
 
 }
@@ -380,9 +383,9 @@ for ($i = 0; $i < count($generator->json); $i++)
     $generator->SetTextColor(50, 50, 50);
     $generator->Ln(0.5);
 
-    $generator->Cell(160, 4, __("LINK", 'event-worker-translations') . ': ' . $generator->get_post_by_slug($generator->get_title($i)),
+    $generator->Cell(160, 4, __("LINK", 'event-worker-translations') . ': ' . $generator->get_post_by_slug($i ,$generator->get_title($i)),
                                                                               'B', 1, 'L', false,
-                                                                              $generator->get_post_by_slug($generator->get_title($i)));
+                                                                              $generator->get_post_by_slug($i, $generator->get_title($i)));
 
     $generator->SetTextColor(0,0,0);
     $generator->SetDrawColor(0, 0, 0);
