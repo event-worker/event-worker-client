@@ -21,7 +21,7 @@ class WorkerClientFileGenerator extends FPDF
     public $today = null;
     public $json = null;
 
-    /** 
+    /**
      * The constructor.
      *
      */
@@ -36,16 +36,46 @@ class WorkerClientFileGenerator extends FPDF
         $endpoint = $options['host-url'];
 
         $output = wp_remote_get($endpoint);
-        
+
         $this->json = json_decode($output['body'], true);
         $this->json = $this->json["@graph"];
+        $this->json = $this->_search($this->json, "eventStatus", "http://schema.org/EventScheduled");
 
         $this->SetMargins(20, 0, 20);
 
         $this->new_page();
     }
 
-    /** 
+    /**
+     * TODO.
+     *
+     * @param TODO.
+     * @param TODO.
+     * @param TODO.
+     *
+     * @return TODO.
+     *
+     */
+    function _search($array, $key, $value)
+    {
+        $results = array();
+
+        if (is_array($array))
+        {
+            if (isset($array[$key]) && $array[$key] == $value)
+            {
+                $results[] = $array;
+            }
+
+            foreach ($array as $subarray)
+            {
+                $results = array_merge($results, $this->_search($subarray, $key, $value));
+            }
+        }
+        return $results;
+    }
+
+    /**
      * TODO.
      *
      * @param TODO.
@@ -115,7 +145,7 @@ class WorkerClientFileGenerator extends FPDF
         return $count;
     }
 
-    /** 
+    /**
      * Get the title.
      *
      * @param int $i the name index
@@ -129,7 +159,7 @@ class WorkerClientFileGenerator extends FPDF
         return $title;
     }
 
-    /** 
+    /**
      * Get the date.
      *
      * @param int $i the index
@@ -144,7 +174,7 @@ class WorkerClientFileGenerator extends FPDF
         return utf8_decode($d1->format('d.m.Y H:i') . ' - ' . $d2->format('d.m.Y H:i'));
     }
 
-    /** 
+    /**
      * Get the organizer.
      *
      * @param int $i the index
@@ -158,7 +188,7 @@ class WorkerClientFileGenerator extends FPDF
         return utf8_decode($organizer);
     }
 
-    /** 
+    /**
      * Get the organizer address and url.
      *
      * @param int $i the index
@@ -174,7 +204,7 @@ class WorkerClientFileGenerator extends FPDF
         return utf8_decode($organizer);
     }
 
-        /** 
+        /**
      * Get the organizer address and url.
      *
      * @param int $i the index
@@ -190,7 +220,7 @@ class WorkerClientFileGenerator extends FPDF
         return utf8_decode($organizer);
     }
 
-    /** 
+    /**
      * Get the price.
      *
      * @param int $i the index
@@ -199,21 +229,21 @@ class WorkerClientFileGenerator extends FPDF
      *
      */
     function get_price($i)
-    {   
+    {
         //iconv("UTF-8", "ISO-8859-1", "€");
 
         $price = $this->json[$i]['offers']['price'];
         return $price;
     }
 
-    /** 
+    /**
      * Make the PDF document.
      *
      * @param int $i the index
      *
      */
     function make_content($i)
-    {   
+    {
         $this->SetFont('Times','',10);
         $this->SetTextColor(50, 50, 50);
 
@@ -231,11 +261,11 @@ class WorkerClientFileGenerator extends FPDF
         $this->SetFont('Times','',10);
 
         $price = ucfirst(__("price", 'event-worker-translations')) . ": " . $this->get_price($i);
-       
+
         $this->cell(80, 4, $price . EURO, 0);
-        
+
         $category_array = $this->json[$i]['workPerformed'];
-        
+
         if (count($category_array['keywords']) > 1)
         {
             $keywords = implode(', ', $category_array['keywords']);
@@ -262,7 +292,7 @@ class WorkerClientFileGenerator extends FPDF
         $this->Ln(5);
 
         $this->Cell(80, 4, utf8_decode(ucfirst(__("organizer", 'event-worker-translations'))) . ": " . $this->get_organizer($i), 0);
-        
+
         $this->SetTextColor(0, 0, 0);
         $this->Ln();
 
@@ -276,7 +306,7 @@ class WorkerClientFileGenerator extends FPDF
         $this->Ln(3);
     }
 
-    /** 
+    /**
      * Make the PDF document.
      *
      * @param int $i the index
@@ -285,7 +315,7 @@ class WorkerClientFileGenerator extends FPDF
     function make_page($i)
     {
         if ($this->getY() <= 217)
-        {   
+        {
             $this->make_content($i);
         }
         else
@@ -295,19 +325,19 @@ class WorkerClientFileGenerator extends FPDF
         }
     }
 
-    /** 
+    /**
      * A new page.
      *
      */
     function new_page()
-    {   
+    {
         $this->AddPage();
         $this->SetFont('Times', '', 9);
         $this->Cell(170, 10, $this->today, 0, 0, 'R', false);
         $this->Ln();
     }
 
-    /** 
+    /**
      * Limit the content words.
      *
      * @param string $string The content string.
@@ -336,10 +366,11 @@ class WorkerClientFileGenerator extends FPDF
         }
         return trim($output) . ($overflow ? '...' : '');
     }
-    
-    /** 
+
+    /**
      * Get the post permalink by the slug.
      *
+     * @param TODO.
      * @param TODO.
      *
      * @return TODO.
@@ -390,7 +421,7 @@ for ($i = 0; $i < count($generator->json); $i++)
     $generator->SetTextColor(0,0,0);
     $generator->SetDrawColor(0, 0, 0);
     $generator->Ln(3);
-    
+
     $organizer = ucfirst(__("organizer", 'event-worker-translations'));
     $organizer_address = ucfirst(__("organizer address", 'event-worker-translations'));
     $organizer_phone = ucfirst(__("organizer phone", 'event-worker-translations'));

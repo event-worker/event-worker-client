@@ -18,6 +18,7 @@ class WorkerArchiveEventsTemplate
      */
     function __construct()
     {
+        $json = null;
         add_action('wp_footer', array($this, 'append_styles'));
         $this->get_the_template();
     }

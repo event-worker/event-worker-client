@@ -178,8 +178,10 @@ class WorkerSingleEventTemplate
         }
 
         $current = array_search(get_the_ID(), $pages);
-
-        if ($current !== 0 && !is_preview())
+        
+        if ($current !== false)
+        {       
+            if ($current !== 0 && !is_preview())
         {
             $prevID = $pages[$current-1];
             $prev = __("Previous", 'event-worker-translations');
@@ -200,6 +202,8 @@ class WorkerSingleEventTemplate
             echo '<a href="' . esc_url(get_permalink($nextID)) . '" ' .
                  'title="' . esc_attr(get_the_title($nextID)) . '">' . esc_attr($next) . ' &raquo;</a>';
         }
+        }
+        
 
         echo '</div><br><br>';
         get_footer();
