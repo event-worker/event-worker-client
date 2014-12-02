@@ -142,3 +142,25 @@ div.printbuttoncontainer {
     word-wrap:break-word;
     background-color: #F5F5F5 !important;
 }
+
+
+/* Fix the width of the category select input. */
+.postform {
+    width :100% !important;
+}
+
+/* Fix the width of the category select input. */
+input {
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing: border-box;
+}
+
+/* Fix the width of the textareas. */
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing: border-box;
+}
