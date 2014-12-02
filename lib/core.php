@@ -24,8 +24,6 @@ class WorkerClientCore
 
         add_action('init', array($this, 'worker_plugin_init'));
 
-        add_filter('manage_edit-events_columns', array($this, 'add_new_events_columns'));
-        add_action('manage_events_posts_custom_column', array($this, 'manage_events_columns'), 10, 2);
     }
 
     /**
@@ -89,6 +87,7 @@ class WorkerClientCore
      *
      */
     function worker_plugin_init()
+
     {
         new WorkerClientCommonOptions();
 
@@ -161,7 +160,14 @@ class WorkerClientCore
                 wp_insert_term($cat, 'event_category');
             }
         }
+
+        if (!class_exists('WorkerHostMain'))
+        {
+            add_filter('manage_edit-events_columns', array($this, 'add_new_events_columns'));
+            add_action('manage_events_posts_custom_column', array($this, 'manage_events_columns'), 10, 2);
+        }
     }
+
 }
 new WorkerClientCore();
 
