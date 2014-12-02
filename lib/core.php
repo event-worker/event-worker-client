@@ -62,10 +62,9 @@ class WorkerClientCore
      *
      */
     function manage_events_columns($column, $post_id)
-    {	
-		$var = get_post_meta($post_id);
-		//$var = get_post_meta($post_id, 'event_start_date');
-		
+    {   
+        $var = get_post_meta($post_id);
+
         if ($column == "event_status")
         {
             if ($var['event_status'][0] == "http://schema.org/EventCancelled")
