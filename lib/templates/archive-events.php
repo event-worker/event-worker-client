@@ -124,12 +124,14 @@ class WorkerArchiveEventsTemplate
 
             the_post();
             
-            if (get_post_meta(get_the_ID(), 'event_status')[0] != "http://schema.org/EventCancelled")
+            $var = get_post_meta(get_the_ID());
+            
+            if ($var['event_status'][0] != "http://schema.org/EventCancelled")
             {
-                $temp_one = get_post_meta(get_the_ID(), 'event_start_date')[0];
+                $temp_one = $var['event_start_date'][0];
                 $start = $this->explode_the_date($temp_one);
 
-                $temp_two = get_post_meta(get_the_ID(), 'event_end_date')[0];
+                $temp_two = $var['event_end_date'][0];
                 $end = $this->explode_the_date($temp_two);
 
                 //get_sidebar();
@@ -148,7 +150,7 @@ class WorkerArchiveEventsTemplate
 
                 echo '</div>';
 
-                $lname =  get_post_meta(get_the_ID(), 'event_location_name')[0];
+                $lname =  $var['event_location_name'][0];
 
                 if ($lname == '')
                 {
@@ -162,7 +164,7 @@ class WorkerArchiveEventsTemplate
                 echo '<div id="common_wrapper">';
                 echo '<div id="loc_and_cat">' . strtoupper(__("location", 'event-worker-translations'));
                 echo '</div>';
-                echo $lname . get_post_meta(get_the_ID(), 'event_location')[0];
+                echo $lname . $var['event_location'][0];
                 echo '</div>';
 
                 echo '<div id="common_wrapper">';

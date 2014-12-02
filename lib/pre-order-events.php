@@ -167,8 +167,10 @@ class WorkerPreOrderPosts
                         );
 
                         $posts = get_posts($args);
+						
+						$var = get_post_meta($posts[0]->ID);
 
-                        $datetime1 = date_create(get_post_meta($posts[0]->ID, 'event_modified' )[0]);
+                        $datetime1 = date_create($var['event_modified'][0]);
                         $datetime2 = date_create($output[$i]['workPerformed']['dateModified']);
 
                         if ($datetime1 != $datetime2)

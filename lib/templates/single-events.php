@@ -67,10 +67,12 @@ class WorkerSingleEventTemplate
 
         the_post();
         
-        $temp_one = get_post_meta(get_the_ID(), 'event_start_date')[0];
+        $var = get_post_meta(get_the_ID());
+        
+        $temp_one = $var['event_start_date'][0];
         $start = $this->explode_the_date($temp_one);
 
-        $temp_two = get_post_meta(get_the_ID(), 'event_end_date')[0];
+        $temp_two = $var['event_end_date'][0];
         $end = $this->explode_the_date($temp_two);
 
         echo '<table style="width:100%">';
@@ -83,7 +85,7 @@ class WorkerSingleEventTemplate
              '<strong> &rarr; </strong>' .
              esc_attr($end) . '</td></tr>';
 
-        echo '<tr><td class="eventtablecontainer">' . __('price', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">' . esc_attr(get_post_meta(get_the_ID(), 'event_price')[0]) . '&#8364;</td></tr>';
+        echo '<tr><td class="eventtablecontainer">' . __('price', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">' . esc_attr($var['event_price'][0]) . '&#8364;</td></tr>';
         echo '<tr><td class="eventtablecontainer">' . __('category', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">';
 
         $this->check();
@@ -92,22 +94,25 @@ class WorkerSingleEventTemplate
 
         $data = '';
         $data2 = '';
+        
+        $odata = $var['event_organizer_data'];
+        $odata = unserialize($odata[0]);
 
-        if (get_post_meta(get_the_ID(), 'event_organizer_data')[0]['address'] !== '')
+        if ($odata['address'] !== '')
         {
-            $data = esc_attr(get_post_meta(get_the_ID(), 'event_organizer_data')[0]['address']) . '  ';
+            $data = esc_attr($odata['address']) . '  ';
         }
-        if (get_post_meta(get_the_ID(), 'event_organizer_data')[0]['website'] !== '')
+        if ($odata['website'] !== '')
         {
-            $data .= '<a href="' . esc_url(get_post_meta(get_the_ID(), 'event_organizer_data')[0]['website']) . '">' . esc_url(get_post_meta(get_the_ID(), 'event_organizer_data')[0]['website']) . '</a>  ';
+            $data .= '<a href="' . esc_url($odata['website']) . '">' . esc_url($odata['website']) . '</a>  ';
         }
-        if (get_post_meta(get_the_ID(), 'event_organizer_data')[0]['email'] !== '')
+        if ($odata['email'] !== '')
         {
-            $data2 .= get_post_meta(get_the_ID(), 'event_organizer_data')[0]['email'] . '  ';
+            $data2 .= $odata['email'] . '  ';
         }
-        if (get_post_meta(get_the_ID(), 'event_organizer_data')[0]['phone'] !== '')
+        if ($odata['phone'] !== '')
         {
-            $data2 .= get_post_meta(get_the_ID(), 'event_organizer_data')[0]['phone'] . '  ';
+            $data2 .= $odata['phone'] . '  ';
         }
 
         if ($data !== '' && $data2 !== '')
@@ -118,15 +123,16 @@ class WorkerSingleEventTemplate
         {
             $sep = '';
         }
-       
-        $data = preg_replace( '/\s\s+/', ', ', $data, preg_match_all( '/\s\s+/', $data) - 1);
-        $data2 = preg_replace( '/\s\s+/', ', ', $data2, preg_match_all( '/\s\s+/', $data2) - 1);
+        
+        $dummy = array();
+        $data = preg_replace( '/\s\s+/', ', ', $data, preg_match_all( '/\s\s+/', $data, $dummy) - 1);
+        $data2 = preg_replace( '/\s\s+/', ', ', $data2, preg_match_all( '/\s\s+/', $data2, $dummy) - 1);
 
-        echo '<tr><td class="eventtablecontainer">'. __('website', 'event-worker-translations') . '</td>' . '<td class="eventtablecontainersecond"><a href="' . esc_url(get_post_meta(get_the_ID(), 'event_website')[0]) . '">' . esc_url(get_post_meta(get_the_ID(), 'event_website')[0]) . '</a></td></tr>';
-        echo '<tr><td class="eventtablecontainer">'. __('organizer', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">' . esc_attr(get_post_meta(get_the_ID(), 'event_organizer')[0]) . '<br>' . 
+        echo '<tr><td class="eventtablecontainer">'. __('website', 'event-worker-translations') . '</td>' . '<td class="eventtablecontainersecond"><a href="' . esc_url($var['event_website'][0]) . '">' . esc_url($var['event_website'][0]) . '</a></td></tr>';
+        echo '<tr><td class="eventtablecontainer">'. __('organizer', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">' . esc_attr($var['event_organizer'][0]) . '<br>' . 
         $data . $sep . esc_attr($data2) . '</td></tr>';
 
-        $lname =  get_post_meta(get_the_ID(), 'event_location_name')[0];
+        $lname =  $var['event_location_name'][0];
 
         if ($lname == '')
         {
@@ -139,11 +145,11 @@ class WorkerSingleEventTemplate
 
         echo '<tr><td class="eventtablecontainer">' . __('location', 'event-worker-translations') . '</td><td class="eventtablecontainersecond">' .
              esc_attr($lname) .
-             esc_attr(get_post_meta(get_the_ID(), 'event_location')[0]) . '</td></tr>';
+             esc_attr($var['event_location'][0]) . '</td></tr>';
             
         $wslh = new WorkerClientScriptLoaderHelper();
 
-        $wslh->getMapOnly(get_post_meta(get_the_ID(), 'event_location')[0]);
+        $wslh->getMapOnly($var['event_location'][0]);
 
         ob_start();
         the_content();
